@@ -32,27 +32,6 @@
 }
 
 /* Dark mode: cream text on dark backgrounds */
-[data-md-color-scheme="slate"] {
-  --md-default-fg-color: #e0e0e0;
-  --md-default-fg-color--light: #cccccc;
-  --md-default-fg-color--lighter: #aaaaaa;
-  --md-default-fg-color--lightest: #888888;
-  --md-default-bg-color: #1a1a1a;
-  --md-default-bg-color--light: #222222;
-  --md-default-bg-color--lighter: #2a2a2a;
-  --md-default-bg-color--lightest: #333333;
-  --md-primary-fg-color: #4488bb;
-  --md-primary-bg-color: #1a1a1a;
-  --md-accent-fg-color: #55bbbb;
-  --md-typeset-color: #e0e0e0;
-  --md-typeset-a-color: #6699ff;
-  --md-code-bg-color: #2a2a20;
-  --md-code-fg-color: #ddddcc;
-  --md-footer-bg-color: #111111;
-  --md-footer-fg-color: #cccccc;
-  --md-footer-fg-color--light: #aaaaaa;
-  --md-footer-fg-color--lighter: #888888;
-}
 
 /* ============ BASE TYPOGRAPHY ============ */
 
@@ -81,10 +60,6 @@ code, pre,
   background: #d4d0c8 !important;
 }
 
-[data-md-color-scheme="slate"] .md-main {
-  background: #111111 !important;
-}
-
 .md-content {
   background: #ffffff !important;
   color: #000000 !important;
@@ -93,19 +68,9 @@ code, pre,
   margin: 10px !important;
 }
 
-[data-md-color-scheme="slate"] .md-content {
-  background: #1a1a1a !important;
-  color: #e0e0e0 !important;
-  border-color: #444444 !important;
-}
-
 /* Force text color on all content elements */
 .md-typeset {
   color: #000000 !important;
-}
-
-[data-md-color-scheme="slate"] .md-typeset {
-  color: #e0e0e0 !important;
 }
 
 /* ============ HEADER ============ */
@@ -158,19 +123,10 @@ code, pre,
   border-right: 2px solid #808080 !important;
 }
 
-[data-md-color-scheme="slate"] .md-sidebar {
-  background: #1e1e1e !important;
-  border-right-color: #444444 !important;
-}
-
 .md-nav__link {
   font-family: "Times New Roman", Times, serif !important;
   color: #0000ee !important;
   text-decoration: underline !important;
-}
-
-[data-md-color-scheme="slate"] .md-nav__link {
-  color: #6699ff !important;
 }
 
 .md-nav__link:hover {
@@ -183,20 +139,10 @@ code, pre,
   color: #000000 !important;
 }
 
-[data-md-color-scheme="slate"] .md-nav__link--active,
-[data-md-color-scheme="slate"] .md-nav__item--active > .md-nav__link {
-  color: #ffffff !important;
-}
-
 .md-nav__item--nested > .md-nav__link,
 .md-nav__item--section > .md-nav__link {
   color: #333333 !important;
   font-weight: bold !important;
-}
-
-[data-md-color-scheme="slate"] .md-nav__item--nested > .md-nav__link,
-[data-md-color-scheme="slate"] .md-nav__item--section > .md-nav__link {
-  color: #cccccc !important;
 }
 
 /* ============ LINKS ============ */
@@ -213,15 +159,6 @@ code, pre,
 
 .md-typeset a:hover {
   color: #cc0000 !important;
-}
-
-[data-md-color-scheme="slate"] .md-typeset a,
-[data-md-color-scheme="slate"] .md-typeset a:link {
-  color: #6699ff !important;
-}
-
-[data-md-color-scheme="slate"] .md-typeset a:visited {
-  color: #bb88ff !important;
 }
 
 /* ============ HEADINGS ============ */
@@ -250,10 +187,6 @@ code, pre,
   font-weight: bold !important;
   color: #333333 !important;
 }
-
-[data-md-color-scheme="slate"] .md-typeset h1 { color: #88bbee !important; }
-[data-md-color-scheme="slate"] .md-typeset h2 { color: #66cccc !important; }
-[data-md-color-scheme="slate"] .md-typeset h3 { color: #cccccc !important; }
 
 /* ============ TABLES ============ */
 
@@ -284,15 +217,6 @@ code, pre,
   background: #f0f0f0 !important;
 }
 
-[data-md-color-scheme="slate"] .md-typeset table td {
-  background: #1a1a1a !important;
-  color: #e0e0e0 !important;
-}
-
-[data-md-color-scheme="slate"] .md-typeset table tr:nth-child(even) td {
-  background: #222222 !important;
-}
-
 /* ============ CODE BLOCKS ============ */
 
 .md-typeset pre {
@@ -309,18 +233,6 @@ code, pre,
   border-radius: 0 !important;
   padding: 1px 4px !important;
   color: #333333 !important;
-}
-
-[data-md-color-scheme="slate"] .md-typeset pre {
-  background: #2a2a20 !important;
-  color: #ddddcc !important;
-  border-color: #555555 !important;
-}
-
-[data-md-color-scheme="slate"] .md-typeset code {
-  background: #2a2a20 !important;
-  color: #ddddcc !important;
-  border-color: #555555 !important;
 }
 
 /* ============ ADMONITIONS ============ */
@@ -345,20 +257,6 @@ code, pre,
   font-family: "Times New Roman", Times, serif !important;
   font-weight: bold !important;
   color: #000000 !important;
-}
-
-[data-md-color-scheme="slate"] .md-typeset .admonition,
-[data-md-color-scheme="slate"] .md-typeset details {
-  background: #222222 !important;
-  color: #e0e0e0 !important;
-  border-color: #555555 !important;
-}
-
-[data-md-color-scheme="slate"] .md-typeset .admonition p,
-[data-md-color-scheme="slate"] .md-typeset details p,
-[data-md-color-scheme="slate"] .md-typeset .admonition-title,
-[data-md-color-scheme="slate"] .md-typeset summary {
-  color: #e0e0e0 !important;
 }
 
 /* ============ BUTTONS ============ */
@@ -481,10 +379,6 @@ code, pre,
   font-size: 13px !important;
 }
 
-[data-md-color-scheme="slate"] .md-sidebar--secondary .md-nav__link {
-  color: #aaaaaa !important;
-}
-
 /* ============ RETRO CUSTOM COMPONENTS ============ */
 
 .hero {
@@ -496,21 +390,11 @@ code, pre,
   color: #000000 !important;
 }
 
-[data-md-color-scheme="slate"] .hero {
-  background: #2a2a1e !important;
-  border-color: #555555 !important;
-  color: #e0e0e0 !important;
-}
-
 .hero h1 {
   font-size: 32px !important;
   color: #003366 !important;
   border-bottom: none !important;
   margin-bottom: 10px;
-}
-
-[data-md-color-scheme="slate"] .hero h1 {
-  color: #88bbee !important;
 }
 
 .stats-grid {
@@ -529,12 +413,6 @@ code, pre,
   color: #000000 !important;
 }
 
-[data-md-color-scheme="slate"] .stat-card {
-  background: #1e1e1e !important;
-  color: #e0e0e0 !important;
-  border-color: #555555 !important;
-}
-
 .stat-card .number {
   font-size: 28px;
   font-weight: bold;
@@ -548,10 +426,6 @@ code, pre,
   margin-top: 2px;
 }
 
-[data-md-color-scheme="slate"] .stat-card .label {
-  color: #aaaaaa !important;
-}
-
 .chapter-card {
   padding: 10px;
   border: 2px solid #808080;
@@ -563,12 +437,6 @@ code, pre,
 
 .chapter-card:hover {
   background: #ffffcc !important;
-}
-
-[data-md-color-scheme="slate"] .chapter-card {
-  background: #1e1e1e !important;
-  color: #e0e0e0 !important;
-  border-color: #555555 !important;
 }
 
 .track-badge {
@@ -603,12 +471,6 @@ code, pre,
   max-width: 500px;
   margin: 20px auto;
   color: #000000 !important;
-}
-
-[data-md-color-scheme="slate"] .newsletter-form {
-  background: #1e1e1e !important;
-  color: #e0e0e0 !important;
-  border-color: #555555 !important;
 }
 
 /* Playground */
