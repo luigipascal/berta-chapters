@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" width="720" height="420">
+  <defs>
+    <linearGradient id="decG" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="defG" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="paramG" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#34d399;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bodyG" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fcd34d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:1" />
+    </linearGradient>
+    <marker id="arrowM" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#64748b" />
+    </marker>
+  </defs>
+  <rect width="720" height="420" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" rx="6"/>
+  <text x="360" y="30" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="bold" fill="#1e293b">Anatomy of a Python Function</text>
+  <text x="360" y="50" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#64748b">Execution order: top to bottom, left to right</text>
+
+  <!-- Code block style container -->
+  <rect x="40" y="70" width="640" height="330" rx="8" fill="#1e293b" stroke="#334155"/>
+  <text x="60" y="100" font-family="monospace" font-size="10" fill="#94a3b8"># Function definition structure</text>
+
+  <!-- Line 1: Decorator -->
+  <rect x="55" y="115" width="200" height="28" rx="4" fill="#2d1b4e" stroke="#7c3aed"/>
+  <text x="65" y="134" font-family="monospace" font-size="12" fill="#c4b5fd">@decorator</text>
+  <text x="270" y="132" font-family="system-ui,sans-serif" font-size="10" fill="#64748b">` Optional: wraps function</text>
+  <line x1="255" y1="129" x2="265" y2="129" stroke="#64748b" marker-end="url(#arrowM)"/>
+
+  <!-- Line 2: def keyword -->
+  <rect x="55" y="150" width="45" height="28" rx="4" fill="#1e3a8a" stroke="#3b82f6"/>
+  <text x="72" y="169" font-family="monospace" font-size="12" fill="#93c5fd">def</text>
+  <text x="115" y="168" font-family="system-ui,sans-serif" font-size="10" fill="#64748b">a Keyword</text>
+
+  <!-- Line 2 continued: function name -->
+  <rect x="115" y="150" width="120" height="28" rx="4" fill="#0c4a6e" stroke="#0ea5e9"/>
+  <text x="175" y="169" font-family="monospace" font-size="12" fill="#7dd3fc">my_function</text>
+  <text x="250" y="168" font-family="system-ui,sans-serif" font-size="10" fill="#64748b">b Name (identifier)</text>
+
+  <!-- Line 2 continued: parameters -->
+  <rect x="250" y="150" width="280" height="28" rx="4" fill="#064e3b" stroke="#10b981"/>
+  <text x="260" y="169" font-family="monospace" font-size="11" fill="#6ee7b7">(pos, *args, key=val, **kwargs) -> str:</text>
+  <text x="545" y="168" font-family="system-ui,sans-serif" font-size="10" fill="#64748b">c Parameters + return hint</text>
+  <line x1="535" y1="164" x2="542" y2="164" stroke="#64748b" marker-end="url(#arrowM)"/>
+
+  <!-- Parameter breakdown -->
+  <rect x="55" y="190" width="610" height="55" rx="4" fill="#0f172a" stroke="#475569"/>
+  <text x="65" y="210" font-family="system-ui,sans-serif" font-size="10" fill="#94a3b8">c Parameter types:</text>
+  <rect x="65" y="218" width="70" height="18" rx="2" fill="#1e3a8a"/>
+  <text x="100" y="231" font-family="monospace" font-size="9" fill="#93c5fd">positional</text>
+  <rect x="145" y="218" width="50" height="18" rx="2" fill="#1e3a8a"/>
+  <text x="170" y="231" font-family="monospace" font-size="9" fill="#93c5fd">*args</text>
+  <rect x="205" y="218" width="75" height="18" rx="2" fill="#1e3a8a"/>
+  <text x="242" y="231" font-family="monospace" font-size="9" fill="#93c5fd">keyword</text>
+  <rect x="290" y="218" width="55" height="18" rx="2" fill="#1e3a8a"/>
+  <text x="317" y="231" font-family="monospace" font-size="9" fill="#93c5fd">**kwargs</text>
+  <text x="360" y="231" font-family="system-ui,sans-serif" font-size="9" fill="#64748b">’ arbitrary keyword args</text>
+
+  <!-- Line 3: Docstring -->
+  <rect x="55" y="255" width="350" height="28" rx="4" fill="#422006" stroke="#d97706"/>
+  <text x="65" y="274" font-family="monospace" font-size="11" fill="#fcd34d">"""Document the function's purpose."""</text>
+  <text x="420" y="273" font-family="system-ui,sans-serif" font-size="10" fill="#64748b">d Docstring (optional)</text>
+  <line x1="410" y1="269" x2="417" y2="269" stroke="#64748b" marker-end="url(#arrowM)"/>
+
+  <!-- Line 4-5: Body -->
+  <rect x="55" y="292" width="200" height="28" rx="4" fill="#422006" stroke="#f59e0b"/>
+  <text x="65" y="311" font-family="monospace" font-size="11" fill="#fcd34d">result = pos + sum(args)</text>
+  <text x="270" y="310" font-family="system-ui,sans-serif" font-size="10" fill="#64748b">e Body: logic</text>
+  <rect x="55" y="327" width="150" height="28" rx="4" fill="#422006" stroke="#f59e0b"/>
+  <text x="65" y="346" font-family="monospace" font-size="11" fill="#fcd34d">return result</text>
+  <text x="220" y="345" font-family="system-ui,sans-serif" font-size="10" fill="#64748b">f Return value</text>
+  <line x1="210" y1="341" x2="217" y2="341" stroke="#64748b" marker-end="url(#arrowM)"/>
+
+  <!-- Flow arrow -->
+  <path d="M 680 130 L 680 350 L 410 350" fill="none" stroke="#64748b" stroke-width="1" stroke-dasharray="4,2"/>
+  <polygon points="408 348 413 345 413 352" fill="#64748b"/>
+  <text x="690" y="240" font-family="system-ui,sans-serif" font-size="9" fill="#64748b" transform="rotate(90 690 240)">execution</text>
+
+  <!-- Legend -->
+  <rect x="420" y="255" width="260" height="110" rx="6" fill="#0f172a" stroke="#475569"/>
+  <text x="550" y="280" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" fill="#f8fafc">Component Order</text>
+  <text x="435" y="305" font-family="system-ui,sans-serif" font-size="10" fill="#94a3b8">` @decorator  modify function behavior</text>
+  <text x="435" y="322" font-family="system-ui,sans-serif" font-size="10" fill="#94a3b8">a def  keyword</text>
+  <text x="435" y="339" font-family="system-ui,sans-serif" font-size="10" fill="#94a3b8">b name  function identifier</text>
+  <text x="435" y="356" font-family="system-ui,sans-serif" font-size="10" fill="#94a3b8">c (params) -> type  signature</text>
+  <text x="435" y="373" font-family="system-ui,sans-serif" font-size="10" fill="#94a3b8">d docstring  documentation</text>
+  <text x="435" y="390" font-family="system-ui,sans-serif" font-size="10" fill="#94a3b8">e body  indented statements</text>
+  <text x="435" y="407" font-family="system-ui,sans-serif" font-size="10" fill="#94a3b8">f return  optional, exit with value</text>
+</svg>
