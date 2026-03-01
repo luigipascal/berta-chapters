@@ -45,9 +45,9 @@ Berta isn't here to replace human educators—she's here to **scale access to ed
 
 ---
 
-## 👤 About Luigi Giacobbe
+## 👤 About Luigi Pascal Rondanini
 
-Luigi Giacobbe is the creative force and vision behind Berta Chapters.
+Luigi Pascal Rondanini is the creative force and vision behind Berta Chapters.
 
 ### Background
 
@@ -292,7 +292,7 @@ Berta Chapters stands on the shoulders of giants:
 
 ## 📞 Contact & Connect
 
-- 🌐 **Luigi's Website**: [Coming soon]
+- 🌐 **Luigi's Website**: https://rondanini.net
 - 🎙️ **The Post-Project World Podcast**: [Link]
 - 🐙 **GitHub**: https://github.com/luigipascal/berta-chapters
 - 💬 **Discussions**: [GitHub Discussions](https://github.com/luigipascal/berta-chapters/discussions)
@@ -333,7 +333,7 @@ There's a place for you in Berta Chapters.
 
 ---
 
-**Created by Luigi Giacobbe | Powered by Berta AI**
+**Created by Luigi Pascal Rondanini | Powered by Berta AI**
 
 *Last Updated: March 2026*
 
