@@ -24,6 +24,13 @@ Get notified when new chapters are published. No spam. Unsubscribe anytime.
           style="font-family: 'Courier New', monospace; font-size: 14px; padding: 6px 10px;
           border: 2px inset #808080; width: 100%; box-sizing: border-box; border-radius: 0;">
       </p>
+      <div data-netlify-recaptcha="true"></div>
+      <p style="margin-top: 10px;">
+        <label style="font-size: 13px;">
+          <input type="checkbox" name="consent" required>
+          I confirm I want to receive email updates from Berta Chapters. I can unsubscribe anytime.
+        </label>
+      </p>
       <p>
         <button type="submit" id="submitBtn"
           style="font-family: 'Times New Roman', serif; font-size: 14px; font-weight: bold;
