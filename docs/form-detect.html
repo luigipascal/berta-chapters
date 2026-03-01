@@ -1,0 +1,16 @@
+<!--
+  This hidden file ensures Netlify detects the newsletter form during deploy.
+  It is not linked from any page. Netlify scans ALL HTML files in the build output.
+-->
+<!DOCTYPE html>
+<html>
+<head><title>Form Detection</title></head>
+<body>
+  <form name="newsletter" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input name="form-name" type="hidden" value="newsletter">
+    <input name="bot-field">
+    <input name="email" type="email">
+    <input name="name" type="text">
+  </form>
+</body>
+</html>

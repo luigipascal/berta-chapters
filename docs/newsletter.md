@@ -5,46 +5,34 @@ Get notified when new chapters are published. No spam. Unsubscribe anytime.
 ---
 
 <div id="newsletter-form-container">
-<form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="newsletterForm" action="/newsletter/">
-  <input type="hidden" name="form-name" value="newsletter">
-  <p style="display:none"><label>Leave empty: <input name="bot-field"></label></p>
-  <div class="newsletter-form">
+<div class="newsletter-form">
     <h3>Subscribe to Berta Chapters Updates</h3>
     <p>Get an email when we publish new chapters or release major updates.<br>
     <strong>At most one email per week.</strong></p>
-    <p>
-      <label for="email"><strong>Your email address:</strong></label><br>
-      <input type="email" name="email" id="email" placeholder="your@email.com" required
-        style="font-family: 'Courier New', monospace; font-size: 14px; padding: 6px 10px;
-        border: 2px inset #808080; width: 100%; box-sizing: border-box; border-radius: 0;">
-    </p>
-    <p>
-      <label for="name"><strong>Your name (optional):</strong></label><br>
-      <input type="text" name="name" id="name" placeholder="Jane Doe"
-        style="font-family: 'Courier New', monospace; font-size: 14px; padding: 6px 10px;
-        border: 2px inset #808080; width: 100%; box-sizing: border-box; border-radius: 0;">
-    </p>
-    <p>
-      <label for="interest"><strong>What interests you most?</strong></label><br>
-      <select name="interest" id="interest"
-        style="font-family: 'Courier New', monospace; font-size: 14px; padding: 4px 8px;
-        border: 2px inset #808080; border-radius: 0; width: 100%; box-sizing: border-box;">
-        <option value="all">All chapters</option>
-        <option value="foundation">Foundation Track (Python, math, data structures)</option>
-        <option value="practitioner">Practitioner Track (ML, deep learning, NLP)</option>
-        <option value="advanced">Advanced Track (multi-agent, RAG, production)</option>
-        <option value="finance">AI for Finance</option>
-      </select>
-    </p>
-    <p>
-      <button type="submit" id="submitBtn"
-        style="font-family: 'Times New Roman', serif; font-size: 14px; font-weight: bold;
-        padding: 8px 24px; border: 2px outset #808080; background: #008080; color: #ffffff;
-        cursor: pointer; border-radius: 0;">Subscribe</button>
-      <span id="formStatus" style="margin-left: 10px; font-family: 'Courier New', monospace; font-size: 13px;"></span>
-    </p>
-  </div>
-</form>
+    <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="newsletterForm">
+      <input type="hidden" name="form-name" value="newsletter">
+      <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+      <p>
+        <label for="email"><strong>Your email address:</strong></label><br>
+        <input type="email" name="email" id="email" placeholder="your@email.com" required
+          style="font-family: 'Courier New', monospace; font-size: 14px; padding: 6px 10px;
+          border: 2px inset #808080; width: 100%; box-sizing: border-box; border-radius: 0;">
+      </p>
+      <p>
+        <label for="name"><strong>Your name (optional):</strong></label><br>
+        <input type="text" name="name" id="name" placeholder="Jane Doe"
+          style="font-family: 'Courier New', monospace; font-size: 14px; padding: 6px 10px;
+          border: 2px inset #808080; width: 100%; box-sizing: border-box; border-radius: 0;">
+      </p>
+      <p>
+        <button type="submit" id="submitBtn"
+          style="font-family: 'Times New Roman', serif; font-size: 14px; font-weight: bold;
+          padding: 8px 24px; border: 2px outset #808080; background: #008080; color: #ffffff;
+          cursor: pointer; border-radius: 0;">Subscribe</button>
+        <span id="formStatus" style="margin-left: 10px; font-family: 'Courier New', monospace; font-size: 13px;"></span>
+      </p>
+    </form>
+</div>
 </div>
 
 <div id="newsletter-success" style="display: none;">
@@ -56,8 +44,8 @@ Get notified when new chapters are published. No spam. Unsubscribe anytime.
     <hr>
     <p><strong>While you wait:</strong></p>
     <p>
-      <a href="chapters/index.md">Browse chapters</a> |
-      <a href="playground.md">Try the Playground</a> |
+      <a href="chapters/">Browse chapters</a> |
+      <a href="playground/">Try the Playground</a> |
       <a href="https://github.com/luigipascal/berta-chapters">Star on GitHub</a>
     </p>
 </div>
@@ -67,7 +55,6 @@ Get notified when new chapters are published. No spam. Unsubscribe anytime.
 document.getElementById("newsletterForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  var form = e.target;
   var btn = document.getElementById("submitBtn");
   var status = document.getElementById("formStatus");
 
@@ -75,26 +62,26 @@ document.getElementById("newsletterForm").addEventListener("submit", function(e)
   btn.textContent = "Sending...";
   status.textContent = "";
 
-  var formData = new FormData(form);
+  var formData = new URLSearchParams(new FormData(e.target)).toString();
 
-  fetch(form.getAttribute("action") || window.location.pathname, {
+  fetch("/", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams(formData).toString()
+    body: formData
   })
   .then(function(response) {
     if (response.ok) {
       document.getElementById("newsletter-form-container").style.display = "none";
       document.getElementById("newsletter-success").style.display = "block";
     } else {
-      status.textContent = "Something went wrong. Please try again.";
+      status.textContent = "Error " + response.status + ". Check Netlify Forms is enabled in your dashboard.";
       status.style.color = "#cc0000";
       btn.disabled = false;
       btn.textContent = "Subscribe";
     }
   })
-  .catch(function(error) {
-    status.textContent = "Network error. Please try again.";
+  .catch(function(err) {
+    status.textContent = "Network error: " + err.message;
     status.style.color = "#cc0000";
     btn.disabled = false;
     btn.textContent = "Subscribe";
@@ -119,8 +106,6 @@ document.getElementById("newsletterForm").addEventListener("submit", function(e)
 - :x: More than one email per week
 - :x: Anything unrelated to Berta Chapters
 
-Your data is handled by Netlify and never shared with third parties.
-
 ---
 
 ## Other Ways to Stay Updated
@@ -129,6 +114,11 @@ Your data is handled by Netlify and never shared with third parties.
 - :eye: **[Watch the repo](https://github.com/luigipascal/berta-chapters/subscription)** for all activity
 - :speech_balloon: **[Join Discussions](https://github.com/luigipascal/berta-chapters/discussions)** to talk with the community
 - :globe_with_meridians: **[Visit berta.one](https://berta.one)** for the latest from Berta AI
+
+!!! info "For site admin"
+    If the form isn't working, check: **Netlify Dashboard > Site settings > Forms** and make sure
+    form detection is enabled. After deploy, you should see "newsletter" listed under **Forms** in
+    the dashboard. If it's not there, trigger a new deploy.
 
 ---
 
