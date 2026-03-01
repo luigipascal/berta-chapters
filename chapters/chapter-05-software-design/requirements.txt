@@ -1,0 +1,6 @@
+jupyter
+notebook
+pytest
+matplotlib
+pyyaml
+numpy

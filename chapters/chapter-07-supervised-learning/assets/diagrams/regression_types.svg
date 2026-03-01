@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300">
+  <defs>
+    <marker id="dot" viewBox="0 0 6 6" refX="3" refY="3" markerWidth="4" markerHeight="4">
+      <circle cx="3" cy="3" r="2.5" fill="#666"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: Arial, sans-serif; }
+    .title { font-size: 14px; font-weight: bold; fill: #333; }
+    .label { font-size: 11px; fill: #555; }
+    .axis { stroke: #999; stroke-width: 1; }
+  </style>
+
+  <!-- Panel 1: Linear Regression -->
+  <rect x="10" y="10" width="200" height="280" rx="8" fill="#f0f7ff" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="110" y="35" text-anchor="middle" class="title" fill="#4a90d9">Linear Regression</text>
+  <line x1="40" y1="250" x2="190" y2="250" class="axis"/>
+  <line x1="40" y1="250" x2="40" y2="60" class="axis"/>
+  <!-- Data points -->
+  <circle cx="55" cy="230" r="3" fill="#888"/><circle cx="70" cy="210" r="3" fill="#888"/>
+  <circle cx="85" cy="200" r="3" fill="#888"/><circle cx="100" cy="180" r="3" fill="#888"/>
+  <circle cx="115" cy="165" r="3" fill="#888"/><circle cx="130" cy="150" r="3" fill="#888"/>
+  <circle cx="145" cy="130" r="3" fill="#888"/><circle cx="160" cy="115" r="3" fill="#888"/>
+  <circle cx="175" cy="100" r="3" fill="#888"/>
+  <!-- Fit line -->
+  <line x1="45" y1="240" x2="185" y2="85" stroke="#4a90d9" stroke-width="2.5"/>
+  <text x="110" y="272" text-anchor="middle" class="label">y = wx + b</text>
+
+  <!-- Panel 2: Polynomial Regression -->
+  <rect x="230" y="10" width="200" height="280" rx="8" fill="#fff7f0" stroke="#e67e22" stroke-width="1.5"/>
+  <text x="330" y="35" text-anchor="middle" class="title" fill="#e67e22">Polynomial Regression</text>
+  <line x1="260" y1="250" x2="410" y2="250" class="axis"/>
+  <line x1="260" y1="250" x2="260" y2="60" class="axis"/>
+  <circle cx="275" cy="200" r="3" fill="#888"/><circle cx="290" cy="220" r="3" fill="#888"/>
+  <circle cx="305" cy="210" r="3" fill="#888"/><circle cx="320" cy="170" r="3" fill="#888"/>
+  <circle cx="335" cy="130" r="3" fill="#888"/><circle cx="350" cy="100" r="3" fill="#888"/>
+  <circle cx="365" cy="90" r="3" fill="#888"/><circle cx="380" cy="110" r="3" fill="#888"/>
+  <circle cx="395" cy="160" r="3" fill="#888"/>
+  <!-- Polynomial curve -->
+  <path d="M265,210 Q300,230 330,120 Q360,80 400,170" fill="none" stroke="#e67e22" stroke-width="2.5"/>
+  <text x="330" y="272" text-anchor="middle" class="label">y = wÇx≤ + wÅx + b</text>
+
+  <!-- Panel 3: Ridge (L2) -->
+  <rect x="450" y="10" width="200" height="280" rx="8" fill="#f0fff0" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="550" y="35" text-anchor="middle" class="title" fill="#27ae60">Ridge (L2)</text>
+  <line x1="480" y1="250" x2="630" y2="250" class="axis"/>
+  <line x1="480" y1="250" x2="480" y2="60" class="axis"/>
+  <circle cx="495" cy="225" r="3" fill="#888"/><circle cx="510" cy="210" r="3" fill="#888"/>
+  <circle cx="530" cy="190" r="3" fill="#888"/><circle cx="550" cy="165" r="3" fill="#888"/>
+  <circle cx="570" cy="145" r="3" fill="#888"/><circle cx="590" cy="125" r="3" fill="#888"/>
+  <circle cx="610" cy="105" r="3" fill="#888"/>
+  <!-- Constrained line (slightly flatter) -->
+  <line x1="485" y1="230" x2="625" y2="100" stroke="#27ae60" stroke-width="2.5"/>
+  <line x1="485" y1="235" x2="625" y2="90" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+  <text x="550" y="265" text-anchor="middle" class="label">Loss + ª£wb≤</text>
+  <text x="550" y="280" text-anchor="middle" class="label" fill="#27ae60">Shrinks coefficients</text>
+
+  <!-- Panel 4: Lasso (L1) -->
+  <rect x="670" y="10" width="200" height="280" rx="8" fill="#fff0f5" stroke="#8e44ad" stroke-width="1.5"/>
+  <text x="770" y="35" text-anchor="middle" class="title" fill="#8e44ad">Lasso (L1)</text>
+  <line x1="700" y1="250" x2="850" y2="250" class="axis"/>
+  <line x1="700" y1="250" x2="700" y2="60" class="axis"/>
+  <circle cx="715" cy="225" r="3" fill="#888"/><circle cx="730" cy="215" r="3" fill="#888"/>
+  <circle cx="750" cy="195" r="3" fill="#888"/><circle cx="770" cy="170" r="3" fill="#888"/>
+  <circle cx="790" cy="150" r="3" fill="#888"/><circle cx="810" cy="130" r="3" fill="#888"/>
+  <circle cx="830" cy="110" r="3" fill="#888"/>
+  <!-- Constrained line (even flatter + sparse) -->
+  <line x1="705" y1="220" x2="845" y2="110" stroke="#8e44ad" stroke-width="2.5"/>
+  <line x1="705" y1="235" x2="845" y2="90" stroke="#8e44ad" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+  <text x="770" y="265" text-anchor="middle" class="label">Loss + ª£|wb|</text>
+  <text x="770" y="280" text-anchor="middle" class="label" fill="#8e44ad">Zeros out features</text>
+</svg>

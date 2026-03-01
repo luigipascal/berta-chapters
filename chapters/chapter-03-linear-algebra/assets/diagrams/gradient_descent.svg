@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" width="720" height="520">
+  <defs>
+    <linearGradient id="contourG1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#fef3c7;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#fde68a;stop-opacity:0.3" />
+    </linearGradient>
+    <linearGradient id="contourG2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#fcd34d;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:0.1" />
+    </linearGradient>
+    <marker id="gradArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#3b82f6" />
+    </marker>
+    <marker id="pathArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#dc2626" />
+    </marker>
+  </defs>
+  <rect width="720" height="520" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" rx="6"/>
+  <text x="360" y="28" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="bold" fill="#1e293b">Gradient Descent on Loss Surface</text>
+  <text x="360" y="48" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#64748b">Bird's eye view: contours = equal loss, descent path follows negative gradient toward minimum</text>
+
+  <!-- Main contour plot area -->
+  <rect x="40" y="70" width="460" height="380" rx="8" fill="#fefce8" stroke="#eab308" stroke-width="2"/>
+  <text x="270" y="95" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="bold" fill="#854d0e">Loss Surface L(∏Å, ∏Ç)</text>
+
+  <!-- Contour ellipses (concentric, minimum at center) -->
+  <ellipse cx="270" cy="280" rx="180" ry="120" fill="none" stroke="#fde68a" stroke-width="2" opacity="0.8"/>
+  <ellipse cx="270" cy="280" rx="145" ry="97" fill="none" stroke="#fcd34d" stroke-width="2" opacity="0.8"/>
+  <ellipse cx="270" cy="280" rx="110" ry="73" fill="none" stroke="#fbbf24" stroke-width="2" opacity="0.8"/>
+  <ellipse cx="270" cy="280" rx="75" ry="50" fill="none" stroke="#f59e0b" stroke-width="2" opacity="0.9"/>
+  <ellipse cx="270" cy="280" rx="40" ry="27" fill="none" stroke="#d97706" stroke-width="2" opacity="0.9"/>
+  <ellipse cx="270" cy="280" rx="15" ry="10" fill="#22c55e" stroke="#16a34a" stroke-width="2"/>
+  <text x="270" y="285" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="white" font-weight="bold">min</text>
+
+  <!-- Axis labels -->
+  <text x="270" y="468" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#475569">∏Å</text>
+  <text x="55" y="275" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#475569" transform="rotate(-90 55 275)">∏Ç</text>
+
+  <!-- Contour labels -->
+  <text x="455" y="195" font-family="system-ui,sans-serif" font-size="9" fill="#92400e">L = 8</text>
+  <text x="435" y="225" font-family="system-ui,sans-serif" font-size="9" fill="#92400e">L = 5</text>
+  <text x="405" y="255" font-family="system-ui,sans-serif" font-size="9" fill="#b45309">L = 3</text>
+  <text x="355" y="275" font-family="system-ui,sans-serif" font-size="9" fill="#b45309">L = 1</text>
+
+  <!-- Gradient descent path: start í step1 í step2 í step3 í step4 í min -->
+  <!-- Start point (top-left area) -->
+  <circle cx="120" cy="120" r="8" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
+  <text x="120" y="108" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#b91c1c">start</text>
+
+  <!-- Path: curved descent toward minimum -->
+  <path d="M 120 120 C 140 160 180 200 200 240 C 220 260 240 265 255 275 C 262 278 266 279 270 280" 
+        fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round" marker-end="url(#pathArrow)"/>
+
+  <!-- Step points along path -->
+  <circle cx="165" cy="175" r="5" fill="#ef4444"/>
+  <text x="165" y="168" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#64748b">1</text>
+  <circle cx="210" cy="235" r="5" fill="#ef4444"/>
+  <text x="210" y="228" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#64748b">2</text>
+  <circle cx="248" cy="268" r="5" fill="#ef4444"/>
+  <text x="248" y="261" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#64748b">3</text>
+  <circle cx="262" cy="278" r="5" fill="#ef4444"/>
+  <text x="262" y="271" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#64748b">4</text>
+
+  <!-- Gradient arrows at each step (pointing toward descent direction, getting smaller) -->
+  <line x1="120" y1="120" x2="145" y2="155" stroke="#3b82f6" stroke-width="2" marker-end="url(#gradArrow)"/>
+  <text x="138" y="132" font-family="system-ui,sans-serif" font-size="8" fill="#1e40af">L</text>
+  <line x1="165" y1="175" x2="185" y2="202" stroke="#3b82f6" stroke-width="1.8" marker-end="url(#gradArrow)"/>
+  <line x1="210" y1="235" x2="225" y2="248" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#gradArrow)"/>
+  <line x1="248" y1="268" x2="258" y2="273" stroke="#3b82f6" stroke-width="1.2" marker-end="url(#gradArrow)"/>
+  <line x1="262" y1="278" x2="268" y2="279" stroke="#3b82f6" stroke-width="1" marker-end="url(#gradArrow)"/>
+
+  <!-- Legend and formula -->
+  <rect x="520" y="70" width="180" height="200" rx="8" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="610" y="98" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="bold" fill="#334155">Gradient Descent</text>
+  <text x="610" y="120" text-anchor="middle" font-family="monospace" font-size="11" fill="#475569">∏_new = ∏  ±L(∏)</text>
+  <text x="610" y="140" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#64748b">± = learning rate</text>
+  <line x1="535" y1="160" x2="545" y2="160" stroke="#dc2626" stroke-width="2"/>
+  <text x="555" y="164" font-family="system-ui,sans-serif" font-size="10" fill="#475569">Descent path</text>
+  <line x1="535" y1="180" x2="545" y2="180" stroke="#3b82f6" stroke-width="2" marker-end="url(#gradArrow)"/>
+  <text x="555" y="184" font-family="system-ui,sans-serif" font-size="10" fill="#475569">L (gradient)</text>
+  <rect x="535" y="195" width="15" height="10" rx="1" fill="none" stroke="#fbbf24"/>
+  <text x="555" y="204" font-family="system-ui,sans-serif" font-size="10" fill="#475569">Contours (equal L)</text>
+  <circle cx="542" cy="222" r="4" fill="#22c55e"/>
+  <text x="555" y="225" font-family="system-ui,sans-serif" font-size="10" fill="#475569">Global minimum</text>
+  <text x="610" y="255" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#64748b">Arrows shrink near min</text>
+  <text x="610" y="270" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#64748b">(gradient í 0)</text>
+
+  <!-- Algorithm steps -->
+  <rect x="40" y="465" width="660" height="45" rx="6" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="370" y="488" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#1e40af">Initialize ∏ í compute L í step ∏ = ∏  ±L í repeat until convergence (L H 0)</text>
+
+  <!-- Right panel: 3D perspective hint -->
+  <rect x="520" y="285" width="180" height="165" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+  <text x="610" y="312" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" fill="#334155">Loss decreases</text>
+  <text x="610" y="332" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#64748b">into page (ó)</text>
+  <ellipse cx="610" cy="365" rx="50" ry="25" fill="none" stroke="#e2e8f0"/>
+  <ellipse cx="610" cy="355" rx="35" ry="18" fill="none" stroke="#cbd5e1"/>
+  <ellipse cx="610" cy="345" rx="20" ry="10" fill="none" stroke="#94a3b8"/>
+  <circle cx="610" cy="340" r="5" fill="#22c55e"/>
+  <text x="610" y="400" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#64748b">Center = lowest point</text>
+  <text x="610" y="415" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#64748b">(minimum loss)</text>
+</svg>

@@ -1,0 +1,40 @@
+name: "Bug Report"
+description: "Report an error, typo, or issue in a chapter"
+title: "Bug: [Brief Description]"
+labels: ["bug"]
+body:
+  - type: input
+    id: chapter
+    attributes:
+      label: "Which chapter?"
+      placeholder: "e.g. Chapter 1: Python Fundamentals"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "What happened?"
+      description: "Describe the issue clearly."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "What did you expect?"
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: "Steps to reproduce"
+      placeholder: |
+        1. Open notebook X
+        2. Run cell Y
+        3. See error Z
+
+  - type: input
+    id: environment
+    attributes:
+      label: "Environment"
+      placeholder: "Python 3.11, macOS 14, Jupyter 7.0"

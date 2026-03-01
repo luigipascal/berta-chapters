@@ -40,19 +40,19 @@ Learn essential skills for AI: Python, data structures, math, and computational 
 
 | Chapter | Topic | Time | Status |
 |---------|-------|------|--------|
-| 1 | Python Fundamentals for AI | 8h | 🔄 Coming Soon |
-| 2 | Data Structures & Algorithms | 6h | 🔄 Coming Soon |
-| 3 | Linear Algebra & Calculus | 10h | 🔄 Coming Soon |
-| 4 | Probability & Statistics | 8h | 🔄 Coming Soon |
-| 5 | Software Design & Best Practices | 6h | 🔄 Coming Soon |
+| 1 | [Python Fundamentals for AI](./chapters/chapter-01-python-fundamentals/) | 8h | ✅ Available |
+| 2 | [Data Structures & Algorithms](./chapters/chapter-02-data-structures/) | 6h | ✅ Available |
+| 3 | [Linear Algebra & Calculus](./chapters/chapter-03-linear-algebra/) | 10h | ✅ Available |
+| 4 | [Probability & Statistics](./chapters/chapter-04-probability-statistics/) | 8h | ✅ Available |
+| 5 | [Software Design & Best Practices](./chapters/chapter-05-software-design/) | 6h | ✅ Available |
 
 ### Practitioner Track (Build Real Systems)
 Apply what you've learned to real-world machine learning and AI problems.
 
 | Chapter | Topic | Time | Status |
 |---------|-------|------|--------|
-| 6 | Introduction to Machine Learning | 8h | 🔄 Coming Soon |
-| 7 | Supervised Learning: Regression & Classification | 10h | 🔄 Coming Soon |
+| 6 | [Introduction to Machine Learning](./chapters/chapter-06-intro-machine-learning/) | 8h | ✅ Available |
+| 7 | [Supervised Learning: Regression & Classification](./chapters/chapter-07-supervised-learning/) | 10h | ✅ Available |
 | 8 | Unsupervised Learning: Clustering & Dimensionality Reduction | 8h | 🔄 Coming Soon |
 | 9 | Deep Learning Fundamentals | 12h | 🔄 Coming Soon |
 | 10 | Natural Language Processing Basics | 10h | 🔄 Coming Soon |
@@ -125,27 +125,39 @@ Accelerated introduction to core AI concepts.
 
 Get started in 5 minutes:
 
-### 1. Pick a Chapter
-Choose one from above or [request a special chapter](#request-a-chapter).
-
-### 2. Clone the Repository
+### 1. Clone This Repository
 ```bash
-git clone https://github.com/luigipascal/berta-chapter-01-python-fundamentals.git
-cd berta-chapter-01-python-fundamentals
+git clone https://github.com/luigipascal/berta-chapters.git
+cd berta-chapters
 ```
 
-### 3. Install Dependencies
+### 2. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Open the Notebooks
+### 3. Launch the Interactive Hub
 ```bash
-jupyter notebook
+python interactive/berta.py
 ```
 
-### 5. Start Learning
-Open `notebooks/01_introduction.ipynb` and follow along!
+This gives you an interactive experience with:
+- **Learning path selector** — find the right path for your goals
+- **Skill assessment** — discover where to start based on your experience
+- **Progress tracker** — track chapters completed and hours invested
+- **Knowledge quizzes** — test yourself with AI-related questions
+- **Chapter navigator** — explore every chapter in detail
+
+### 4. Start Chapter 1
+```bash
+cd chapters/chapter-01-python-fundamentals
+jupyter notebook notebooks/01_introduction.ipynb
+```
+
+### 5. Or Generate a New Chapter
+```bash
+python templates/chapter_template.py -n 2 -t "Data Structures & Algorithms" --hours 6
+```
 
 ---
 
@@ -190,22 +202,44 @@ graph LR
 
 ## 📖 Each Chapter Contains
 
-Every Berta chapter repo includes:
+Every Berta chapter includes:
 
 - **README.md** — Learning objectives, prerequisites, time estimate
 - **Jupyter Notebooks** — Three progressive difficulty levels (intro → intermediate → advanced)
 - **Production Scripts** — Real-world Python code you can use and learn from
-- **Exercises** — Hands-on problems with solutions in a separate branch
-- **Diagrams & Visualizations** — SVG and mermaid diagrams explaining concepts
-- **Datasets** — Sample data or instructions to download
-- **requirements.txt** — All dependencies, pinned versions
+- **Exercises** — Hands-on problems with solutions
+- **Diagrams & Visualizations** — Mermaid diagrams explaining concepts
+- **Datasets** — Sample data for practice
+- **requirements.txt** — All dependencies
+
+```
+chapters/chapter-XX-topic/
+├── README.md
+├── notebooks/
+│   ├── 01_introduction.ipynb     ← Start here
+│   ├── 02_intermediate.ipynb
+│   └── 03_advanced.ipynb
+├── scripts/
+│   ├── main_application.py
+│   └── utilities.py
+├── exercises/
+│   ├── exercises.py
+│   └── solutions/
+├── assets/diagrams/
+├── datasets/
+└── requirements.txt
+```
 
 ---
 
 ## 🗺️ Navigation
 
 **First time here?**  
+→ Run `python interactive/berta.py` for the interactive experience  
 → Read [GETTING_STARTED.md](./GETTING_STARTED.md)
+
+**Want a visual overview?**  
+→ Read [SYLLABUS.md](./SYLLABUS.md)
 
 **Want to understand the full curriculum?**  
 → Read [CURRICULUM.md](./CURRICULUM.md)
@@ -219,6 +253,9 @@ Every Berta chapter repo includes:
 **Want to know what's coming?**  
 → Read [ROADMAP.md](./ROADMAP.md)
 
+**Want to generate a new chapter?**  
+→ Run `python templates/chapter_template.py -n <number> -t "<title>"`
+
 ---
 
 ## 📊 Repository Statistics
@@ -231,12 +268,13 @@ pie title Curriculum Breakdown
     "Community Requested" : 999
 ```
 
+- **Chapters Available Now**: 7 (56 hours of content)
 - **Total Planned Chapters**: 25+
+- **Jupyter Notebooks**: 21 interactive notebooks
+- **SVG Diagrams**: 21 professional diagrams
+- **Exercises**: 37 problems with solutions
+- **Datasets**: 5 practice datasets
 - **Community-Requested Chapters**: Growing daily
-- **Total Learning Hours**: 500+
-- **Topics Covered**: Fundamentals → Cutting Edge
-- **Code Examples**: 100+
-- **Exercises**: 200+
 
 ---
 
@@ -251,7 +289,7 @@ pie title Curriculum Breakdown
 
 ## 🔬 About Berta
 
-**Berta AI** is the generative engine behind every chapter in this curriculum.
+**[Berta AI](https://berta.one)** is the generative engine behind every chapter in this curriculum.
 
 - ✅ Ensures consistency across all chapters
 - ✅ Generates pedagogically sound, practical content
@@ -259,19 +297,22 @@ pie title Curriculum Breakdown
 - ✅ Works 24/7 to fulfill chapter requests
 - ✅ Transparent about the generation process
 
+Visit **[berta.one](https://berta.one)** for more about Berta AI.
+
 Every chapter is marked with *"Generated by Berta AI"* so you know exactly where the content comes from.
 
 ---
 
 ## 👤 About Luigi
 
-**Luigi Giacobbe** is a Treasury Systems Consultant with 35+ years of experience in financial systems and AI/ML transformation.
+**Luigi Pascal Rondanini** is an author, publisher, and Treasury Systems Consultant with 35+ years of experience in financial systems and AI/ML transformation.
 
 - 🏦 Former FX trading floor professional (London, Milan, Basel, Riyadh)
 - 🔧 Expert in treasury systems, transformation, and organizational AI
-- 📚 Founder of Rondanini Publishing Ltd (20+ digital properties)
-- 🎙️ Host of "The Post-Project World" podcast on AI and transformation
+- 📚 Founder of [Rondanini Publishing Ltd](https://www.rondanini.com/) (20+ digital properties)
+- 🎙️ Host of [Unseen Author Journeys](https://medium.com/rondanini-publishing) podcast
 - 🎵 Composer, audiobook narrator, multimedia creator
+- ✍️ Author on [Medium](https://medium.com/@info_38412) and [Goodreads](https://www.goodreads.com/author/show/43665358.Luigi_Pascal_Rondanini)
 
 Luigi designed the Berta Chapters curriculum to answer the question: *"How can we make AI education truly accessible, practical, and community-driven?"*
 
@@ -287,7 +328,7 @@ You're free to:
 - ✅ Create derivative works
 - ✅ Use in commercial projects
 
-Just include attribution to Berta AI and Luigi Giacobbe.
+Just include attribution to Berta AI and Luigi Pascal Rondanini.
 
 [Read the full license](./LICENSE.md)
 
@@ -295,10 +336,21 @@ Just include attribution to Berta AI and Luigi Giacobbe.
 
 ## 🔗 Links
 
-- **GitHub**: https://github.com/luigipascal/berta-chapters
-- **Luigi's Website**: https://luigigiacobbe.com
-- **The Post-Project World Podcast**: [Link to podcast]
-- **Rondanini Publishing**: https://rondaninipublishing.com
+### Berta Ecosystem
+- **Berta AI (Official Site)**: https://berta.one
+- **LLM Cost Optimizer**: https://llm.berta.one
+- **Berta Chapters (GitHub)**: https://github.com/luigipascal/berta-chapters
+
+### Luigi Pascal Rondanini
+- **Personal Site**: https://rondanini.net
+- **LinkedIn**: https://uk.linkedin.com/in/rondanini
+- **Medium**: https://medium.com/@info_38412
+- **Goodreads**: https://www.goodreads.com/author/show/43665358.Luigi_Pascal_Rondanini
+
+### Rondanini Publishing
+- **Publisher Site**: https://www.rondanini.com
+- **Rondanini Publishing on Medium**: https://medium.com/rondanini-publishing
+- **All Sites Directory**: https://sites.rondanini.net
 
 ---
 
@@ -316,7 +368,7 @@ Every share helps more people learn AI. Thank you! 🙏
 
 ---
 
-**Created by Luigi Giacobbe | Generated by Berta AI**
+**Created by Luigi Pascal Rondanini | Generated by Berta AI**
 
 *Last Updated: March 2026*  
 *All chapters maintained and continuously improved based on community feedback.*

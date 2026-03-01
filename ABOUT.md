@@ -6,7 +6,7 @@ A project born from the simple observation: **"People keep asking me how to lear
 
 ## 🤖 About Berta AI
 
-**Berta** is an advanced AI system designed to create educational content.
+**[Berta](https://berta.one)** is an advanced AI system designed to create educational content.
 
 ### What Berta Does
 
@@ -45,9 +45,9 @@ Berta isn't here to replace human educators—she's here to **scale access to ed
 
 ---
 
-## 👤 About Luigi Giacobbe
+## 👤 About Luigi Pascal Rondanini
 
-Luigi Giacobbe is the creative force and vision behind Berta Chapters.
+Luigi Pascal Rondanini is the creative force and vision behind Berta Chapters.
 
 ### Background
 
@@ -57,11 +57,11 @@ Luigi Giacobbe is the creative force and vision behind Berta Chapters.
 - Organizations: RBC, Société Générale, Wells Fargo, Marex, and others
 - Expertise: Front-office trading, systems architecture, organizational transformation
 
-**Multimedia Creator**
-- Founder of Rondanini Publishing Ltd (20+ digital properties)
-- Host of "The Post-Project World" podcast (exploring AI's transformation of work)
-- Composer and audiobook narrator
-- Author and digital product designer
+**Author & Publisher**
+- Founder of [Rondanini Publishing Ltd](https://www.rondanini.com/) (20+ digital properties)
+- Host of [Unseen Author Journeys](https://medium.com/rondanini-publishing) podcast
+- Author on [Medium](https://medium.com/@info_38412) and [Goodreads](https://www.goodreads.com/author/show/43665358.Luigi_Pascal_Rondanini)
+- Composer, audiobook narrator, and multimedia creator
 
 ### Why Luigi Built Berta Chapters
 
@@ -154,8 +154,8 @@ Both exist simultaneously, creating a living curriculum.
 
 ### Near-term (2026)
 - ✅ Launch master repository (this!)
-- 🔄 Complete Foundation Track (5 chapters)
-- 🔄 Release Practitioner Track (10 chapters)
+- ✅ Complete Foundation Track (5 chapters — all available!)
+- 🔄 Release Practitioner Track (2 of 10 chapters available)
 - 🔄 Establish community request process
 - 🔄 Build 100+ community-contributed chapters
 
@@ -178,15 +178,17 @@ Both exist simultaneously, creating a living curriculum.
 ## 📊 By The Numbers
 
 **Current State:**
-- 1 master repository
-- 25+ planned chapters
-- 200+ exercises (planned)
-- 500+ learning hours (planned)
-- 100+ code examples (planned)
+- 7 chapters available (Foundation complete + Practitioner started)
+- 21 Jupyter notebooks with interactive content
+- 21 professional SVG diagrams
+- 37 exercises with solutions
+- 56 hours of learning content available
+- 5 practice datasets
+- 25+ total chapters planned
 - $0 barrier to entry
 - 0 ads, tracking, or paywalls
 
-**Community Metrics** (coming soon):
+**Community Metrics** (tracking soon):
 - Active learners
 - Chapters requested
 - Contributions merged
@@ -282,18 +284,29 @@ Berta Chapters stands on the shoulders of giants:
 - Learners everywhere (pushing to be better)
 
 **Technology by:**
-- Claude AI (powering Berta)
-- Anthropic (supporting AI education)
+- [Berta AI](https://berta.one) (the platform behind the chapters)
+- [LLM Cost Optimizer](https://llm.berta.one) (efficient AI infrastructure)
+- Claude AI and Anthropic (powering AI generation)
 - GitHub (hosting everything)
 - Jupyter (making interactive learning possible)
 - Python ecosystem (amazing libraries and tools)
+
+**Publishing by:**
+- [Rondanini Publishing Ltd](https://www.rondanini.com/) (independent literary publisher)
+- [Rondanini on Medium](https://medium.com/rondanini-publishing) (articles and insights)
 
 ---
 
 ## 📞 Contact & Connect
 
-- 🌐 **Luigi's Website**: [Coming soon]
-- 🎙️ **The Post-Project World Podcast**: [Link]
+- 🤖 **Berta AI**: https://berta.one
+- 💰 **LLM Cost Optimizer**: https://llm.berta.one
+- 🌐 **Luigi's Website**: https://rondanini.net
+- 📚 **Rondanini Publishing**: https://www.rondanini.com
+- 🔗 **All Sites Directory**: https://sites.rondanini.net
+- 💼 **LinkedIn**: https://uk.linkedin.com/in/rondanini
+- ✍️ **Medium**: https://medium.com/@info_38412
+- 📖 **Goodreads**: https://www.goodreads.com/author/show/43665358.Luigi_Pascal_Rondanini
 - 🐙 **GitHub**: https://github.com/luigipascal/berta-chapters
 - 💬 **Discussions**: [GitHub Discussions](https://github.com/luigipascal/berta-chapters/discussions)
 - 📧 **Questions**: Open an issue on GitHub
@@ -333,7 +346,7 @@ There's a place for you in Berta Chapters.
 
 ---
 
-**Created by Luigi Giacobbe | Powered by Berta AI**
+**Created by Luigi Pascal Rondanini | Powered by Berta AI**
 
 *Last Updated: March 2026*
 

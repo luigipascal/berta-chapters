@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 580" width="720" height="580">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#475569" />
+    </marker>
+    <linearGradient id="ifG" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#93c5fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="forG" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#86efac;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="whileG" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fcd34d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="ctrlG" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f9a8d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="720" height="580" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" rx="6"/>
+  <text x="360" y="30" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="bold" fill="#1e293b">Python Control Flow Structures</text>
+  <text x="360" y="50" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#64748b">Diamonds = decisions | Rectangles = actions | Arrows = flow direction</text>
+
+  <!-- if/elif/else section -->
+  <text x="180" y="85" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="bold" fill="#1e40af">if / elif / else</text>
+  <polygon points="180,100 240,130 180,160 120,130" fill="url(#ifG)" stroke="#2563eb" stroke-width="2"/>
+  <text x="180" y="135" text-anchor="middle" font-family="monospace" font-size="10" fill="white">condition?</text>
+  <rect x="150" y="180" width="60" height="35" rx="4" fill="#dbeafe" stroke="#3b82f6"/>
+  <text x="180" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#1e40af">if block</text>
+  <line x1="180" y1="160" x2="180" y2="178" stroke="#475569" stroke-width="1.5" marker-end="url(#arr)"/>
+  <polygon points="280,100 340,130 280,160 220,130" fill="url(#ifG)" stroke="#2563eb" stroke-width="2"/>
+  <text x="280" y="135" text-anchor="middle" font-family="monospace" font-size="9" fill="white">elif?</text>
+  <rect x="250" y="180" width="60" height="35" rx="4" fill="#dbeafe" stroke="#3b82f6"/>
+  <text x="280" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#1e40af">elif block</text>
+  <line x1="280" y1="160" x2="280" y2="178" stroke="#475569" stroke-width="1.5" marker-end="url(#arr)"/>
+  <polygon points="380,100 440,130 380,160 320,130" fill="url(#ifG)" stroke="#2563eb" stroke-width="2"/>
+  <text x="380" y="135" text-anchor="middle" font-family="monospace" font-size="9" fill="white">else</text>
+  <rect x="350" y="180" width="60" height="35" rx="4" fill="#dbeafe" stroke="#3b82f6"/>
+  <text x="380" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#1e40af">else block</text>
+  <line x1="380" y1="160" x2="380" y2="178" stroke="#475569" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="180" y1="130" x2="218" y2="130" stroke="#475569" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="280" y1="130" x2="318" y2="130" stroke="#475569" stroke-width="1" marker-end="url(#arr)"/>
+  <text x="200" y="125" font-family="system-ui,sans-serif" font-size="8" fill="#64748b">False</text>
+  <text x="300" y="125" font-family="system-ui,sans-serif" font-size="8" fill="#64748b">False</text>
+
+  <!-- for loop section -->
+  <text x="180" y="265" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="bold" fill="#166534">for loop</text>
+  <rect x="120" y="280" width="120" height="40" rx="6" fill="url(#forG)" stroke="#16a34a" stroke-width="2"/>
+  <text x="180" y="305" text-anchor="middle" font-family="monospace" font-size="11" fill="white">for item in iterable:</text>
+  <rect x="120" y="335" width="120" height="40" rx="6" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="180" y="360" text-anchor="middle" font-family="monospace" font-size="10" fill="#166534">loop body</text>
+  <path d="M 180 320 L 180 333 M 165 320 L 165 335 L 120 335 L 120 375 L 180 375 L 180 363" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="180" y1="375" x2="180" y2="278" stroke="#475569" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="200" y="328" font-family="system-ui,sans-serif" font-size="8" fill="#64748b">next</text>
+
+  <!-- while loop section -->
+  <text x="400" y="265" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="bold" fill="#b45309">while loop</text>
+  <polygon points="400,280 460,310 400,340 340,310" fill="url(#whileG)" stroke="#d97706" stroke-width="2"/>
+  <text x="400" y="315" text-anchor="middle" font-family="monospace" font-size="10" fill="white">condition?</text>
+  <rect x="370" y="355" width="60" height="35" rx="4" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="400" y="378" text-anchor="middle" font-family="monospace" font-size="9" fill="#b45309">body</text>
+  <line x1="400" y1="340" x2="400" y2="353" stroke="#475569" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M 400 390 L 400 430 L 340 430 L 340 310 L 358 310" fill="none" stroke="#475569" stroke-width="1" stroke-dasharray="2,2"/>
+  <polygon points="338 308 346 314 338 320" fill="#475569"/>
+  <text x="345" y="325" font-family="system-ui,sans-serif" font-size="8" fill="#64748b">True</text>
+  <text x="415" y="325" font-family="system-ui,sans-serif" font-size="8" fill="#64748b">False ’ exit</text>
+
+  <!-- break/continue section -->
+  <text x="580" y="265" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="bold" fill="#be185d">break / continue</text>
+  <rect x="500" y="285" width="160" height="100" rx="6" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+  <rect x="515" y="310" width="130" height="28" rx="4" fill="url(#ctrlG)" stroke="#db2777"/>
+  <text x="580" y="328" text-anchor="middle" font-family="monospace" font-size="11" fill="white">break</text>
+  <text x="515" y="355" text-anchor="start" font-family="system-ui,sans-serif" font-size="10" fill="#831843">’ Exit loop immediately</text>
+  <rect x="515" y="365" width="130" height="28" rx="4" fill="url(#ctrlG)" stroke="#db2777"/>
+  <text x="580" y="383" text-anchor="middle" font-family="monospace" font-size="11" fill="white">continue</text>
+  <text x="515" y="400" text-anchor="start" font-family="system-ui,sans-serif" font-size="10" fill="#831843">’ Skip to next iteration</text>
+
+  <!-- Flow summary -->
+  <rect x="40" y="430" width="640" height="130" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="360" y="458" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="bold" fill="#334155">Control Flow Summary</text>
+  <rect x="60" y="475" width="25" height="18" rx="3" fill="#93c5fd"/>
+  <text x="95" y="488" text-anchor="start" font-family="system-ui,sans-serif" font-size="11" fill="#475569">if/elif/else  branching, sequential checks</text>
+  <rect x="60" y="500" width="25" height="18" rx="3" fill="#86efac"/>
+  <text x="95" y="513" text-anchor="start" font-family="system-ui,sans-serif" font-size="11" fill="#475569">for  iterate over iterable, fixed iterations</text>
+  <rect x="360" y="475" width="25" height="18" rx="3" fill="#fcd34d"/>
+  <text x="395" y="488" text-anchor="start" font-family="system-ui,sans-serif" font-size="11" fill="#475569">while  repeat while condition true</text>
+  <rect x="360" y="500" width="25" height="18" rx="3" fill="#f9a8d4"/>
+  <text x="395" y="513" text-anchor="start" font-family="system-ui,sans-serif" font-size="11" fill="#475569">break/continue  alter loop flow</text>
+</svg>

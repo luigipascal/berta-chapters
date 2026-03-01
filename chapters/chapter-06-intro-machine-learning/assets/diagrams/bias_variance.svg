@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280" width="700" height="280">
+  <defs>
+    <style>
+      .label { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; }
+      .small { font-family: Arial, sans-serif; font-size: 10px; }
+      .annot-high { fill: #F44336; }
+      .annot-good { fill: #4CAF50; }
+      .annot-low { fill: #2196F3; }
+    </style>
+  </defs>
+  <title>Bias-Variance Tradeoff</title>
+  <!-- Underfitting (High Bias) -->
+  <g transform="translate(20, 20)">
+    <rect x="0" y="0" width="200" height="200" fill="#FFF8E1" stroke="#FFA000" stroke-width="1"/>
+    <text x="100" y="18" text-anchor="middle" class="label">Underfitting</text>
+    <text x="100" y="32" text-anchor="middle" class="small annot-high">High Bias, Low Variance</text>
+    <!-- True curve (dashed) -->
+    <path d="M 10 170 Q 50 140, 100 120 Q 150 100, 190 80" fill="none" stroke="#9E9E9E" stroke-width="1.5" stroke-dasharray="4,4"/>
+    <!-- Fitted line (too simple) -->
+    <line x1="10" y1="150" x2="190" y2="90" stroke="#F44336" stroke-width="3"/>
+    <!-- Data points -->
+    <circle cx="30" cy="155" r="4" fill="#2196F3"/>
+    <circle cx="60" cy="140" r="4" fill="#2196F3"/>
+    <circle cx="90" cy="125" r="4" fill="#2196F3"/>
+    <circle cx="120" cy="115" r="4" fill="#2196F3"/>
+    <circle cx="150" cy="105" r="4" fill="#2196F3"/>
+    <circle cx="180" cy="95" r="4" fill="#2196F3"/>
+    <text x="100" y="195" text-anchor="middle" class="small annot-high">Model too simple</text>
+  </g>
+  <!-- Good Fit -->
+  <g transform="translate(250, 20)">
+    <rect x="0" y="0" width="200" height="200" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1"/>
+    <text x="100" y="18" text-anchor="middle" class="label">Good Fit</text>
+    <text x="100" y="32" text-anchor="middle" class="small annot-good">Balanced Bias &amp; Variance</text>
+    <!-- True curve -->
+    <path d="M 10 170 Q 50 140, 100 120 Q 150 100, 190 80" fill="none" stroke="#9E9E9E" stroke-width="1.5" stroke-dasharray="4,4"/>
+    <!-- Fitted curve (follows data well) -->
+    <path d="M 10 165 Q 45 145, 85 130 Q 125 115, 165 95 Q 190 85, 190 85" fill="none" stroke="#4CAF50" stroke-width="3"/>
+    <!-- Data points -->
+    <circle cx="30" cy="160" r="4" fill="#2196F3"/>
+    <circle cx="60" cy="142" r="4" fill="#2196F3"/>
+    <circle cx="90" cy="128" r="4" fill="#2196F3"/>
+    <circle cx="120" cy="118" r="4" fill="#2196F3"/>
+    <circle cx="150" cy="108" r="4" fill="#2196F3"/>
+    <circle cx="180" cy="92" r="4" fill="#2196F3"/>
+    <text x="100" y="195" text-anchor="middle" class="small annot-good">Generalizes well</text>
+  </g>
+  <!-- Overfitting (High Variance) -->
+  <g transform="translate(480, 20)">
+    <rect x="0" y="0" width="200" height="200" fill="#FFEBEE" stroke="#F44336" stroke-width="1"/>
+    <text x="100" y="18" text-anchor="middle" class="label">Overfitting</text>
+    <text x="100" y="32" text-anchor="middle" class="small annot-high">Low Bias, High Variance</text>
+    <!-- True curve -->
+    <path d="M 10 170 Q 50 140, 100 120 Q 150 100, 190 80" fill="none" stroke="#9E9E9E" stroke-width="1.5" stroke-dasharray="4,4"/>
+    <!-- Fitted curve (wiggly, fits noise) -->
+    <path d="M 10 168 Q 25 160, 40 155 Q 55 148, 70 145 Q 85 138, 100 132 Q 115 128, 130 120 Q 145 112, 160 105 Q 175 98, 190 88" fill="none" stroke="#F44336" stroke-width="2.5"/>
+    <!-- Data points -->
+    <circle cx="30" cy="158" r="4" fill="#2196F3"/>
+    <circle cx="60" cy="145" r="4" fill="#2196F3"/>
+    <circle cx="90" cy="132" r="4" fill="#2196F3"/>
+    <circle cx="120" cy="122" r="4" fill="#2196F3"/>
+    <circle cx="150" cy="108" r="4" fill="#2196F3"/>
+    <circle cx="180" cy="90" r="4" fill="#2196F3"/>
+    <text x="100" y="195" text-anchor="middle" class="small annot-high">Fits noise</text>
+  </g>
+  <!-- Legend -->
+  <g transform="translate(20, 235)">
+    <line x1="0" y1="0" x2="30" y2="0" stroke="#9E9E9E" stroke-width="2" stroke-dasharray="4,4"/>
+    <text x="40" y="4" class="small">True function</text>
+    <line x1="180" y1="0" x2="210" y2="0" stroke="#2196F3" stroke-width="2"/>
+    <text x="220" y="4" class="small">Data points</text>
+    <circle cx="340" cy="0" r="3" fill="#2196F3"/>
+    <text x="350" y="4" class="small">(sampled)</text>
+  </g>
+</svg>

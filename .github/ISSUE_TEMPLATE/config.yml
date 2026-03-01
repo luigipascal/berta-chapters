@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: "Discussions"
+    url: https://github.com/luigipascal/berta-chapters/discussions
+    about: "Ask questions, share ideas, or discuss AI learning"
+  - name: "Curriculum Guide"
+    url: https://github.com/luigipascal/berta-chapters/blob/main/CURRICULUM.md
+    about: "View the full curriculum and learning paths"
