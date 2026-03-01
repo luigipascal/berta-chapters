@@ -110,6 +110,8 @@ LEARNING_PATHS = {
     },
 }
 
+AVAILABLE_CHAPTERS = {1, 2, 3}
+
 QUIZ_QUESTIONS = [
     {
         "question": "What data type in Python is ordered, mutable, and allows duplicates?",
@@ -454,6 +456,7 @@ class BertaHub:
             table.add_column("#", style="bold", width=4, justify="right")
             table.add_column("Chapter", style="white", min_width=35)
             table.add_column("Hours", justify="center", width=6)
+            table.add_column("Content", justify="center", width=12)
             table.add_column("Status", justify="center", width=14)
             table.add_column("Prerequisites", style="dim", width=20)
 
@@ -467,8 +470,9 @@ class BertaHub:
                 else:
                     status = "[dim]Not Started[/dim]"
 
+                available = "[green]Available[/green]" if num in AVAILABLE_CHAPTERS else "[dim]Planned[/dim]"
                 prereqs = ", ".join(str(p) for p in ch["prereqs"]) if ch["prereqs"] else "None"
-                table.add_row(str(num), ch["title"], str(ch["hours"]), status, prereqs)
+                table.add_row(str(num), ch["title"], str(ch["hours"]), available, status, prereqs)
 
             self.console.print(table)
             self.console.print()
@@ -631,13 +635,15 @@ class BertaHub:
             border_style="cyan",
         ))
 
-        chapter_dir = Path(__file__).parent.parent / "chapters" / f"chapter-{ch_num:02d}-*"
-        import glob
-        matches = glob.glob(str(chapter_dir))
-        if matches:
-            self.console.print(f"\n[green]Chapter content available at:[/green] {matches[0]}")
+        if ch_num in AVAILABLE_CHAPTERS:
+            chapter_dir = Path(__file__).parent.parent / "chapters" / f"chapter-{ch_num:02d}-*"
+            import glob
+            matches = glob.glob(str(chapter_dir))
+            if matches:
+                self.console.print(f"\n[green]Chapter content available at:[/green] {matches[0]}")
+                self.console.print("[dim]Contains: 3 notebooks, scripts, exercises with solutions[/dim]")
         else:
-            self.console.print(f"\n[dim]Chapter content coming soon. Check the roadmap for release dates.[/dim]")
+            self.console.print(f"\n[yellow]Chapter content coming soon.[/yellow] Check the roadmap for release dates.")
 
     def skill_assessment(self):
         self.console.print("\n[bold cyan]Skill Assessment[/bold cyan]")

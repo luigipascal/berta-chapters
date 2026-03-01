@@ -44,46 +44,51 @@ Welcome! Here's how to start learning AI with Berta Chapters in 5 minutes.
 
 ---
 
-## Get Your First Chapter (5 Minutes)
+## Get Started (5 Minutes)
 
-### Step 1: Pick a Chapter
-Let's say you're starting from the beginning. Go to:
-
-**[CURRICULUM.md](./CURRICULUM.md)** → Foundation Track → Chapter 1
-
-*Note the chapter name:* `berta-chapter-01-python-fundamentals`
-
-### Step 2: Clone the Chapter Repository
+### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/luigipascal/berta-chapter-01-python-fundamentals.git
-cd berta-chapter-01-python-fundamentals
-```
-
-### Step 3: Install Dependencies
-
-```bash
+git clone https://github.com/luigipascal/berta-chapters.git
+cd berta-chapters
 pip install -r requirements.txt
 ```
 
-*(All chapters pin specific versions for reproducibility)*
-
-### Step 4: Open Jupyter
+### Step 2: Launch the Interactive Hub
 
 ```bash
-jupyter notebook
+python interactive/berta.py
 ```
 
-Your browser opens automatically. Click on the first notebook:
-- `notebooks/01_introduction.ipynb`
+The hub offers:
+- **Skill Assessment** to find where to start
+- **Learning Paths** for guided progression
+- **Progress Tracking** across chapters
+- **Knowledge Quizzes** to test yourself
 
-### Step 5: Start Learning!
+### Step 3: Pick a Chapter
+
+Choose from available chapters:
+- **Chapter 1**: [Python Fundamentals](./chapters/chapter-01-python-fundamentals/)
+- **Chapter 2**: [Data Structures & Algorithms](./chapters/chapter-02-data-structures/)
+- **Chapter 3**: [Linear Algebra & Calculus](./chapters/chapter-03-linear-algebra/)
+
+Or browse the full curriculum in [SYLLABUS.md](./SYLLABUS.md).
+
+### Step 4: Open the First Notebook
+
+```bash
+cd chapters/chapter-01-python-fundamentals
+jupyter notebook notebooks/01_introduction.ipynb
+```
+
+### Step 5: Learn by Doing
 
 Follow along with:
 - 📖 Explanations and theory
 - 💻 Code examples you run
-- 🧪 Challenges to solve
-- 📚 Further reading links
+- 🧪 Exercises to solve
+- 📚 Production scripts to study
 
 That's it! You're learning.
 

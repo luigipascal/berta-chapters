@@ -41,8 +41,8 @@ Learn essential skills for AI: Python, data structures, math, and computational 
 | Chapter | Topic | Time | Status |
 |---------|-------|------|--------|
 | 1 | [Python Fundamentals for AI](./chapters/chapter-01-python-fundamentals/) | 8h | ✅ Available |
-| 2 | Data Structures & Algorithms | 6h | 🔄 Coming Soon |
-| 3 | Linear Algebra & Calculus | 10h | 🔄 Coming Soon |
+| 2 | [Data Structures & Algorithms](./chapters/chapter-02-data-structures/) | 6h | ✅ Available |
+| 3 | [Linear Algebra & Calculus](./chapters/chapter-03-linear-algebra/) | 10h | ✅ Available |
 | 4 | Probability & Statistics | 8h | 🔄 Coming Soon |
 | 5 | Software Design & Best Practices | 6h | 🔄 Coming Soon |
 
@@ -237,6 +237,9 @@ chapters/chapter-XX-topic/
 **First time here?**  
 → Run `python interactive/berta.py` for the interactive experience  
 → Read [GETTING_STARTED.md](./GETTING_STARTED.md)
+
+**Want a visual overview?**  
+→ Read [SYLLABUS.md](./SYLLABUS.md)
 
 **Want to understand the full curriculum?**  
 → Read [CURRICULUM.md](./CURRICULUM.md)
