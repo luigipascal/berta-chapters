@@ -40,7 +40,7 @@ Learn essential skills for AI: Python, data structures, math, and computational 
 
 | Chapter | Topic | Time | Status |
 |---------|-------|------|--------|
-| 1 | Python Fundamentals for AI | 8h | 🔄 Coming Soon |
+| 1 | [Python Fundamentals for AI](./chapters/chapter-01-python-fundamentals/) | 8h | ✅ Available |
 | 2 | Data Structures & Algorithms | 6h | 🔄 Coming Soon |
 | 3 | Linear Algebra & Calculus | 10h | 🔄 Coming Soon |
 | 4 | Probability & Statistics | 8h | 🔄 Coming Soon |
@@ -125,27 +125,39 @@ Accelerated introduction to core AI concepts.
 
 Get started in 5 minutes:
 
-### 1. Pick a Chapter
-Choose one from above or [request a special chapter](#request-a-chapter).
-
-### 2. Clone the Repository
+### 1. Clone This Repository
 ```bash
-git clone https://github.com/luigipascal/berta-chapter-01-python-fundamentals.git
-cd berta-chapter-01-python-fundamentals
+git clone https://github.com/luigipascal/berta-chapters.git
+cd berta-chapters
 ```
 
-### 3. Install Dependencies
+### 2. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Open the Notebooks
+### 3. Launch the Interactive Hub
 ```bash
-jupyter notebook
+python interactive/berta.py
 ```
 
-### 5. Start Learning
-Open `notebooks/01_introduction.ipynb` and follow along!
+This gives you an interactive experience with:
+- **Learning path selector** — find the right path for your goals
+- **Skill assessment** — discover where to start based on your experience
+- **Progress tracker** — track chapters completed and hours invested
+- **Knowledge quizzes** — test yourself with AI-related questions
+- **Chapter navigator** — explore every chapter in detail
+
+### 4. Start Chapter 1
+```bash
+cd chapters/chapter-01-python-fundamentals
+jupyter notebook notebooks/01_introduction.ipynb
+```
+
+### 5. Or Generate a New Chapter
+```bash
+python templates/chapter_template.py -n 2 -t "Data Structures & Algorithms" --hours 6
+```
 
 ---
 
@@ -190,21 +202,40 @@ graph LR
 
 ## 📖 Each Chapter Contains
 
-Every Berta chapter repo includes:
+Every Berta chapter includes:
 
 - **README.md** — Learning objectives, prerequisites, time estimate
 - **Jupyter Notebooks** — Three progressive difficulty levels (intro → intermediate → advanced)
 - **Production Scripts** — Real-world Python code you can use and learn from
-- **Exercises** — Hands-on problems with solutions in a separate branch
-- **Diagrams & Visualizations** — SVG and mermaid diagrams explaining concepts
-- **Datasets** — Sample data or instructions to download
-- **requirements.txt** — All dependencies, pinned versions
+- **Exercises** — Hands-on problems with solutions
+- **Diagrams & Visualizations** — Mermaid diagrams explaining concepts
+- **Datasets** — Sample data for practice
+- **requirements.txt** — All dependencies
+
+```
+chapters/chapter-XX-topic/
+├── README.md
+├── notebooks/
+│   ├── 01_introduction.ipynb     ← Start here
+│   ├── 02_intermediate.ipynb
+│   └── 03_advanced.ipynb
+├── scripts/
+│   ├── main_application.py
+│   └── utilities.py
+├── exercises/
+│   ├── exercises.py
+│   └── solutions/
+├── assets/diagrams/
+├── datasets/
+└── requirements.txt
+```
 
 ---
 
 ## 🗺️ Navigation
 
 **First time here?**  
+→ Run `python interactive/berta.py` for the interactive experience  
 → Read [GETTING_STARTED.md](./GETTING_STARTED.md)
 
 **Want to understand the full curriculum?**  
@@ -218,6 +249,9 @@ Every Berta chapter repo includes:
 
 **Want to know what's coming?**  
 → Read [ROADMAP.md](./ROADMAP.md)
+
+**Want to generate a new chapter?**  
+→ Run `python templates/chapter_template.py -n <number> -t "<title>"`
 
 ---
 
