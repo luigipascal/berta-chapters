@@ -49,6 +49,20 @@ Reason about uncertainty and design statistically sound experiments—essential 
 
 ---
 
+
+
+---
+
+## Read Online
+
+You can read the full chapter content right here on the website:
+
+- **[04.1 Introduction](content/ch04-01_introduction.md)** -- Probability basics, conditional probability, law of large numbers
+- **[04.2 Intermediate](content/ch04-02_intermediate.md)** -- Distributions, Bayes theorem, Central Limit Theorem
+- **[04.3 Advanced](content/ch04-03_advanced.md)** -- Hypothesis testing, confidence intervals, A/B testing capstone
+
+Or [try the code in the Playground](../playground.md).
+
 ## How to Use This Chapter
 
 !!! tip "Quick Start"

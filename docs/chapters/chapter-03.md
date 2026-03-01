@@ -49,6 +49,20 @@ Understand the mathematics behind machine learning and neural networks.
 
 ---
 
+
+
+---
+
+## Read Online
+
+You can read the full chapter content right here on the website:
+
+- **[03.1 Introduction](content/ch03-01_introduction.md)** -- Vectors, dot product, norms, cosine similarity
+- **[03.2 Intermediate](content/ch03-02_intermediate.md)** -- Matrices, linear transformations, NumPy
+- **[03.3 Advanced](content/ch03-03_advanced.md)** -- Derivatives, gradients, chain rule, gradient descent capstone
+
+Or [try the code in the Playground](../playground.md).
+
 ## How to Use This Chapter
 
 !!! tip "Quick Start"

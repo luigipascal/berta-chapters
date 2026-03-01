@@ -50,6 +50,20 @@ Master regression and classification—linear models, ensembles, SVMs, and tunin
 
 ---
 
+
+
+---
+
+## Read Online
+
+You can read the full chapter content right here on the website:
+
+- **[07.1 Introduction](content/ch07-01_introduction.md)** -- Linear/polynomial regression, regularization (Ridge, Lasso)
+- **[07.2 Intermediate](content/ch07-02_intermediate.md)** -- Classification, logistic regression, SVM, ROC curves
+- **[07.3 Advanced](content/ch07-03_advanced.md)** -- Ensemble methods, hyperparameter tuning, credit risk capstone
+
+Or [try the code in the Playground](../playground.md).
+
 ## How to Use This Chapter
 
 !!! tip "Quick Start"

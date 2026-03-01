@@ -49,6 +49,20 @@ Choose the right data structures and analyze algorithm complexity for AI workloa
 
 ---
 
+
+
+---
+
+## Read Online
+
+You can read the full chapter content right here on the website:
+
+- **[02.1 Introduction](content/ch02-01_introduction.md)** -- Arrays, Big O notation, linear/binary search, two-pointer
+- **[02.2 Intermediate](content/ch02-02_intermediate.md)** -- Stacks, queues, hash tables, merge sort, quicksort
+- **[02.3 Advanced](content/ch02-03_advanced.md)** -- Trees, graphs, BFS/DFS, dynamic programming, search index capstone
+
+Or [try the code in the Playground](../playground.md).
+
 ## How to Use This Chapter
 
 !!! tip "Quick Start"
