@@ -29,14 +29,17 @@ Build on the basics: feature engineering, proper data splits, cross-validation, 
 
 ## 1. Feature Engineering
 
-**Feature engineering** transforms raw data into informative inputs for the model.
+**Feature engineering is like choosing the right ingredients for your recipe.** The model can only "see" what you give it—the features are the model's view of the world. If you feed it raw sqft, it learns from sqft. If you also add sqft², it can capture curved relationships. Bad features = bad predictions, no matter how fancy your algorithm.
 
-- Binning continuous variables
-- Creating polynomial features
-- Encoding categorical variables
-- Normalization / scaling
+Common techniques:
+- **Binning** continuous variables (e.g., age into age groups)
+- **Polynomial features** (sqft, sqft²) for curved relationships
+- **Encoding** categorical variables (Male/Female → 0/1)
+- **Normalization/scaling** so features are on similar scales
 
 **What do you think will happen?** If we use raw `sqft` and also `sqft²`, will the model fit curved relationships better?
+
+**Creating curved data:** We generate house data where price has a slight curve—bigger houses gain more value per sqft. This lets us compare linear vs polynomial features.
 
 ```python
 import numpy as np
@@ -56,6 +59,10 @@ X = sqft.reshape(-1, 1)
 y = price
 ```
 
+**What just happened:** We created 120 houses with a curved price relationship. The data is ready for linear vs polynomial comparison.
+
+**Comparing linear vs polynomial:** Below we add sqft² as a feature and fit both models. The polynomial model can capture the curve.
+
 ```python
 # Feature engineering: add polynomial terms
 poly = PolynomialFeatures(degree=2, include_bias=False)
@@ -74,6 +81,10 @@ mse_poly = mean_squared_error(y_test, lr_poly.predict(X_poly_test))
 print(f"Linear features - Test MSE: ${mse_linear:,.0f}")
 print(f"Polynomial features - Test MSE: ${mse_poly:,.0f}")
 ```
+
+**What just happened:** The polynomial model typically achieves lower test MSE because our data has a curved relationship. Adding the right feature made a real difference.
+
+**Visualizing the fits:** Side-by-side: linear (straight line) vs polynomial (curve).
 
 ```python
 # Plot 1: Linear vs polynomial fit
@@ -102,21 +113,27 @@ plt.tight_layout()
 plt.show()
 ```
 
+**What just happened:** The polynomial curve bends to follow the data; the linear line oversimplifies. The plot shows why feature engineering matters.
+
 ## 2. Train / Validation / Test Sets
 
-Why three sets?
+Why three sets instead of two?
 
-- **Train:** Fit the model
-- **Validation:** Tune hyperparameters, select model (not for final reporting)
-- **Test:** Final evaluation only—used once at the end
+- **Train:** Fit the model. This is where learning happens.
+- **Validation:** Tune hyperparameters, choose between models, try different settings. You can "peek" at validation performance many times during development.
+- **Test:** Final evaluation only—used once at the very end. Never tune on the test set.
 
-Using validation prevents "leaking" test information into model selection.
+Using a separate validation set prevents "leaking" test information into model selection. If you tune on the test set, you're effectively teaching to the test—and your reported performance will be overly optimistic.
 
 ## 3. Cross-Validation
+
+**Instead of one exam, take five different exams and average your score.** That's K-fold cross-validation. We split the data into K chunks (e.g., 5). Each chunk takes a turn being the "validation" set while we train on the other K-1. We get K different scores and average them. This gives a more reliable estimate than a single random split—we use all the data for both training and evaluation, just not at the same time.
 
 **K-fold CV:** Split data into K folds. Train on K-1, validate on 1. Rotate. Average scores.
 
 **What do you think will happen?** With 5-fold CV, will each fold give exactly the same score? Why or why not?
+
+**Running 5-fold CV:** Below we train 5 different models (each on 80% of the data) and get 5 validation scores.
 
 ```python
 from sklearn.model_selection import cross_val_score, KFold
@@ -130,6 +147,12 @@ for i, s in enumerate(scores):
     print(f"  Fold {i+1}: ${s:,.0f}")
 print(f"Mean: ${scores.mean():,.0f}, Std: ${scores.std():,.0f}")
 ```
+
+**What just happened:** Each fold had a different train/validation split, so scores vary slightly. The mean and standard deviation tell us how stable the model is across different data subsets.
+
+**Visualizing fold performance:** The bar chart shows MSE for each of the 5 folds.
+
+**Plotting CV results:** Below we visualize each fold's MSE.
 
 ```python
 # Plot 2: Cross-validation fold performance
@@ -146,16 +169,23 @@ plt.tight_layout()
 plt.show()
 ```
 
+**What just happened:** Bars show each fold's MSE. The red line is the average. Variability across folds reflects how sensitive the model is to which data it sees.
+
 ## 4. Evaluation Metrics for Classification
 
-For classification (e.g., churn yes/no), we use:
+For classification (e.g., churn yes/no, spam/not spam), one number isn't enough. Here's each metric with a real scenario:
 
-- **Accuracy:** (TP + TN) / total
-- **Precision:** TP / (TP + FP) — of predicted positives, how many correct?
-- **Recall:** TP / (TP + FN) — of actual positives, how many found?
-- **F1:** Harmonic mean of precision and recall
+- **Accuracy:** What percentage did the model get right? (TP + TN) / total. Simple, but misleading when classes are imbalanced—a spam filter that says "not spam" to everything is 99% accurate if 99% of emails aren't spam, but it's useless.
+
+- **Precision:** When the model says YES, how often is it right? TP / (TP + FP). For a spam filter: of the emails we put in the spam folder, how many were actually spam? High precision = few false alarms.
+
+- **Recall:** Of all the actual positives, how many did the model find? TP / (TP + FN). For cancer screening: of all people who have cancer, how many did we catch? High recall = we don't miss the important cases.
+
+- **F1:** The balance between precision and recall. Harmonic mean. Use when you need both—catching all defaults (recall) without too many false alarms (precision).
 
 See `assets/diagrams/model_evaluation.svg` for the confusion matrix.
+
+**Classification example:** We turn our regression task into a binary one (price above/below median) and compute all metrics.
 
 ```python
 # Simulate classification: predict if price > median
@@ -180,6 +210,10 @@ print(f"Recall:    {recall_score(y_test_c, y_pred, zero_division=0):.3f}")
 print(f"F1:        {f1_score(y_test_c, y_pred, zero_division=0):.3f}")
 ```
 
+**What just happened:** The confusion matrix shows Actual vs Predicted. Diagonal = correct. Off-diagonal = errors. The metrics summarize this in different ways.
+
+**Confusion matrix heatmap:** Visualizing where the model succeeds and fails.
+
 ```python
 # Plot 3: Confusion matrix heatmap
 fig, ax = plt.subplots(figsize=(6, 4))
@@ -199,15 +233,21 @@ plt.tight_layout()
 plt.show()
 ```
 
+**What just happened:** Darker cells = more samples. A good model has strong diagonal; a bad one has scattered off-diagonal counts.
+
 ## 5. Bias-Variance Tradeoff
 
-See `assets/diagrams/bias_variance.svg`:
+**Underfitting is like memorizing nothing—you can't answer any question. Overfitting is like memorizing the textbook including the typos—you ace the practice problems but fail on new ones.**
 
-- **Underfitting:** Model too simple (high bias)
-- **Good fit:** Balanced
-- **Overfitting:** Model too complex, fits noise (high variance)
+- **Underfitting (high bias):** Model too simple. Misses real patterns. Train and test error both high.
+- **Good fit:** Balanced. Captures the signal, ignores the noise.
+- **Overfitting (high variance):** Model too complex. Fits the noise. Train error low, test error high.
+
+See `assets/diagrams/bias_variance.svg` for a visual.
 
 **What do you think will happen?** As we increase polynomial degree, will test error decrease indefinitely or eventually increase?
+
+**Sweeping polynomial degree:** We fit models from degree 1 to 11 and plot train vs test MSE.
 
 ```python
 # Plot 4: Train vs Test error vs polynomial degree (bias-variance)
@@ -235,11 +275,15 @@ plt.tight_layout()
 plt.show()
 ```
 
+**What just happened:** Train error keeps dropping (model fits data better) but test error eventually rises (overfitting). The gap between train and test tells the story.
+
 ## 6. Overfitting and Regularization
 
-**Regularization** penalizes complex models. **Ridge (L2)** adds $\lambda \sum w^2$ to the loss.
+**Regularization is putting the model on a diet.** It penalizes complex models so they don't memorize the training data. Ridge (L2) adds $\lambda \sum w^2$ to the loss—it shrinks all weights toward zero. Lasso (L1) can set some weights to exactly zero, doing automatic feature selection.
 
-With Ridge, we can use high-degree polynomials without overfitting.
+With Ridge, we can use high-degree polynomials without overfitting. The penalty keeps the curve smooth.
+
+**Comparing raw vs regularized:** Degree-10 polynomial without regularization (wiggly, overfits) vs with Ridge (smooth, generalizes).
 
 ```python
 # Plot 5: Regularization effect - fit comparison
@@ -269,6 +313,8 @@ plt.show()
 print(f"Linear (deg=10) Test MSE: ${mean_squared_error(y_test, lr_raw.predict(X_high_test)):,.0f}")
 print(f"Ridge (deg=10) Test MSE:  ${mean_squared_error(y_test, ridge.predict(X_high_test)):,.0f}")
 ```
+
+**What just happened:** The red curve wiggles through every training point; the green curve captures the trend. Ridge's lower test MSE proves it generalizes better.
 
 ## Summary
 

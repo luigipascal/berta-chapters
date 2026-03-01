@@ -29,6 +29,8 @@ Matrices are how we represent batches of data, linear transformations, and neura
 
 ## 1. Why Matrices Matter for AI
 
+**A matrix is a grid of numbers.** Like a spreadsheet: rows and columns. A grayscale image is a matrix—each cell is a pixel intensity (0=black, 255=white). A batch of 32 house feature vectors, each with 5 features, is a 32×5 matrix: 32 rows (samples), 5 columns (features). Matrices let you process many things at once: one matrix multiply does 32 dot products. That's the essence of batch processing in neural networks.
+
 | Structure | AI Use |
 |-----------|--------|
 | Matrix (2D) | Batch of feature vectors, weight matrix, image (grayscale) |
@@ -53,9 +55,9 @@ for i, row in enumerate(X):
 
 ## 2. Matrix Operations (Pure Python First)
 
-**Transpose**: swap rows and columns. (Aᵀ)ᵢⱼ = Aⱼᵢ
+**Transpose**: swap rows and columns. Row 1 becomes column 1, row 2 becomes column 2. (Aᵀ)ᵢⱼ = Aⱼᵢ
 
-**Matrix multiply**: (AB)ᵢⱼ = Σₖ Aᵢₖ·Bₖⱼ — rows of A dotted with columns of B.
+**Matrix multiply (step-by-step in words):** To get the (i,j) entry of AB, take row i of A and column j of B, multiply corresponding elements, and sum. So each output cell is a dot product. For A (2×2) and B (2×2), you compute 4 dot products. The inner dimensions must match: A (m×k) × B (k×n) → (m×n). Matrix multiply is the core of every linear layer: each output neuron = dot product of one weight row with the input.
 
 ```python
 def matrix_transpose(A):
@@ -94,6 +96,10 @@ A linear layer: **y = Wx** (plus bias). The weight matrix W transforms input x i
 
 Treat vector as column: W (m×n) @ x (n×1) → y (m×1)
 
+### What just happened
+
+We transposed A (rows became columns) and computed A×B element by element. Each cell of the result is the dot product of the corresponding row of A and column of B. This is exactly what happens in a linear layer: the weight matrix W has one row per output neuron, and each row is dotted with the input vector.
+
 ```python
 def matrix_vector_multiply(A, x):
     """Matrix (m×n) times vector (n) -> vector (m). Core of linear layer."""
@@ -114,6 +120,8 @@ print(f"  W (2×3) @ x (3) = {y}")
 **Identity matrix I**: 1s on diagonal, 0s elsewhere. A·I = I·A = A.
 
 **Inverse A⁻¹**: A·A⁻¹ = I. Only exists for square, full-rank matrices. Used in least squares, some optimizers.
+
+**What "transforming" data means.** Multiplying by a matrix changes the data: scale it (stretch/shrink), rotate it, or project it onto a lower dimension. Scaling multiplies each dimension by a factor. Rotation changes direction without changing length. In data augmentation for images, we apply rotation matrices to pixel coordinates. In neural networks, each linear layer applies a learned matrix—the network learns which transformations best map input to output.
 
 ```python
 def identity_matrix(n):
@@ -156,7 +164,11 @@ print(f"Rotate (1,0) by 90°: {rotated} (expect ~[0, 1])")
 
 ## 6. NumPy: Efficient Linear Algebra
 
-NumPy provides optimized, vectorized operations. Essential for real ML workloads.
+**Why NumPy exists.** Pure Python is too slow for real ML. Python loops over arrays are interpreted, one element at a time. NumPy runs tight C loops and uses SIMD (single instruction, multiple data) to process many numbers in parallel. A dot product of 1M elements can be 50–100× faster in NumPy than in pure Python. Every major ML framework (PyTorch, TensorFlow) builds on this: arrays live in contiguous memory, operations are vectorized. For learning, we used pure Python; for real work, NumPy (and beyond) is essential.
+
+### What just happened
+
+NumPy's syntax mirrors math: `u + v`, `u @ v`, `np.linalg.norm(u)`. The `@` operator is matrix multiplication. Under the hood, these dispatch to optimized C/Fortran code. Same operations we implemented in Python—now fast enough for millions of parameters.
 
 ```python
 import numpy as np
@@ -183,6 +195,8 @@ print(f"A.T =\n{A.T}")
 print(f"I =\n{np.eye(3)}")
 ```
 
+**How computers see images.** A grayscale image is a 2D matrix: each cell is one pixel (0=black, 255=white). Rows = height, columns = width. Convolutions and pooling operate on this grid. Color images add a third dimension: 3 channels (R, G, B), so a 100×100 RGB image is 100×100×3.
+
 ## 7. Practical: Image as Matrix
 
 A grayscale image is a 2D matrix: rows × columns of pixel intensities (0-255).
@@ -204,6 +218,10 @@ print(image)
 print(f"Shape: {image.shape}")
 print(f"Flattened (as vector): {image.flatten()}")
 ```
+
+### What just happened
+
+We created a 5×5 "image"—really just a matrix of 0s and 1s forming a simple diamond pattern. `image.shape` gives (5, 5). Flattening turns it into a 25-dimensional vector (one row of pixels). A real image (e.g., 224×224) would be 50,176 numbers as a vector—that's what goes into the first layer of a CNN.
 
 ```python
 # Visualize with matplotlib
@@ -240,6 +258,10 @@ print(f"X: {X_batch.shape}, W: {W.shape}")
 print(f"Y: {Y.shape}")
 print(Y)
 ```
+
+### What just happened
+
+We processed 4 samples in one matrix multiply: X_batch (4×3) @ W.T (3×2) = Y (4×2). Each row of Y is the linear layer output for that sample. This is batch processing—one operation instead of 4 separate dot products. Real training uses batches of 32, 64, or 256.
 
 ## 9. Tensor Basics
 

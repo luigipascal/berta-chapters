@@ -13,7 +13,7 @@
 # Chapter 4: Probability & Statistics for Machine Learning
 ## Notebook 01 - Introduction
 
-Probability is the mathematical foundation of uncertainty—and ML systems deal with uncertainty everywhere: predictions, model selection, A/B testing, and confidence in results.
+**Probability measures uncertainty.** When a weather forecaster says "70% chance of rain," they're quantifying uncertainty. When a spam filter predicts "95% spam," it's doing the same. ML systems deal with uncertainty everywhere: every prediction has some chance of being wrong, and probability gives us the language to reason about that.
 
 **What you'll learn:**
 - What is probability? Sample spaces, events
@@ -28,12 +28,16 @@ Probability is the mathematical foundation of uncertainty—and ML systems deal 
 
 ## 1. What is Probability?
 
+**Probability measures uncertainty**—and we encounter it constantly in AI. Spam filters assign probabilities to emails. Recommendation systems estimate P(click|user, ad). Medical AI outputs P(disease|symptoms). Even "model accuracy" is a probability: the proportion of correct predictions over many trials.
+
 From coins and dice we build intuition, then apply to AI:
-- **Coins**: P(heads) = 0.5 — binary outcomes
+- **Coins**: P(heads) = 0.5 — binary outcomes (like: is this email spam or not?)
 - **Dice**: P(rolling 6) = 1/6 — discrete outcomes
 - **AI**: P(model correct), P(spam|"viagra"), P(conversion|variant A)
 
-**Predict**: What happens when we flip a fair coin 10 times? How many heads do you expect?
+**Predict**: What happens when we flip a fair coin 10 times? How many heads do you expect? Will you always get exactly 5?
+
+**Running our first simulation.** The code below simulates 10 coin flips using Python's `random` module. We treat 1 as heads and 0 as tails. Even though we *expect* about 5 heads (because 0.5 × 10 = 5), randomness means we might get 4, 6, or even 3 or 7. That's the essence of probability: we know the long-run average, but individual runs vary.
 
 ```python
 import random
@@ -50,7 +54,13 @@ print(f"Heads: {heads}/10 = {heads/10:.2f}")
 print("Expected: ~5 (0.5 × 10)")
 ```
 
+**What just happened:** The simulation produced a list of 10 random 0s and 1s, then summed them to count heads. Your result might differ from a neighbor's—that's randomness! The proportion (heads/10) is the *empirical* probability for this run.
+
+**Try it yourself:** Change `10` to `100` and run again. Does the proportion get closer to 0.5?
+
 ## 2. Sample Spaces and Events
+
+The **sample space** (Ω) is the set of all possible outcomes. An **event** is a subset of outcomes we care about. For a fair die, Ω = {1,2,3,4,5,6}. The event "even" = {2,4,6} has probability 3/6 = 0.5 because three out of six outcomes satisfy it.
 
 ```mermaid
 flowchart TD
@@ -65,6 +75,8 @@ flowchart TD
 
 For a 6-sided die: Ω = {1,2,3,4,5,6}. Event "even" = {2,4,6} → P(even) = 3/6 = 0.5.
 
+**From coins to dice.** A die has six equally likely outcomes. We'll roll 60 times and count how many evens (2, 4, 6) we get. By the law of large numbers, we expect about half—but 60 rolls is still a small sample, so we might see 28 or 32.
+
 ```python
 def simulate_dice(n_rolls):
     """Simulate n dice rolls. Returns list of outcomes 1-6."""
@@ -75,6 +87,12 @@ even_count = sum(1 for r in rolls if r % 2 == 0)
 print(f"60 rolls: evens = {even_count}, P(even) ≈ {even_count/60:.3f}")
 print("Expected: 0.5")
 ```
+
+**What just happened:** We simulated 60 rolls, counted evens, and computed the empirical P(even). The theoretical value is 3/6 = 0.5. Your run may show something like 0.467 or 0.533—both are normal for 60 trials.
+
+**What changes when you learn new information?** Imagine you're deciding whether to bring an umbrella. Before checking the forecast, P(rain) might be 0.3. After the forecast says "80% chance of rain," your belief changes—that's conditional probability! P(rain | forecast says rain) is much higher.
+
+**Bayesian spam filtering in plain English:** Email filters ask: "Given that this email contains the word 'viagra,' what's the probability it's spam?" They use counts from training data: how often "viagra" appears in spam vs. ham. The formula P(spam|word) = P(word|spam)×P(spam) / P(word) is Bayes' theorem—and it powers most spam filters.
 
 ## 3. Conditional Probability: P(A|B)
 
@@ -109,6 +127,10 @@ print(f"P(spam | 'viagra') = {p_spam_given_viagra:.3f}")
 print("→ Very high! Word 'viagra' strongly indicates spam.")
 ```
 
+**What just happened:** We applied the formula P(A|B) = P(A and B) / P(B). First we computed P("viagra") using the law of total probability—it can come from spam or ham. Then we divided. The result (~0.99) means: if you see "viagra," it's almost certainly spam.
+
+**Common mistake:** Confusing P(spam|"viagra") with P("viagra"|spam). The first is "given the word, is it spam?"—what we want. The second is "given it's spam, does it have the word?"—what we measure from data.
+
 ## 4. Probability Concepts Hierarchy
 
 ```mermaid
@@ -131,11 +153,11 @@ flowchart TB
 
 ## 5. Independence
 
-Events A and B are **independent** if P(A and B) = P(A) × P(B).
+**Two events are independent when knowing one tells you nothing about the other.** Flipping a coin and rolling a die are independent—the coin result doesn't change the die probabilities. Mathematically: P(A and B) = P(A) × P(B), which means P(A|B) = P(A).
 
-Then P(A|B) = P(A) — knowing B doesn't change our belief about A.
+**AI relevance**: Naive Bayes assumes that words in an email are independent given the class. That's often false ("free" and "money" appear together in spam), but the assumption still leads to good classifiers in practice.
 
-**AI relevance**: Naive Bayes assumes feature independence (often violated but works well).
+**Visualizing empirical distributions.** We'll plot a bar chart of how often each die face appeared in our 60 rolls. The red dashed line shows the theoretical 1/6 for each face. With more rolls, the bars would flatten toward that line.
 
 ```python
 import matplotlib.pyplot as plt
@@ -157,6 +179,10 @@ plt.savefig('../assets/diagrams/dice_distribution.svg')
 plt.show()
 print("Plot saved to assets/diagrams/dice_distribution.svg")
 ```
+
+**What just happened:** The bar chart shows our 60-roll sample. Some faces may have appeared more often than others—that's random variation. As we roll more (e.g., 600 or 6000), the bars would converge to 1/6.
+
+**The more you flip a coin, the closer you get to 50/50.** This is the Law of Large Numbers—one of the most important results in probability. Casinos rely on it: a single customer might win big, but over millions of bets, the house edge dominates. In AI, we use it when we say "our model is 92% accurate"—we mean that over many predictions, about 92% are correct.
 
 ## 6. Law of Large Numbers
 
@@ -190,9 +216,13 @@ plt.show()
 print("Sample proportion converges toward 0.5 as n increases.")
 ```
 
+**What just happened:** We plotted the *running* proportion of heads after 1, 2, 3, ... 1000 flips. Early on, the curve jumps around (maybe 3/4 = 0.75, then 4/5 = 0.8). By flip 1000, it's usually very close to 0.5. The plot shows convergence in action.
+
 ## 7. Probability Heatmap: Joint Distribution
 
 Visualize P(A, B) for two events. **Predict**: For two independent coins, what does the joint distribution look like?
+
+**Joint distribution: two events at once.** When we flip two coins, we have four outcomes: (T,T), (T,H), (H,T), (H,H). For independent fair coins, each has probability 0.25. The heatmap below visualizes this—each cell is one outcome.
 
 ```python
 # Simulate pairs: (coin1, coin2). Outcomes: (0,0), (0,1), (1,0), (1,1)
@@ -221,13 +251,15 @@ plt.show()
 print("Each cell ≈ 0.25 for independent fair coins.")
 ```
 
+**What just happened:** We simulated 1000 pairs of coin flips and built a 2×2 heatmap. Each cell shows the empirical probability of that combination. For independent coins, all four cells should be close to 0.25. Random variation might give 0.23 or 0.27—both fine.
+
 ## 8. Summary
 
 You've seen:
 - **Sample spaces and events** — coins, dice, then AI examples
-- **Conditional probability** P(A|B) — spam classification
-- **Independence** — when P(A|B) = P(A)
-- **Law of Large Numbers** — empirical proportions converge to true probabilities
+- **Conditional probability** P(A|B) — spam classification, and why P(spam|word) is the key question
+- **Independence** — when P(A|B) = P(A); Naive Bayes assumes it
+- **Law of Large Numbers** — empirical proportions converge to true probabilities; the more data, the closer
 
 Next: probability distributions (Bernoulli, Binomial, Normal, Poisson) and Bayes' theorem.
 

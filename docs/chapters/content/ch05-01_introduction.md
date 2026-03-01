@@ -13,7 +13,7 @@
 # Chapter 5: Software Design & Best Practices for AI/ML
 ## Notebook 01 - Introduction
 
-Why software design matters for AI: technical debt in ML projects is real. Poor code organization leads to unmaintainable experiments, unreproducible results, and integration nightmares.
+**Why does code quality matter?** Messy code is like credit card debt: you borrow convenience today and pay compound interest tomorrow. Every shortcut—a magic number here, copy-pasted logic there—makes the next change harder. In ML, technical debt compounds fast: unmaintainable notebooks, unreproducible experiments, integration nightmares.
 
 **What you'll learn:**
 - Why software design matters for AI (technical debt in ML)
@@ -29,7 +29,7 @@ Why software design matters for AI: technical debt in ML projects is real. Poor 
 
 ## 1. Why Software Design Matters for AI
 
-ML projects accumulate **technical debt** faster than traditional software:
+ML projects accumulate **technical debt** faster than traditional software: notebooks with 1000+ lines, hardcoded hyperparameters, copy-pasted preprocessing, monolithic training scripts. Good design = reproducibility + maintainability + testability.
 
 | Problem | Impact |
 |---------|--------|
@@ -39,6 +39,8 @@ ML projects accumulate **technical debt** faster than traditional software:
 | Monolithic training scripts | Can't test or swap components |
 
 **Good design** = reproducibility + maintainability + testability.
+
+**The "before" code—what's wrong?** Everything in one cell. Magic numbers (1000, 0.01)—what do they mean? Unclear names (w, b, e, dw). No separation of concerns. If we want to change the learning rate, we hunt through code. If we want to reuse the loss, we can't.
 
 ```python
 # BAD: Everything in one cell, magic numbers, unclear names
@@ -55,6 +57,8 @@ for _ in range(1000):  # What is 1000? Why?
     b -= 0.01*db
 print(w, b)
 ```
+
+**What just happened:** The code trains a linear model but gives no hint of what 1000 or 0.01 represent. A teammate reading this would have to trace through to understand. And if there's a bug in the gradient, we can't unit-test it in isolation.
 
 ## 2. Code Quality Pyramid (Mermaid)
 
@@ -82,13 +86,19 @@ graph TB
 
 ## 3. Naming Conventions (PEP 8 for ML)
 
+**PEP 8 is Python's style guide—like grammar rules for code.** Consistent naming helps everyone read and navigate. For ML: learning_rate not lr in public APIs, MAX_EPOCHS for constants, load_dataset() not ld().
+
 | Element | Convention | Example |
-|---------|------------|--------|
+|---------|------------|---------|
 | Variables, functions | `snake_case` | `learning_rate`, `load_dataset()` |
 | Classes | `PascalCase` | `DataLoader`, `BertModel` |
 | Constants | `UPPER_SNAKE` | `MAX_EPOCHS`, `BATCH_SIZE` |
 | Private | `_leading_underscore` | `_internal_helper()` |
 | Booleans | `is_`, `has_` | `is_training`, `has_mask` |
+
+**Good names are worth more than good comments.** A function named `compute_mse_loss` doesn't need a comment saying it computes MSE.
+
+**The "after" code—refactored.** Constants at the top. Functions with clear names. Type hints. Each piece does one thing. We can test compute_mse_loss and train_linear_regression separately.
 
 ```python
 # GOOD: Descriptive names, constants extracted
@@ -122,11 +132,17 @@ w, b = train_linear_regression(features, targets, LEARNING_RATE, EPOCHS)
 print(f"Trained: y = {w:.3f}*x + {b:.3f}")
 ```
 
+**What just happened:** Same algorithm, but now LEARNING_RATE and EPOCHS are named. The training logic is in a function we could import. The loss computation is isolated. This is testable and maintainable.
+
 ## 4. DRY, KISS, YAGNI with ML Examples
 
-- **DRY (Don't Repeat Yourself)**: Extract repeated preprocessing into one function.
-- **KISS (Keep It Simple, Stupid)**: Prefer `sklearn.fit()` over custom training loops when sufficient.
-- **YAGNI (You Ain't Gonna Need It)**: Don't build a generic pipeline until you have 2+ real use cases.
+**DRY (Don't Repeat Yourself):** Extract repeated logic into one function. Before: the same normalization formula in 3 places. After: one normalize() call. If the formula changes, you fix it once.
+
+**KISS (Keep It Simple):** Prefer sklearn.fit() over a custom training loop when it's sufficient. Over-engineering—building a generic pipeline with 10 abstraction layers before you have 2 real use cases—slows you down.
+
+**YAGNI (You Aren't Gonna Need It):** Don't build for hypothetical futures. Premature optimization: spending a week on a "scalable" data loader when 10K rows fit in memory. Build what you need now; refactor when you have real requirements.
+
+**DRY in action.** We had (x - mean) / std copy-pasted for train, val, test. Now: one normalize() function. We pass mean and std (computed from training data) and get normalized values.
 
 ```python
 # DRY violation: Same normalization in 3 places
@@ -152,13 +168,19 @@ print(f"Original: {data}")
 print(f"Normalized: {[round(x, 3) for x in normalized]}")
 ```
 
+**What just happened:** One function, reused. The Z-score formula is in one place. If we later switch to min-max scaling, we change one function. Try it yourself: add a min_max_normalize() and compare.
+
 ## 5. Clean Code Principles - SVG Diagram
 
 ![Clean Code Principles](../assets/diagrams/clean_code.svg)
 
 ## 6. Refactoring: Before & After
 
-**Before**: Spaghetti ML script — 50 lines, no structure
+**Before**: Spaghetti ML script—50 lines, no structure. Data loading, training loop, and output all mixed. Unclear variable names. No way to test pieces in isolation. Magic numbers throughout.
+
+**After**: Clean, testable, documented. Each function has a single responsibility. We can unit-test load_training_data, gradient_descent_step, and train_linear_model separately.
+
+**Before refactoring.** One function does everything: builds data, trains, returns. We can't test the gradient step. We can't swap in different data. The magic numbers 500 and 0.05 are unexplained.
 
 ```python
 # BEFORE (bad): Monolithic script
@@ -181,7 +203,9 @@ def bad_training_script():
 print("Before refactor:", bad_training_script())
 ```
 
-**After**: Clean, testable, documented
+**What just happened:** The bad script works—it produces w and b. But it's a black box. If the gradient is wrong, we'd have to add print statements and hope. No isolation.
+
+**After refactoring.** We've extracted: load_training_data, gradient_descent_step, train_linear_model. Each has a docstring. Parameters are explicit. We could now write test_gradient_descent_step() with known inputs and expected outputs.
 
 ```python
 # AFTER (good): Separated concerns, clear names
@@ -219,12 +243,14 @@ w, b = train_linear_model(X, y)
 print(f"After refactor: w={w:.4f}, b={b:.4f}")
 ```
 
+**What just happened:** Same output, better structure. The training loop calls gradient_descent_step—which we could unit-test with hand-checked gradients. The pipeline is clear: load → train → done.
+
 ## 7. Summary
 
-- **Technical debt** in ML comes from notebooks-as-code, hardcoded values, and monolithic scripts.
-- **PEP 8 naming**: snake_case, PascalCase, UPPER_SNAKE for constants.
-- **DRY/KISS/YAGNI** reduce complexity and make code testable.
-- **Refactoring**: Extract functions, name clearly, separate concerns.
+- **Technical debt** in ML: notebooks-as-code, hardcoded values, monolithic scripts. Messy code is like credit card debt.
+- **PEP 8 naming**: snake_case, PascalCase, UPPER_SNAKE. Good names > good comments.
+- **DRY/KISS/YAGNI**: Don't repeat, keep it simple, build only what you need. They reduce complexity and make code testable.
+- **Refactoring**: Extract functions, name clearly, separate concerns. Before/after shows the value.
 
 Next: Design patterns for ML (Factory, Strategy, Pipeline, Observer).
 
