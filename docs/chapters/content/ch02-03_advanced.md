@@ -28,10 +28,9 @@ Trees, graphs, and dynamic programming: the structures behind neural networks, k
 
 ## 1. Trees
 
-Trees are hierarchical structures. In AI:
-- Decision trees are a core ML algorithm
-- Parse trees represent sentence structure in NLP
-- File systems and JSON data are tree-structured
+**Think of a family tree or an organization chart.** One root at the top, branches below, each node (except leaves) has children. There are no cycles—you can't go down and loop back to where you started. Trees are hierarchical structures: parent-child relationships, one "level" at a time.
+
+**Why decision trees use this structure.** A decision tree asks yes/no questions: "Is feature X > 5?" If yes, go left; if no, go right. Each internal node is a question; each leaf is a prediction. The tree we build below mimics this: "accuracy > 0.9?" → deploy or consider retraining. Trees also appear in parse trees (NLP: how words group into phrases), file systems, and JSON—any nested, one-parent-per-node structure.
 
 ```python
 class TreeNode:
@@ -83,9 +82,15 @@ print(f"Pre-order: {preorder(tree)}")
 print(f"Height:    {tree_height(tree)}")
 ```
 
+### What just happened
+
+We defined a `TreeNode` with value, left, and right children. **In-order** traversal (left → root → right) visits nodes in sorted order for a binary search tree. **Pre-order** (root → left → right) is used to serialize trees or copy structure. **Height** counts the longest path from root to leaf. Our toy decision tree shows a deploy/retrain workflow: the tree answers "accuracy > 0.9?" and branches accordingly.
+
 ## 2. Graphs
 
-Graphs model relationships: social networks, knowledge graphs, neural network architectures, dependency graphs.
+**Think of a social network.** People are **nodes**; friendships are **edges** connecting them. Unlike trees, graphs can have cycles (Alice knows Bob who knows Carol who knows Alice) and multiple connections. Graphs model any system of relationships: knowledge graphs (entities and relations), neural network architectures (layers and connections), pipeline dependencies (step A feeds into step B).
+
+**BFS vs DFS—when to use each.** **BFS** (breadth-first) explores level by level: all neighbors at distance 1, then distance 2, and so on. Use BFS when you need the **shortest path** or want to process nodes in order of distance. **DFS** (depth-first) goes as deep as possible before backtracking. Use DFS for exhaustive exploration, cycle detection, or when the structure is naturally recursive (e.g., dependency resolution).
 
 ```python
 from collections import deque
@@ -153,9 +158,17 @@ print(f"\nPath raw_data -> deploy? {pipeline.has_path('raw_data', 'deploy')}")
 print(f"Path deploy -> raw_data? {pipeline.has_path('deploy', 'raw_data')}")
 ```
 
+### What just happened
+
+We built a directed graph with an adjacency list (each node maps to its neighbors). BFS uses a queue to process nodes level by level—notice "raw_data" → "clean_data" → "features"/"labels" → "train_model" → "evaluate" → "deploy" follows the pipeline order. DFS would go deep down one path first. `has_path` checks if you can reach one node from another; "deploy → raw_data" is false because the graph is directed.
+
 ## 3. Dynamic Programming
 
-DP solves complex problems by breaking them into overlapping subproblems. In AI, DP appears in sequence alignment (NLP), Viterbi algorithm (HMMs), and optimal policy computation (RL).
+**DP breaks big problems into smaller ones and remembers the answers.** Instead of recomputing the same subproblem over and over, you store results in a table. When you need "what's the answer for size 5?" you look it up instead of recomputing. Classic example: Fibonacci. F(5) = F(4) + F(3), and F(4) needs F(3) and F(2)—F(3) gets computed many times without DP. With a table, each F(k) is computed once.
+
+In AI: sequence alignment (NLP), Viterbi algorithm (HMMs), optimal policy computation (RL).
+
+**Edit distance (Levenshtein): what it means.** How many single-character edits (insert, delete, substitute) does it take to turn one word into another? "machin" → "machine" needs one insert (e). "king" → "queen" needs four substitutions. Spell checkers use this to find the closest word in the dictionary. The algorithm fills a table where each cell = minimum edits to transform the prefix of s1 into the prefix of s2.
 
 ```python
 def edit_distance(s1, s2):
@@ -203,9 +216,15 @@ for a, b in pairs:
     print(f"\n  '{a}' vs '{b}': {edit_distance(a, b)} edits")
 ```
 
+### What just happened
+
+The edit distance table is built bottom-up: base cases (empty string to any string = length of that string), then each cell uses the minimum of (delete from s1, insert into s1, or substitute). We found the closest vocabulary word to "machin" (machine, 1 edit) and compared model names. This same algorithm underlies fuzzy matching, DNA sequence alignment, and diff tools.
+
 ## 4. Capstone: Simple Text Search Index
 
-Combining hash tables, sorting, and searching to build a text search index - the foundation of information retrieval systems used in RAG.
+**What we're building.** A tiny search engine: you give it documents, then query with a few words, and it returns the most relevant documents ranked by a score. This is the same idea that powers Google, Elasticsearch, and—crucially for AI—**RAG (Retrieval-Augmented Generation)**. RAG systems first retrieve relevant documents from a large corpus, then feed them to an LLM as context. The retrieval step is exactly this: an index that maps words to documents, with a scoring function (here, TF-IDF) to rank by relevance.
+
+**Why it matters.** Without good retrieval, RAG would either miss relevant context or drown the model in irrelevant text. The index combines hash tables (fast lookup: which documents contain "neural"?), term frequency (how often does the word appear in the doc?), and inverse document frequency (how rare is the word across all docs?). Rare, frequent-in-doc words score highest.
 
 ```python
 from collections import defaultdict
@@ -302,6 +321,10 @@ Next up: **Chapter 3: Linear Algebra & Calculus** - the math that powers neural 
 
 ---
 *Generated by Berta AI | Created by Luigi Pascal Rondanini*
+
+### What just happened
+
+We built a `SearchIndex` with an inverted index: each word maps to (doc_id, frequency) pairs. `search()` scores documents using TF-IDF (term frequency × inverse document frequency) and returns the top-k. Queries like "neural network training" match docs with those terms; rare terms contribute more. This is the retrieval backbone of RAG—same ideas, scaled to millions of documents.
 
 ---
 

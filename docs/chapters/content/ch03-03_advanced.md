@@ -36,6 +36,8 @@ Training a model = **minimizing a loss function**. We adjust parameters to make 
 
 ## 2. Derivatives: Numerical Approximation
 
+**The derivative tells you how fast something is changing.** Think of a speedometer: it doesn't measure where you are, it measures how quickly your position changes. The derivative f'(x) is the slope of the tangent line at x—how steep the function is at that point. If f'(x) > 0, f is increasing; if f'(x) < 0, f is decreasing. In ML, we minimize loss: we want to know "if I tweak this weight slightly, does the loss go up or down?" The derivative answers that.
+
 Definition: $f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$
 
 We can approximate with small h (finite differences). Useful for checking hand-derived gradients.
@@ -64,6 +66,12 @@ For f(x,y), **partial derivative** ∂f/∂x treats y as constant.
 Example: L(w,b) = (wx + b - y)² (squared error for one sample)
 - ∂L/∂w = 2(wx + b - y) · x
 - ∂L/∂b = 2(wx + b - y) · 1
+
+### What just happened
+
+We approximated f'(3) for f(x)=x² using (f(x+h) - f(x-h))/(2h) with h=1e-5. The result matches the exact derivative 2x=6. This "central difference" method is more accurate than one-sided differences. When you implement custom gradients, comparing to numerical approximations helps catch bugs.
+
+**Partial derivatives: like asking how steep a hill is if you only walk north.** With multiple variables, ∂f/∂x treats y as constant—you're slicing the landscape along one axis. Each partial tells you how to adjust one weight. In ML, we need all of them: the gradient is the vector of partial derivatives.
 
 ```python
 def partial_numerical(f, idx, point, h=1e-5):
@@ -117,6 +125,12 @@ for epoch in 1..max_epochs:
 
 **Learning rate** α: too small = slow, too large = divergence.
 
+**The gradient points uphill. Gradient descent goes downhill.** ∇f points in the direction of steepest ascent. To minimize, we step opposite: x ← x - α ∇f. The learning rate α controls step size—too small = slow, too large = overshoot and possible divergence.
+
+### What just happened
+
+We computed ∇f(1,2) = [6, 6] for f(x,y)=x²+2xy+y². At (1,2), the steepest ascent is in the (1,1) direction (both partials equal). To minimize, we'd step in (-1,-1).
+
 ```python
 def gradient_descent_simple(f, grad_f, w0, learning_rate=0.1, epochs=100):
     """Minimize f using gradient descent. grad_f(w) returns gradient at w."""
@@ -151,6 +165,8 @@ If L = f(g(x)), then $\frac{dL}{dx} = \frac{dL}{df} \cdot \frac{df}{dg} \cdot \f
 
 **Backpropagation** = chain rule applied layer by layer through the network. Each layer multiplies its local gradient by the upstream gradient.
 
+**Learning rate:** Too small = many tiny steps, slow convergence. Too large = overshoot the minimum, loss may oscillate or blow up. We used 0.1 here; for x²+y² from (3,4), 50 steps gets us close to (0,0). **Try it yourself:** Set learning_rate=0.5 or 0.01 and see how the final result and convergence change.
+
 ```python
 # Chain rule example: L = (wx + b - y)²
 # Let u = wx + b - y, then L = u²
@@ -174,6 +190,8 @@ dL_dw, dL_db = mse_loss_gradients(1.0, 0.0, 2.0, 5.0)
 print(f"  At w=1,b=0,x=2,y=5: dL/dw={dL_dw}, dL/db={dL_db}")
 ```
 
+**Chain rule: like multiplying percentages.** If sales drop 10% and prices rise 5%, the combined effect multiplies: (0.9)×(1.05). For derivatives: dL/dw = (dL/du)×(du/dw). Each link multiplies. Backprop applies this layer by layer through the network.
+
 ## 7. Capstone: Linear Regression with Gradient Descent
 
 Model: ŷ = wx + b  (one feature)
@@ -183,6 +201,8 @@ Loss: MSE = (1/n) Σ (ŷᵢ - yᵢ)²
 Gradients (averaged over batch):
 - ∂L/∂w = (2/n) Σ (ŷᵢ - yᵢ) · xᵢ
 - ∂L/∂b = (2/n) Σ (ŷᵢ - yᵢ)
+
+**Linear regression in plain English.** You have points (x, y) on a scatter plot. You want to fit a line ŷ = wx + b that best predicts y from x. "Best" means minimizing the average squared error—the MSE. You start with random w and b, compute how wrong the predictions are (the loss), compute the gradient (which way to adjust w and b to reduce the loss), take a small step, and repeat. Gradient descent finds the w and b that minimize MSE. It's the simplest form of "learning"—and the same idea scales to neural networks.
 
 ```python
 import numpy as np
@@ -252,6 +272,10 @@ plt.show()
 Model: ŷ = Xw + b (vectorized). Each row of X is a sample, w is weight vector.
 
 Gradients: ∂L/∂w = (2/n) Xᵀ(ŷ - y), ∂L/∂b = (2/n) Σ(ŷ - y)
+
+### What just happened
+
+We fit ŷ = wx + b to synthetic data (y = 2x + 1 + noise). Gradient descent converged: the loss (MSE) decreased over epochs and the learned w and b are close to the true 2 and 1. The left plot shows the fitted line through the scatter; the right plot shows the loss decreasing—**convergence**. If the loss kept bouncing or increased, the learning rate would be too high. If it barely moved, it would be too low.
 
 ```python
 def linear_regression_multi(X, y, learning_rate=0.01, epochs=1000):

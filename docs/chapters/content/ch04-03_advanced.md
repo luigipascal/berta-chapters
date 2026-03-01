@@ -29,6 +29,8 @@ Hypothesis testing, confidence intervals, A/B testing for ML experiments, and ca
 
 ## 1. Hypothesis Testing Workflow
 
+**Hypothesis testing uses an "innocent until proven guilty" analogy.** The null hypothesis H₀ is the default: "nothing interesting is happening." (E.g., "Model A and B perform the same.") We only reject it if the data is sufficiently unlikely under H₀. The p-value answers: "If H₀ were true, how often would we see data this extreme or more?"
+
 See `assets/diagrams/hypothesis_testing.svg` for the flowchart.
 
 1. Formulate H₀ (null) and H₁ (alternative)
@@ -37,6 +39,8 @@ See `assets/diagrams/hypothesis_testing.svg` for the flowchart.
 4. Compute test statistic (z, t, etc.)
 5. Compare to critical value or p-value
 6. Decision: Reject H₀ or fail to reject
+
+**Z-test: Known variance.** When we know the population standard deviation (e.g., from historical data), we use the z-test. We compare our sample mean to the known μ₀ and see how many standard errors apart they are.
 
 ```python
 import numpy as np
@@ -59,6 +63,10 @@ print(f"  p-value = {p_value:.4f}")
 print(f"  Reject H₀ at α=0.05? {p_value < 0.05}")
 ```
 
+**What just happened:** We computed z = (x̄ - μ₀) / (σ/√n). A z far from 0 means our sample mean is unlikely if μ₀ were true. The p-value is the probability of seeing such extreme z under H₀. If p < 0.05, we reject.
+
+**T-test: Unknown variance.** Usually we don't know σ—we estimate it from the sample. The t-test uses the t-distribution (wider tails) to account for that uncertainty. We compare two groups: Model A vs Model B accuracy.
+
 ```python
 # T-test: unknown variance. Compare two groups.
 # Example: Model A vs Model B accuracy on same test set
@@ -72,9 +80,15 @@ print(f"  p-value = {p_value:.4f}")
 print(f"  Reject H₀ (no difference)? {p_value < 0.05}")
 ```
 
+**What just happened:** scipy's ttest_ind compares two independent samples. The p-value tells us whether the difference in means is statistically significant. With random data here, p may be > 0.05—no significant difference.
+
 ## 2. Confidence Intervals
 
+**A range of plausible values.** When a poll says "Candidate X has 52% support ± 3%," that's a confidence interval. We're 95% confident the true proportion lies between 49% and 55%. It's not "95% chance the true value is in this interval"—the interval is fixed once computed; the randomness was in drawing the sample.
+
 95% CI for mean: $\bar{x} \pm 1.96 \frac{\sigma}{\sqrt{n}}$ (z) or use t-distribution when σ unknown.
+
+**Computing a 95% CI.** We use the t-distribution since we're estimating σ from the sample. The formula gives us (low, high) such that 95% of the time, the true mean falls in that range.
 
 ```python
 def confidence_interval(sample, confidence=0.95):
@@ -90,6 +104,10 @@ low, high = confidence_interval(data)
 print(f"95% CI for mean: [{low:.4f}, {high:.4f}]")
 print(f"True mean in interval? {0.88 >= low and 0.88 <= high} (we know it's 0.88)")
 ```
+
+**What just happened:** We drew 100 samples from Normal(0.88, 0.05) and computed the 95% CI. The true mean 0.88 should fall inside—and it does. Run again with different seed; occasionally it might not (5% of the time!).
+
+**Visualizing many CIs.** We draw 20 different samples, compute 95% CI for each, and plot. Most intervals should contain the true mean (red line). A few may miss—that's the 5%.
 
 ```python
 # Visualize many CIs: 20 samples, each with 95% CI
@@ -114,9 +132,15 @@ plt.savefig('../assets/diagrams/confidence_intervals.svg')
 plt.show()
 ```
 
+**What just happened:** Each horizontal line is one CI. Most cross the red line. One or two might not. That's expected: 95% confidence means ~1 in 20 intervals miss.
+
 ## 3. A/B Testing for ML Models
 
+**Like a clinical trial for your website or model.** Split users into A (control) and B (variant). Measure conversions (or accuracy as proportion). Did B perform better? The two-proportion z-test tells you if the difference is statistically significant—or just random noise.
+
 Compare conversion rates (or accuracy as proportion) between variant A and B. Use two-proportion z-test.
+
+**Two-proportion z-test.** We pool the conversion rates, compute standard error, and form z = (p_A - p_B) / SE. Then we get a p-value.
 
 ```python
 def ab_test_two_proportion(n_a, conv_a, n_b, conv_b):
@@ -138,11 +162,15 @@ print(f"  z = {z:.3f}, p = {p:.4f}")
 print(f"  Significant at α=0.05? {p < 0.05}")
 ```
 
+**What just happened:** Model A: 120/500 = 24%. Model B: 100/500 = 20%. The z-test asks: is a 4% difference significant? With 500 per group, we often have enough power to detect such differences.
+
 ## 4. Correlation vs Causation
 
-**Correlation ≠ Causation**. Ice cream sales and drownings are correlated (summer) but one doesn't cause the other.
+**Correlation ≠ Causation.** Ice cream sales and drownings both go up in summer—not because ice cream causes drowning, but because both are driven by warm weather and more swimming. In ML: feature X correlated with label Y doesn't mean X causes Y. There could be a confounder Z that causes both, or reverse causation, or selection bias.
 
-In ML: feature X correlated with label Y doesn't mean X causes Y—could be confounding.
+More examples: (1) Shoe size and math skills in children—both increase with age. (2) Chocolate consumption and Nobel prizes by country—both correlate with wealth. (3) Firefighters at a scene and damage—more firefighters means bigger fires, not that firefighters cause damage.
+
+**Spurious correlation demo.** We create X and Y that both depend on a hidden Z. They correlate strongly—but neither causes the other. The correlation is real; the causation is not.
 
 ```python
 # Spurious correlation: X and Y both depend on Z
@@ -162,7 +190,11 @@ plt.savefig('../assets/diagrams/correlation_causation.svg')
 plt.show()
 ```
 
+**What just happened:** The scatter plot shows a clear relationship. But we constructed it so both X and Y = f(Z). In real data, we rarely know the true structure—so be careful claiming causation from correlation.
+
 ## 5. P-values: What They Mean (and Misconceptions)
+
+**The p-value is the probability of seeing this result (or more extreme) if nothing interesting is happening.** It is NOT the probability the hypothesis is true! Common misconception: "p=0.05 means 95% chance we're right." Wrong. It means: if H₀ were true, we'd see data this extreme 5% of the time. Small p suggests the data is inconsistent with H₀—we reject it. But we haven't proven H₁; we've just failed to support H₀.
 
 - **Correct**: P-value = P(data or more extreme | H₀ true). Small p → inconsistent with H₀.
 - **Wrong**: P-value ≠ P(H₀ true). P-value is not probability of null!
@@ -170,7 +202,9 @@ plt.show()
 
 ## 6. Capstone: Complete A/B Test Analysis
 
-Load synthetic A/B test data, compute conversion rates, run two-proportion test, report confidence intervals.
+**What we're trying to answer:** Did variant A or B lead to more conversions? Is the difference statistically significant? What's our best estimate of the true difference? We'll load the data, compute rates, run the two-proportion test, and report a bootstrap confidence interval for the difference. This is the full process you'd use in production.
+
+**Load and explore.** We read the CSV, inspect the structure, and aggregate by variant to get conversions and rates.
 
 ```python
 import pandas as pd
@@ -184,6 +218,10 @@ grp.columns = ['conversions', 'users', 'rate']
 print(grp)
 ```
 
+**What just happened:** We see the raw rows and the summary by variant. Each variant has a count of users and conversions. The mean column is the conversion rate.
+
+**Run the A/B test.** We extract counts and call our two-proportion function. Then we state the conclusion.
+
 ```python
 a = grp.loc['A']
 b = grp.loc['B']
@@ -195,6 +233,10 @@ print(f"  Variant B: {b['conversions']:.0f}/{b['users']:.0f} = {b['rate']:.2%}")
 print(f"  z = {z:.3f}, p = {p:.4f}")
 print(f"  Conclusion: {'Reject H₀ — significant difference' if p < 0.05 else 'Fail to reject — no significant difference'}")
 ```
+
+**What just happened:** We get z and p. If p < 0.05, we reject the null (no difference) and conclude A and B differ significantly. We also report the actual conversion rates.
+
+**Bootstrap CI for the difference.** We resample each group with replacement 1000 times, compute the difference in conversion rates each time, and take the 2.5% and 97.5% percentiles. This gives a 95% CI for (rate_A - rate_B).
 
 ```python
 # Bootstrap CI for difference in conversion rates
@@ -214,13 +256,15 @@ low, high = bootstrap_ci_diff(df)
 print(f"Bootstrap 95% CI for difference (A - B): [{low:.4f}, {high:.4f}]")
 ```
 
+**What just happened:** The bootstrap gives us a range for how much better (or worse) A is than B. If the interval contains 0, the difference might not be meaningful. If it's entirely positive, A is likely better.
+
 ## 7. Summary
 
-- **Hypothesis testing**: z-test, t-test, interpret p-values correctly
-- **Confidence intervals**: quantify uncertainty in estimates
-- **A/B testing**: two-proportion z-test for conversion/accuracy comparison
-- **Correlation ≠ causation**: beware spurious correlations
-- **Capstone**: full A/B analysis from data to conclusion
+- **Hypothesis testing**: z-test (known σ), t-test (unknown σ). Interpret p-values correctly—they're not P(H₀ true)!
+- **Confidence intervals**: A range of plausible values; 95% means the procedure captures the true value 95% of the time
+- **A/B testing**: Two-proportion z-test for conversion/accuracy comparison; like a clinical trial
+- **Correlation ≠ causation**: Beware spurious correlations and confounders
+- **Capstone**: Full A/B analysis—load, aggregate, test, bootstrap CI, conclude
 
 ---
 *Generated by Berta AI | Created by Luigi Pascal Rondanini*

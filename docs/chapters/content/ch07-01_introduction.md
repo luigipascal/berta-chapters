@@ -28,11 +28,15 @@ Regression predicts continuous values. We start with the classic **linear regres
 
 ## 1. Linear Regression: Theory
 
-**Goal:** Predict $y$ from $X$ using $y = X\beta + \varepsilon$
+**Linear regression is finding the line of best fit.** Given points (x, y), we want the line that minimizes the sum of squared errors. Real example: bigger house = higher price. The line captures how much price increases per extra sqft.
 
-**Closed-form (normal equation):** $\beta = (X^TX)^{-1}X^Ty$
+**Goal:** Predict y from X using y = X*beta + epsilon
 
-**Gradient descent:** Minimize MSE $= \frac{1}{n}\sum(y_i - \hat{y}_i)^2$
+**Closed-form (normal equation):** beta = (X^T X)^{-1} X^T y
+
+**Gradient descent:** Minimize MSE
+
+**Implementing linear regression:** We generate synthetic data and fit using the normal equation. The plot shows the data and fitted line.
 
 ```python
 import numpy as np
@@ -61,9 +65,11 @@ plt.tight_layout()
 plt.show()
 ```
 
+**What just happened:** We fit the line and plotted it. The red line minimizes squared error.
+
 ## 2. Residual Plot
 
-Residuals = $y - \hat{y}$. Good fits have residuals centered around 0 with no pattern.
+**Residuals = $y - \hat{y}$** — the vertical distance from each point to the line. Good fits have residuals centered around 0 with no pattern. If you see a curve in the residual plot, the relationship may be nonlinear; if variance grows with predicted value, you may need different modeling.
 
 ```python
 residuals = y - y_pred
@@ -82,9 +88,15 @@ plt.tight_layout()
 plt.show()
 ```
 
+**What just happened:** Residuals vs predicted (left) and residual distribution (right). Random scatter around 0 indicates a good fit.
+
+**Loading housing data:** We use multiple features (sqft, bedrooms, etc.) to predict price. We scale features and fit with sklearn's LinearRegression.
+
 ## 3. Multiple Linear Regression - Housing Prices
 
-Real-world: Predict house price from sqft, bedrooms, bathrooms, age, location_score.
+**Now the price depends on size AND location AND age...** Multiple regression adds more features. Each has a coefficient. The model learns these from data. Real-world: Predict house price from sqft, bedrooms, bathrooms, age, location_score.
+
+**What just happened:** We fit multiple regression and got R² and coefficients. Each coefficient is the predicted price change per unit of that feature (holding others constant).
 
 ```python
 import pandas as pd
@@ -127,9 +139,13 @@ pred_price = lr.predict(new_house)[0]
 print(f'Predicted price for {sqft} sqft, {bedrooms} bed, {bathrooms} bath, age {age}: ${pred_price:,.0f}')
 ```
 
-## 4. Polynomial Regression & Overfitting
+**Visualizing overfitting:** We fit degree 1, 3, and 12 polynomials. Degree 12 passes through every point but wobbles—classic overfitting.
 
-Sometimes relationships are nonlinear. Polynomial features can capture curves but risk **overfitting**.
+## 4. Polynomial Regression and Overfitting
+
+**Sometimes the relationship is not a straight line.** Polynomial features (x, x^2, x^3) let us capture curves. But overfitting is like a curve that passes through every point but wobbles wildly - it cannot predict new points. Degree 12 = wiggly curve that memorizes noise.
+
+**What just happened:** Ridge shrinks all coefficients; Lasso drives some to zero. The plots show how coefficients change with regularization strength (alpha).
 
 ```python
 from sklearn.preprocessing import PolynomialFeatures
@@ -159,11 +175,13 @@ plt.show()
 
 ## 5. Regularization: Ridge (L2) and Lasso (L1)
 
-**Ridge:** Adds $\lambda \sum \beta_i^2$ — shrinks all coefficients
+**Ridge (L2):** Penalizes large weights - shrinks them toward zero. Use when many features matter.
 
-**Lasso:** Adds $\lambda \sum |\beta_i|$ — drives some coefficients to exactly 0 (feature selection)
+**Lasso (L1):** Can set weights to exactly zero - automatic feature selection. Use when you want a sparse model.
 
-See `assets/diagrams/regression_types.svg` for a visual comparison.
+**When to use which:** Need sparse features? Lasso. Many correlated features? Ridge.
+
+**What just happened:** We compared OLS, Ridge, and Lasso. Ridge and Lasso often generalize better when there are many or correlated features. Try different alpha values to see the effect.
 
 ```mermaid
 flowchart TD
@@ -217,10 +235,7 @@ plt.show()
 
 ## 6. Scikit-learn Interface
 
-All sklearn estimators follow:
-- `model.fit(X, y)` — train
-- `model.predict(X)` — predict
-- `model.score(X, y)` — R² for regression, accuracy for classification
+**Scikit-learn is the most popular ML library in Python.** Every estimator follows: model.fit(X, y) to train, model.predict(X) to predict, model.score(X, y) for R2 or accuracy. Once you learn this pattern, you can use hundreds of models.
 
 ```python
 # Compare OLS, Ridge, Lasso on housing

@@ -29,13 +29,17 @@ Machine learning is the art of teaching computers to learn from data—without b
 
 ## 1. What is Machine Learning?
 
-**Traditional programming:** You write rules → Computer applies them → Output
+**Machine learning is teaching computers to learn from examples instead of explicit rules.** Think of it this way: you don't program a child to recognize a cat by writing thousands of "if pixel 23 is orange and pixel 24 is black then maybe ear" rules. Instead, you show the child many pictures and say "this is a cat, this isn't." The child learns the pattern. ML does the same for computers.
 
-**Machine learning:** You provide data + desired output → Computer learns rules → Predictions on new data
+**Traditional programming:** You write rules → Computer applies them → Output. You must anticipate every case.
 
-Instead of hand-crafting complex rules (e.g., "if pixel pattern X then digit 7"), we let the algorithm *discover* patterns from examples.
+**Machine learning:** You provide data + desired output → Computer learns rules → Predictions on new data. The algorithm *discovers* patterns from examples.
+
+Why does this matter? Many real-world problems—recognizing faces, predicting stock moves, detecting fraud—are too complex for hand-crafted rules. The space of possibilities is enormous. But if we have enough examples, the computer can find the underlying structure. That's the power of ML.
 
 ## 2. Types of Machine Learning
+
+The three main branches of ML differ in what the model learns from. **Supervised vs unsupervised** is the key split—here's a simple analogy: **Studying with an answer key (supervised) vs studying without one (unsupervised).** With the answer key, you can check your work and improve. Without it, you can only look for patterns in the questions themselves. Supervised learning has labeled data (the answers); unsupervised doesn't.
 
 ```mermaid
 flowchart TB
@@ -73,6 +77,8 @@ Every ML project follows a flow. See the diagram in `assets/diagrams/ml_pipeline
 
 **Data Collection → Cleaning → Feature Engineering → Train/Val/Test Split → Model Training → Evaluation → Deployment**
 
+**Displaying the pipeline:** The cell below loads and shows the ML pipeline diagram. This gives you a visual roadmap of every ML project—from raw data to deployed model.
+
 ```python
 # Display the ML pipeline diagram
 from IPython.display import display, SVG
@@ -85,11 +91,15 @@ else:
     print("Pipeline: Data Collection → Cleaning → Feature Engineering → Split → Training → Evaluation → Deployment")
 ```
 
+**What just happened:** The code displayed the ML pipeline diagram (or a text summary if the file wasn't found). This pipeline is the backbone of every ML project—you'll follow it again and again.
+
 ## 4. Your First ML Model: House Price Prediction
 
-We'll predict house prices using **linear regression**—the simplest supervised learning model.
+**Linear regression is like drawing the best straight line through messy data.** Imagine you have 50 houses with sizes and prices plotted on a graph—a cloud of points where bigger houses tend to cost more. Linear regression finds the single line that fits that cloud best. In most markets, adding 100 sqft adds roughly $15,000-$25,000 to price; the line captures that. We'll predict house prices using **linear regression**—the simplest supervised learning model.
 
 **What do you think will happen?** If we plot house size (sqft) vs price, do you expect a roughly linear relationship? Why or why not?
+
+**Before we fit a model, we need data.** The cell below creates synthetic house data so we can see the full pipeline. In a real project, you'd load this from a CSV or database.
 
 ```python
 import numpy as np
@@ -115,11 +125,15 @@ plt.show()
 print("Data shape:", sqft.shape)
 ```
 
+**What just happened:** We created 50 synthetic houses with random sizes (800–3500 sqft) and prices following a linear trend plus noise. The scatter plot shows the relationship—bigger houses cost more, with natural variation. In real projects, this would come from your actual dataset.
+
 ## 5. Linear Regression from Scratch (NumPy)
 
-Linear model: $y = w \cdot x + b$
+The linear model is simple: $y = w \cdot x + b$. Here $w$ is the slope (how much price increases per sqft) and $b$ is the intercept (base price). We find $w$ and $b$ by minimizing the average squared error between predictions and actual prices—this is called Mean Squared Error (MSE). The closed-form solution (normal equation) gives us the optimal values directly, no iteration needed.
 
-We'll fit $w$ and $b$ by minimizing Mean Squared Error (MSE) using the closed-form solution (normal equation).
+**Implementing the fit:** The cell below uses the normal equation to find optimal $w$ and $b$ in one shot. No loops, no gradient descent—just matrix algebra.
+
+**Before we visualize:** Let's plot the fitted line over the data to see how well it captures the relationship.
 
 ```python
 def linear_regression_fit(X, y):
@@ -138,6 +152,8 @@ w, b = linear_regression_fit(sqft, price)
 print(f"Fitted model: price = {w:.1f} * sqft + {b:.0f}")
 ```
 
+**What just happened:** We found optimal $w$ and $b$. The printed formula is your model—you can now predict any house price by plugging in sqft.
+
 ```python
 # Visualize: scatter plot + fitted line
 plt.figure(figsize=(8, 5))
@@ -154,13 +170,19 @@ plt.tight_layout()
 plt.show()
 ```
 
+**What just happened:** We plotted the fitted line (red) over the data. The line approximates the trend—some points are above, some below. **You just built your first ML model!** Let's understand what happened: we learned a relationship from 50 examples and can now predict prices for houses we've never seen.
+
+**Splitting the data:** Below we randomly assign 80% of houses to training and 20% to testing. We fit only on the training set, then evaluate on both.
+
 ## 6. Train/Test Split: Why It Matters
 
-**Problem:** If we evaluate on the same data we trained on, we might get overly optimistic results (the model "memorized" the data).
+**You wouldn't let a student see the exam before taking it.** If we evaluate on the same data we trained on, we get overly optimistic results (the model "memorized" the data).
 
-**Solution:** Split data into **train** (fit the model) and **test** (evaluate on unseen data).
+**Solution:** Split data into **train** (fit the model) and **test** (evaluate on held-out data). The model never sees the test set until the final evaluation.
 
 **What do you think will happen?** If we use ALL data for training, will our error on "new" houses be higher or lower than if we had held out a test set?
+
+**What just happened:** We split the data, fit on 80%, and computed MSE on both sets. Test MSE is the honest measure—it tells us how well the model will perform on new houses. If train MSE is much lower than test MSE, the model may be overfitting.
 
 ```python
 # Train/test split (80/20)
@@ -188,6 +210,8 @@ print(f"Train RMSE: ${np.sqrt(mse_train):,.0f}")
 print(f"Test RMSE:  ${np.sqrt(mse_test):,.0f}")
 ```
 
+**Visualizing the split:** The cell below plots train points (blue) and test points (coral squares) so you can see which houses the model learned from vs. which it's being evaluated on.
+
 ```python
 # Visualize train vs test points
 plt.figure(figsize=(8, 5))
@@ -204,6 +228,8 @@ plt.tight_layout()
 plt.show()
 ```
 
+**What just happened:** We split the data, fit on 80%, and computed MSE on both sets. Test MSE is the honest measure—it tells us how well the model will perform on new houses. If train MSE is much lower than test MSE, the model may be overfitting. The plot shows train (blue) vs test (coral) points—the model never saw the coral points during training.
+
 ## Summary
 
 - **Machine learning** = learning from data instead of explicit rules
@@ -214,6 +240,7 @@ plt.show()
 
 **Next:** Feature engineering, cross-validation, and evaluation metrics.
 
+**Try it yourself:** Change the train/test split to 70/30 and see how MSE changes. Try predicting a house with 2500 sqft using your fitted model.**Common mistakes:** Forgetting to split before fitting, or evaluating on the same data you trained on. Always hold out a test set!
 ---
 *Generated by Berta AI | Created by Luigi Pascal Rondanini*
 

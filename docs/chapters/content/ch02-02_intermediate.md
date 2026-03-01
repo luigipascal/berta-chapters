@@ -28,7 +28,11 @@ Stacks, queues, hash tables, and sorting - the workhorses of efficient code.
 
 ## 1. Stacks (LIFO)
 
-Last-In-First-Out. Used for: undo operations, backtracking, parsing expressions, DFS, call stacks in recursion.
+**Think of a stack of plates.** You add plates on top; when you need one, you take from the top. The last plate you put on is the first one you take off—that's **Last-In-First-Out (LIFO)**. You never grab from the middle. Stacks appear everywhere in computing: your browser's back button (the last page you visited is the first you return to), undo in a text editor (last action undone first), and the call stack when a function calls another function—the most recent call is the first to complete and return.
+
+Used for: undo operations, backtracking, parsing expressions, DFS, call stacks in recursion.
+
+**Balanced parentheses: why it matters.** Every time you write `if x > 0:` or `layers[0].forward()`, the computer must check that brackets match. Parsers for code, JSON, and config files do exactly this. A stack is perfect: push each opening `(`, `[`, `{`; when you see a closing one, pop and check it matches. If the stack is empty when you need to pop, or has leftovers at the end, the expression is broken.
 
 ```python
 class Stack:
@@ -89,9 +93,15 @@ for expr in tests:
     print(f"  {result:>12}: {expr}")
 ```
 
+### What just happened
+
+We built a `Stack` class using a Python list (append = push, pop = pop). Then we used it to validate brackets: opening brackets go on the stack, closing brackets must match the top of the stack. The expressions `model(layers[0].forward(...))` and `{config: {...}}` are balanced; `broken([)` fails because `[` was never closed before `(` was closed. This same logic runs inside every parser that processes nested structures.
+
 ## 2. Queues (FIFO)
 
-First-In-First-Out. Used for: BFS, task scheduling, data streaming, batch processing, message queues.
+**Think of a line at a store.** The first person in line is the first served. New people join at the back. That's **First-In-First-Out (FIFO)**. Queues ensure fairness: tasks submitted first get processed first. In ML, you queue training jobs, inference requests, and data batches. BFS (breadth-first search) uses a queue: explore neighbors level by level, so you find the shortest path. Message queues for distributed systems work the same way—messages are processed in order.
+
+**Watch out: stack vs queue.** Both hold items and let you add/remove. The difference is *which* item comes out: stack = most recent (LIFO), queue = oldest (FIFO). Use a stack for undo, backtracking, or "go back." Use a queue for "process in order" or "first come, first served."
 
 ```python
 from collections import deque
@@ -134,9 +144,17 @@ while scheduler.size > 0:
     print(f"  Running: {job}")
 ```
 
+### What just happened
+
+We used Python's `deque` (double-ended queue) from `collections` for O(1) append and popleft. The `TaskQueue` has three priority levels; `dequeue` always takes from high first, then normal, then low. So "fix_data_pipeline" and "retrain_urgent" run before "train_model_v2" and "evaluate_model," which run before "generate_report." Real ML schedulers (e.g., Kubernetes, Ray) use similar priority queues.
+
 ## 3. Sorting Algorithms
 
 Sorting is fundamental to data processing. Understanding *how* sorting works helps you choose the right approach for your data.
+
+**Merge sort (plain English):** Imagine sorting a deck of cards by dividing it in half, sorting each half separately (by recursively dividing again until you have single cards), then merging the two sorted halves. To merge, you look at the top card of each pile and always take the smaller one. Merge sort always does O(n log n) work—predictable and stable (equal elements keep their relative order). Used when you need guaranteed performance.
+
+**Quicksort (plain English):** Pick a "pivot" (e.g., the middle element). Put everything smaller left, everything larger right, pivot in the middle. Now recursively sort the left and right halves. On average, O(n log n); in the worst case (bad pivot choices), O(n²). Often faster in practice due to better cache behavior and simpler inner loops. Python's `sorted()` uses Timsort, a hybrid of merge sort and insertion sort optimized for real-world data.
 
 ```python
 def merge_sort(arr):
@@ -203,6 +221,10 @@ for name, func in [("merge_sort", merge_sort), ("quicksort", quicksort), ("sorte
     print(f"  {name:>12}: {elapsed*1000:.2f} ms on {len(large_data):,} items")
 ```
 
+### What just happened
+
+All three methods produce the same sorted output. The performance comparison shows milliseconds for 10,000 items. **Why is Python's `sorted()` so much faster?** It's implemented in C (not Python), uses Timsort (optimized for partially sorted data), and avoids the overhead of function calls and list operations that our pure-Python merge sort and quicksort incur. In practice, always use `sorted()` or `.sort()`—understanding the algorithms helps you reason about complexity, but the built-in is the right tool.
+
 ## 4. Choosing the Right Data Structure
 
 | Problem | Best Structure | Why |
@@ -215,6 +237,10 @@ for name, func in [("merge_sort", merge_sort), ("quicksort", quicksort), ("sorte
 | Model config | Dict | Key-value pairs |
 | Fixed-shape data | Tuple | Immutable, hashable |
 | Priority scheduling | Heap/PriorityQueue | Efficient min/max |
+
+### What just happened
+
+We used three Python structures for common ML tasks: **Counter** for word frequencies (NLP vocab), **defaultdict** to group predictions by class (e.g., for per-class metrics), and **heapq.nlargest** for top-K selection (recommendation systems, retrieval). Each choice matches the operation you need—counting, grouping, or "give me the K best." **Try it yourself:** Add more words to `text` and see how the vocabulary changes. Change `top_3` to `top_5` in the heap example.
 
 ```python
 # Real-world pattern: choosing structures for an ML pipeline

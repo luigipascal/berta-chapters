@@ -28,6 +28,8 @@ Vectors are the fundamental building blocks of machine learning. Every feature v
 
 ## 1. Why Vectors Matter for AI
 
+**What vectors represent in ML.** A vector is a list of numbers that captures one "thing"—a house, a word, a user. A **feature vector** describes a data point: a house might be [1200 sqft, 3 bedrooms, 2 baths, 10 years old, 5.2 km to city]. That's one point in 5D space. **Word embeddings** map words to vectors so that "king" and "queen" are close (similar vectors) while "king" and "car" are far. In Word2Vec that's 300 numbers per word; in BERT it's 768. Every layer of a neural network takes vectors in and puts vectors out. When you pass an image through a CNN, you're really passing a big vector (flattened pixels) through a sequence of transformations. Understanding vectors is understanding how ML "sees" data.
+
 In machine learning, almost everything is a vector:
 - **Feature vectors**: Each data point (e.g., a house with 5 features) → 5D vector
 - **Word embeddings**: Words mapped to dense vectors (e.g., 300 dimensions in Word2Vec)
@@ -47,6 +49,10 @@ print(f"  House A: {house_a}")
 print(f"  House B: {house_b}")
 print(f"  Dimension: {len(house_a)} features")
 ```
+
+### What just happened
+
+We defined two houses as 5-dimensional feature vectors. Each number is a feature (sqft, bedrooms, etc.). In a price prediction model, the input would be a vector like this; the model learns weights to combine them into a predicted price. **Try it yourself:** Add a sixth feature (e.g., "has garage") to both vectors and adjust the dimension print.
 
 ## 2. Vector Operations
 
@@ -89,6 +95,10 @@ print(f"  u · v      = {vector_dot(u, v)}")
 print(f"  (1*4 + 2*5 + 3*6 = {1*4+2*5+3*6})")
 ```
 
+### What just happened
+
+We implemented `vector_add`, `vector_scale`, and `vector_dot` in pure Python. The dot product 1×4 + 2×5 + 3×6 = 32 measures how much the vectors "align." In a linear layer, each neuron computes a dot product between its weight vector and the input. **Try it yourself:** Compute `vector_dot(house_a, house_b)`—what does a high or low value mean for house similarity?
+
 ## 3. Dot Product: The Heart of ML
 
 The dot product measures **alignment** between vectors:
@@ -121,6 +131,10 @@ for w1, w2 in pairs:
     print(f"  {w1} · {w2} = {sim:.3f}")
 ```
 
+### What just happened
+
+We compared word embeddings using the dot product as similarity. "king" · "queen" is higher than "king" · "car" because the vectors for related words point in similar directions. This is how semantic search works: convert a query to a vector, then find documents whose embeddings have high dot product with it. **Try it yourself:** Add a new word (e.g., "prince") to the embeddings dict and compare its similarity to "king" and "queen."
+
 ## 4. Vector Norms
 
 A **norm** measures the "length" or "magnitude" of a vector.
@@ -131,6 +145,8 @@ A **norm** measures the "length" or "magnitude" of a vector.
 | L2 (Euclidean) | ‖u‖₂ = √(Σ uᵢ²) | Distance, normalization, L2 regularization |
 
 L2 norm is the standard geometric length. Used in: cosine similarity, gradient clipping, weight decay.
+
+**Why cosine similarity matters.** The dot product grows with vector length—a long document will have a larger dot product with a query even if a short one is more relevant. Cosine similarity divides by both lengths, so you compare *direction* only. Search engines rank documents this way; recommendation systems find similar users. In NLP, it's the standard for comparing word embeddings.
 
 ```python
 import math
@@ -210,6 +226,10 @@ for name, features in houses.items():
     dist = euclidean_distance(query, features)
     print(f"  House {name}: {dist:.2f}")
 ```
+
+### What just happened
+
+We computed Euclidean distance between the query house and each option. The closer the features (sqft, bedrooms, etc.), the smaller the distance. k-NN finds the k nearest neighbors this way; k-means assigns points to the cluster whose center is closest. **Try it yourself:** Create a third house and find which of A or B is closer to it.
 
 ## 7. Summary
 
