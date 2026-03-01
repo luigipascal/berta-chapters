@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 200" width="900" height="200">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#81C784;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2196F3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#64B5F6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF9800;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFB74D;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9C27B0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#BA68C8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#E91E63;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F48FB1;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00BCD4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4DD0E1;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad7" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#795548;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A1887F;stop-opacity:1" />
+    </linearGradient>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+  <title>ML Pipeline Flowchart</title>
+  <!-- Data Collection -->
+  <rect x="10" y="70" width="105" height="60" rx="8" fill="url(#grad1)" stroke="#2E7D32" stroke-width="2"/>
+  <text x="62.5" y="95" text-anchor="middle" fill="white" font-family="Arial" font-size="11" font-weight="bold">Data Collection</text>
+  <text x="62.5" y="112" text-anchor="middle" fill="white" font-family="Arial" font-size="9">=Ê Raw Data</text>
+  <!-- Arrow -->
+  <line x1="115" y1="100" x2="148" y2="100" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- Cleaning -->
+  <rect x="150" y="70" width="105" height="60" rx="8" fill="url(#grad2)" stroke="#1565C0" stroke-width="2"/>
+  <text x="202.5" y="95" text-anchor="middle" fill="white" font-family="Arial" font-size="11" font-weight="bold">Cleaning</text>
+  <text x="202.5" y="112" text-anchor="middle" fill="white" font-family="Arial" font-size="9">>ù Handle Missing</text>
+  <line x1="255" y1="100" x2="288" y2="100" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- Feature Engineering -->
+  <rect x="290" y="70" width="105" height="60" rx="8" fill="url(#grad3)" stroke="#F57C00" stroke-width="2"/>
+  <text x="342.5" y="95" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">Feature Engineering</text>
+  <text x="342.5" y="112" text-anchor="middle" fill="white" font-family="Arial" font-size="9">=' Transform</text>
+  <line x1="395" y1="100" x2="428" y2="100" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- Train/Val/Test Split -->
+  <rect x="430" y="70" width="105" height="60" rx="8" fill="url(#grad4)" stroke="#6A1B9A" stroke-width="2"/>
+  <text x="482.5" y="92" text-anchor="middle" fill="white" font-family="Arial" font-size="9" font-weight="bold">Train/Val/Test</text>
+  <text x="482.5" y="107" text-anchor="middle" fill="white" font-family="Arial" font-size="9">Split</text>
+  <text x="482.5" y="122" text-anchor="middle" fill="white" font-family="Arial" font-size="9">=Â 60/20/20</text>
+  <line x1="535" y1="100" x2="568" y2="100" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- Model Training -->
+  <rect x="570" y="70" width="105" height="60" rx="8" fill="url(#grad5)" stroke="#C2185B" stroke-width="2"/>
+  <text x="622.5" y="95" text-anchor="middle" fill="white" font-family="Arial" font-size="11" font-weight="bold">Model Training</text>
+  <text x="622.5" y="112" text-anchor="middle" fill="white" font-family="Arial" font-size="9">>à Fit Algorithm</text>
+  <line x1="675" y1="100" x2="708" y2="100" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- Evaluation -->
+  <rect x="710" y="70" width="105" height="60" rx="8" fill="url(#grad6)" stroke="#00838F" stroke-width="2"/>
+  <text x="762.5" y="95" text-anchor="middle" fill="white" font-family="Arial" font-size="11" font-weight="bold">Evaluation</text>
+  <text x="762.5" y="112" text-anchor="middle" fill="white" font-family="Arial" font-size="9">=È Metrics</text>
+  <line x1="815" y1="100" x2="848" y2="100" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- Deployment -->
+  <rect x="850" y="70" width="40" height="60" rx="8" fill="url(#grad7)" stroke="#5D4037" stroke-width="2"/>
+  <text x="870" y="95" text-anchor="middle" fill="white" font-family="Arial" font-size="9" font-weight="bold">Deploy</text>
+  <text x="870" y="112" text-anchor="middle" fill="white" font-family="Arial" font-size="9">=€</text>
+</svg>
