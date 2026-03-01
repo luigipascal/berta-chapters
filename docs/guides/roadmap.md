@@ -17,16 +17,24 @@ Our vision for the future of AI education. Priorities evolve based on community 
 
 ---
 
+## Release Cadence
+
+!!! info "One Chapter Per Week"
+    New chapters are released **one per week** once we reach **10 newsletter subscribers**.
+    [Subscribe here](../newsletter.md) to unlock weekly releases and get notified.
+
+---
+
 ## Phase 1: Foundation & Launch — Complete
 
-!!! success "March 2026"
-    Foundation Track complete. Chapters 6–7 available. Core infrastructure done.
+!!! success "Complete"
+    Foundation Track complete. Chapters 6-7 available. Core infrastructure done.
 
 ### Objectives
 
 - [x] Establish master repository
-- [x] Complete Foundation Track (Chapters 1–5)
-- [x] Begin Practitioner Track (Ch 6–7)
+- [x] Complete Foundation Track (Chapters 1-5)
+- [x] Begin Practitioner Track (Ch 6-7)
 - [ ] Establish community request process
 - [ ] Build first 100 community chapters
 
@@ -40,11 +48,11 @@ Our vision for the future of AI education. Priorities evolve based on community 
 
 ---
 
-## Phase 2: Practitioner Track & Scale (Q2–Q3 2026)
+## Phase 2: Practitioner Track & Scale
 
 ### Objectives
 
-- [ ] Release full Practitioner Track (10 chapters)
+- [ ] Complete Practitioner Track (10 chapters, one per week)
 - [ ] Scale community chapters to 50+
 - [ ] Establish quality standards and review process
 - [ ] First translations (Spanish, Chinese)
@@ -55,7 +63,7 @@ Our vision for the future of AI education. Priorities evolve based on community 
 |---|---------|--------|
 | 6 | Introduction to ML | Done |
 | 7 | Supervised Learning | Done |
-| 8 | Unsupervised Learning | Planned |
+| 8 | Unsupervised Learning | Next |
 | 9 | Deep Learning Fundamentals | Planned |
 | 10 | NLP Basics | Planned |
 | 11 | LLMs & Transformers | Planned |
@@ -64,26 +72,20 @@ Our vision for the future of AI education. Priorities evolve based on community 
 | 14 | Fine-tuning & Adaptation | Planned |
 | 15 | MLOps & Deployment | Planned |
 
-### Milestones
-
-- **July 2026**: Chapters 6–10 complete
-- **August 2026**: Chapters 11–13 complete
-- **September 2026**: Chapters 14–15 complete
-
 ---
 
-## Phase 3: Advanced Track (Q3–Q4 2026)
+## Phase 3: Advanced Track
 
 ### Objectives
 
-- [ ] Release Advanced Track (10 chapters)
+- [ ] Release Advanced Track (10 chapters, one per week)
 - [ ] Establish specialization tracks
 - [ ] Introduce micro-credentials
 - [ ] Build companion video content
 
 ### Advanced Chapters
 
-Chapters 16–25: Multi-Agent Systems, Advanced RAG, Reinforcement Learning, Model Optimization, Production AI, Finance, Safety, AI Products, Research, Governance & Ethics.
+Chapters 16-25: Multi-Agent Systems, Advanced RAG, Reinforcement Learning, Model Optimization, Production AI, Finance, Safety, AI Products, Research, Governance & Ethics.
 
 ### Specialization Tracks (Community-Built)
 
@@ -95,7 +97,7 @@ Chapters 16–25: Multi-Agent Systems, Advanced RAG, Reinforcement Learning, Mod
 
 ---
 
-## Phase 4: Ecosystem & Scale (2027+)
+## Phase 4: Ecosystem & Scale
 
 - Interactive learning platform
 - Live cohorts & community
@@ -111,7 +113,7 @@ Chapters 16–25: Multi-Agent Systems, Advanced RAG, Reinforcement Learning, Mod
 
 | Metric | Target |
 |--------|--------|
-| Active learners | 50,000+ by end of 2026 |
+| Newsletter subscribers | Growing |
 | Contributors | 500+ |
 | Community chapters | 200+ |
 | Languages | 3+ |
@@ -123,11 +125,11 @@ Chapters 16–25: Multi-Agent Systems, Advanced RAG, Reinforcement Learning, Mod
 
 ### Right Now
 
+- [Subscribe to the newsletter](../newsletter.md) to unlock weekly releases
 - Request chapters you need
 - Work through Foundation chapters
 - Report issues and suggest improvements
 - Star the repository and share
-- Contribute improvements
 
 ### As We Grow
 
