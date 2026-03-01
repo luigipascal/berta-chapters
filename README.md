@@ -43,16 +43,16 @@ Learn essential skills for AI: Python, data structures, math, and computational 
 | 1 | [Python Fundamentals for AI](./chapters/chapter-01-python-fundamentals/) | 8h | ✅ Available |
 | 2 | [Data Structures & Algorithms](./chapters/chapter-02-data-structures/) | 6h | ✅ Available |
 | 3 | [Linear Algebra & Calculus](./chapters/chapter-03-linear-algebra/) | 10h | ✅ Available |
-| 4 | Probability & Statistics | 8h | 🔄 Coming Soon |
-| 5 | Software Design & Best Practices | 6h | 🔄 Coming Soon |
+| 4 | [Probability & Statistics](./chapters/chapter-04-probability-statistics/) | 8h | ✅ Available |
+| 5 | [Software Design & Best Practices](./chapters/chapter-05-software-design/) | 6h | ✅ Available |
 
 ### Practitioner Track (Build Real Systems)
 Apply what you've learned to real-world machine learning and AI problems.
 
 | Chapter | Topic | Time | Status |
 |---------|-------|------|--------|
-| 6 | Introduction to Machine Learning | 8h | 🔄 Coming Soon |
-| 7 | Supervised Learning: Regression & Classification | 10h | 🔄 Coming Soon |
+| 6 | [Introduction to Machine Learning](./chapters/chapter-06-intro-machine-learning/) | 8h | ✅ Available |
+| 7 | [Supervised Learning: Regression & Classification](./chapters/chapter-07-supervised-learning/) | 10h | ✅ Available |
 | 8 | Unsupervised Learning: Clustering & Dimensionality Reduction | 8h | 🔄 Coming Soon |
 | 9 | Deep Learning Fundamentals | 12h | 🔄 Coming Soon |
 | 10 | Natural Language Processing Basics | 10h | 🔄 Coming Soon |

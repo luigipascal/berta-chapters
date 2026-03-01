@@ -110,7 +110,7 @@ LEARNING_PATHS = {
     },
 }
 
-AVAILABLE_CHAPTERS = {1, 2, 3}
+AVAILABLE_CHAPTERS = {1, 2, 3, 4, 5, 6, 7}
 
 QUIZ_QUESTIONS = [
     {

@@ -11,11 +11,11 @@ graph TD
     CH1["Ch 1: Python Fundamentals<br/>8h | Available"]
     CH2["Ch 2: Data Structures<br/>6h | Available"]
     CH3["Ch 3: Linear Algebra<br/>10h | Available"]
-    CH4["Ch 4: Probability & Statistics<br/>8h | Coming Soon"]
-    CH5["Ch 5: Software Design<br/>6h | Coming Soon"]
+    CH4["Ch 4: Probability & Statistics<br/>8h | Available"]
+    CH5["Ch 5: Software Design<br/>6h | Available"]
 
-    CH6["Ch 6: Intro to ML<br/>8h | Coming Soon"]
-    CH7["Ch 7: Supervised Learning<br/>10h | Coming Soon"]
+    CH6["Ch 6: Intro to ML<br/>8h | Available"]
+    CH7["Ch 7: Supervised Learning<br/>10h | Available"]
     CH8["Ch 8: Unsupervised Learning<br/>8h | Coming Soon"]
     CH9["Ch 9: Deep Learning<br/>12h | Coming Soon"]
     CH10["Ch 10: NLP Basics<br/>10h | Coming Soon"]
@@ -52,10 +52,10 @@ graph TD
     style CH1 fill:#4caf50,color:#fff
     style CH2 fill:#4caf50,color:#fff
     style CH3 fill:#4caf50,color:#fff
-    style CH4 fill:#e3f2fd
-    style CH5 fill:#e3f2fd
-    style CH6 fill:#f3e5f5
-    style CH7 fill:#f3e5f5
+    style CH4 fill:#4caf50,color:#fff
+    style CH5 fill:#4caf50,color:#fff
+    style CH6 fill:#4caf50,color:#fff
+    style CH7 fill:#4caf50,color:#fff
     style CH8 fill:#f3e5f5
     style CH9 fill:#f3e5f5
     style CH10 fill:#f3e5f5
@@ -66,7 +66,7 @@ graph TD
     style CH15 fill:#f3e5f5
 ```
 
-**Legend**: Green = Available | Blue = Foundation (Coming Soon) | Purple = Practitioner (Coming Soon)
+**Legend**: Green = Available | Purple = Practitioner (Coming Soon) | Chapters 1-7 fully available with SVG diagrams
 
 ---
 
@@ -74,13 +74,13 @@ graph TD
 
 | # | Chapter | Track | Hours | Status | Content |
 |---|---------|-------|-------|--------|---------|
-| 1 | [Python Fundamentals](./chapters/chapter-01-python-fundamentals/) | Foundation | 8h | Available | 3 notebooks, scripts, 6 exercises |
-| 2 | [Data Structures & Algorithms](./chapters/chapter-02-data-structures/) | Foundation | 6h | Available | 3 notebooks, scripts, 5 exercises |
-| 3 | [Linear Algebra & Calculus](./chapters/chapter-03-linear-algebra/) | Foundation | 10h | Available | 3 notebooks, scripts, 5 exercises |
-| 4 | Probability & Statistics | Foundation | 8h | Coming Soon | - |
-| 5 | Software Design & Best Practices | Foundation | 6h | Coming Soon | - |
-| 6 | Introduction to Machine Learning | Practitioner | 8h | Planned | - |
-| 7 | Supervised Learning | Practitioner | 10h | Planned | - |
+| 1 | [Python Fundamentals](./chapters/chapter-01-python-fundamentals/) | Foundation | 8h | Available | 3 notebooks, scripts, 6 exercises, 3 SVGs |
+| 2 | [Data Structures & Algorithms](./chapters/chapter-02-data-structures/) | Foundation | 6h | Available | 3 notebooks, scripts, 5 exercises, 3 SVGs |
+| 3 | [Linear Algebra & Calculus](./chapters/chapter-03-linear-algebra/) | Foundation | 10h | Available | 3 notebooks, scripts, 5 exercises, 3 SVGs |
+| 4 | [Probability & Statistics](./chapters/chapter-04-probability-statistics/) | Foundation | 8h | Available | 3 notebooks, scripts, 5 exercises, 3 SVGs |
+| 5 | [Software Design & Best Practices](./chapters/chapter-05-software-design/) | Foundation | 6h | Available | 3 notebooks, scripts, 5 exercises, 3 SVGs |
+| 6 | [Introduction to Machine Learning](./chapters/chapter-06-intro-machine-learning/) | Practitioner | 8h | Available | 3 notebooks, scripts, 5 exercises, 3 SVGs |
+| 7 | [Supervised Learning](./chapters/chapter-07-supervised-learning/) | Practitioner | 10h | Available | 3 notebooks, scripts, 5 exercises, 3 SVGs |
 | 8 | Unsupervised Learning | Practitioner | 8h | Planned | - |
 | 9 | Deep Learning Fundamentals | Practitioner | 12h | Planned | - |
 | 10 | Natural Language Processing | Practitioner | 10h | Planned | - |
