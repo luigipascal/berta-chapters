@@ -1,101 +1,535 @@
+/*
+ * Berta Chapters - Intentional 1990s Web Style
+ * Sober, functional, retro. Content over chrome.
+ */
+
 :root {
-  --md-primary-fg-color: #3f51b5;
-  --md-accent-fg-color: #00bcd4;
+  --retro-bg: #d4d0c8;
+  --retro-bg-alt: #c0c0c0;
+  --retro-text: #000000;
+  --retro-link: #0000ee;
+  --retro-visited: #551a8b;
+  --retro-accent: #008080;
+  --retro-border: #808080;
+  --retro-highlight: #ffffcc;
+  --retro-code-bg: #f5f5dc;
+  --retro-header-bg: #003366;
+  --retro-header-text: #ffffff;
+  --retro-success: #006600;
+  --retro-error: #cc0000;
+  --retro-warning: #996600;
 }
 
+/* Base typography: system serif and monospace */
+body, .md-typeset {
+  font-family: "Times New Roman", Times, Georgia, serif !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  color: var(--retro-text) !important;
+}
+
+code, pre, .md-typeset code, .md-typeset pre {
+  font-family: "Courier New", Courier, monospace !important;
+  font-size: 14px !important;
+}
+
+/* Override Material theme backgrounds */
+.md-main {
+  background: var(--retro-bg) !important;
+}
+
+.md-content {
+  background: #ffffff !important;
+  border: 2px solid var(--retro-border) !important;
+  padding: 20px !important;
+  margin: 10px !important;
+}
+
+/* Header: classic navy bar */
 .md-header {
-  backdrop-filter: blur(8px);
+  background: var(--retro-header-bg) !important;
+  box-shadow: none !important;
+  border-bottom: 3px solid #000066 !important;
+  backdrop-filter: none !important;
 }
 
+.md-header__title {
+  font-family: "Times New Roman", Times, serif !important;
+  font-weight: bold !important;
+  font-size: 20px !important;
+}
+
+/* Navigation sidebar: classic gray */
+.md-sidebar {
+  background: var(--retro-bg-alt) !important;
+  border-right: 2px solid var(--retro-border) !important;
+}
+
+.md-nav__link {
+  font-family: "Times New Roman", Times, serif !important;
+  color: var(--retro-link) !important;
+  text-decoration: underline !important;
+}
+
+.md-nav__link:hover {
+  color: var(--retro-error) !important;
+}
+
+.md-nav__link--active {
+  font-weight: bold !important;
+  color: var(--retro-text) !important;
+}
+
+/* Links: classic blue, underlined, purple visited */
+.md-typeset a {
+  color: var(--retro-link) !important;
+  text-decoration: underline !important;
+}
+
+.md-typeset a:visited {
+  color: var(--retro-visited) !important;
+}
+
+.md-typeset a:hover {
+  color: var(--retro-error) !important;
+}
+
+/* Headings: bold serif */
+.md-typeset h1 {
+  font-family: "Times New Roman", Times, serif !important;
+  font-size: 28px !important;
+  font-weight: bold !important;
+  border-bottom: 3px double var(--retro-border) !important;
+  padding-bottom: 8px !important;
+  color: var(--retro-header-bg) !important;
+}
+
+.md-typeset h2 {
+  font-family: "Times New Roman", Times, serif !important;
+  font-size: 22px !important;
+  font-weight: bold !important;
+  border-bottom: 1px solid var(--retro-border) !important;
+  padding-bottom: 4px !important;
+  color: var(--retro-accent) !important;
+}
+
+.md-typeset h3 {
+  font-family: "Times New Roman", Times, serif !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  color: var(--retro-text) !important;
+}
+
+/* Tables: visible borders, classic look */
+.md-typeset table {
+  border-collapse: collapse !important;
+  border: 2px solid var(--retro-text) !important;
+  width: 100% !important;
+  font-size: 14px !important;
+}
+
+.md-typeset table th {
+  background: var(--retro-header-bg) !important;
+  color: var(--retro-header-text) !important;
+  border: 1px solid var(--retro-text) !important;
+  padding: 6px 10px !important;
+  font-weight: bold !important;
+  text-align: left !important;
+}
+
+.md-typeset table td {
+  border: 1px solid var(--retro-border) !important;
+  padding: 6px 10px !important;
+  background: #ffffff !important;
+}
+
+.md-typeset table tr:nth-child(even) td {
+  background: #f0f0f0 !important;
+}
+
+/* Code blocks: beige background, solid border */
+.md-typeset pre {
+  background: var(--retro-code-bg) !important;
+  border: 2px inset var(--retro-border) !important;
+  border-radius: 0 !important;
+  padding: 12px !important;
+}
+
+.md-typeset code {
+  background: var(--retro-code-bg) !important;
+  border: 1px solid #ccc !important;
+  border-radius: 0 !important;
+  padding: 1px 4px !important;
+  color: #333 !important;
+}
+
+/* Admonitions: flat, bordered, no rounded corners */
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 0 !important;
+  border: 2px solid var(--retro-border) !important;
+  box-shadow: none !important;
+}
+
+.md-typeset .admonition-title,
+.md-typeset summary {
+  border-radius: 0 !important;
+  font-family: "Times New Roman", Times, serif !important;
+  font-weight: bold !important;
+}
+
+/* No rounded corners anywhere */
+.md-typeset .md-button,
+.md-search__form,
+.md-search__input {
+  border-radius: 0 !important;
+}
+
+/* Buttons: classic raised 3D look */
+.md-typeset .md-button {
+  border: 2px outset var(--retro-border) !important;
+  background: var(--retro-bg-alt) !important;
+  color: var(--retro-text) !important;
+  font-family: "Times New Roman", Times, serif !important;
+  font-weight: bold !important;
+  text-decoration: none !important;
+  padding: 6px 16px !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.md-typeset .md-button:hover {
+  background: var(--retro-bg) !important;
+  border-style: inset !important;
+}
+
+.md-typeset .md-button--primary {
+  background: var(--retro-accent) !important;
+  color: #ffffff !important;
+  border-color: #006666 !important;
+}
+
+/* Horizontal rules: classic */
+.md-typeset hr {
+  border: none !important;
+  border-top: 2px solid var(--retro-border) !important;
+  margin: 20px 0 !important;
+}
+
+/* Footer */
+.md-footer {
+  background: var(--retro-header-bg) !important;
+  border-top: 3px solid #000066 !important;
+}
+
+/* Tabs: flat */
+.md-typeset .tabbed-labels > label {
+  border-radius: 0 !important;
+  font-family: "Times New Roman", Times, serif !important;
+}
+
+/* Remove all Material theme shadows and rounded corners */
+.md-typeset .highlight code,
+.md-typeset .highlighttable,
+.md-tabs {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Search bar: inset border */
+.md-search__form {
+  border: 2px inset var(--retro-border) !important;
+  background: #ffffff !important;
+}
+
+/* ============ RETRO CUSTOM COMPONENTS ============ */
+
+/* Homepage hero: simple centered text */
 .hero {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 20px 10px;
+  background: var(--retro-highlight) !important;
+  border: 2px solid var(--retro-border);
+  margin-bottom: 20px;
 }
 
 .hero h1 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
+  font-size: 32px !important;
+  color: var(--retro-header-bg) !important;
+  border-bottom: none !important;
+  margin-bottom: 10px;
 }
 
 .hero .subtitle {
-  font-size: 1.25rem;
-  opacity: 0.8;
-  margin-bottom: 2rem;
+  font-size: 16px;
+  font-style: italic;
 }
 
+/* Stats grid: table-like cells */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1rem;
-  margin: 2rem 0;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0;
+  margin: 20px 0;
+  border: 2px solid var(--retro-text);
 }
 
 .stat-card {
   text-align: center;
-  padding: 1.25rem;
-  border-radius: 12px;
-  background: var(--md-code-bg-color);
-  border: 1px solid var(--md-default-fg-color--lightest);
+  padding: 12px 8px;
+  border: 1px solid var(--retro-border);
+  background: #ffffff;
 }
 
 .stat-card .number {
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--md-accent-fg-color);
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--retro-accent);
+  font-family: "Courier New", Courier, monospace;
 }
 
 .stat-card .label {
-  font-size: 0.85rem;
-  opacity: 0.7;
-  margin-top: 0.25rem;
+  font-size: 12px;
+  color: var(--retro-text);
+  margin-top: 2px;
 }
 
+/* Chapter cards: bordered boxes */
 .chapter-card {
-  padding: 1.25rem;
-  border-radius: 8px;
-  border-left: 4px solid var(--md-accent-fg-color);
-  background: var(--md-code-bg-color);
-  margin-bottom: 1rem;
-  transition: transform 0.15s ease;
+  padding: 10px;
+  border: 2px solid var(--retro-border);
+  border-left: 6px solid var(--retro-accent);
+  background: #ffffff;
+  margin-bottom: 10px;
 }
 
 .chapter-card:hover {
-  transform: translateX(4px);
+  background: var(--retro-highlight);
 }
 
 .chapter-card h3 {
   margin-top: 0;
-  margin-bottom: 0.25rem;
+  margin-bottom: 4px;
 }
 
 .chapter-card .meta {
-  font-size: 0.85rem;
-  opacity: 0.7;
+  font-size: 13px;
+  color: var(--retro-border);
 }
 
+/* Track badges */
 .track-badge {
   display: inline-block;
-  padding: 0.15rem 0.6rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  padding: 2px 8px;
+  border: 1px solid var(--retro-text);
+  font-size: 11px;
+  font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  font-family: "Courier New", Courier, monospace;
 }
 
-.track-badge.foundation { background: #e3f2fd; color: #1565c0; }
-.track-badge.practitioner { background: #f3e5f5; color: #7b1fa2; }
-.track-badge.advanced { background: #e8f5e9; color: #2e7d32; }
+.track-badge.foundation { background: #ccddff; }
+.track-badge.practitioner { background: #eeccff; }
+.track-badge.advanced { background: #ccffcc; }
 
+/* CTA buttons row */
 .cta-buttons {
   display: flex;
-  gap: 1rem;
+  gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 2rem 0;
+  margin: 20px 0;
 }
 
-.cta-buttons .md-button {
-  min-width: 200px;
+/* Newsletter form: classic form styling */
+.newsletter-form {
+  background: #ffffff;
+  border: 2px inset var(--retro-border);
+  padding: 20px;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.newsletter-form input[type="email"] {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  padding: 6px 10px;
+  border: 2px inset var(--retro-border);
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border-radius: 0;
+}
+
+.newsletter-form button {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 6px 20px;
+  border: 2px outset var(--retro-border);
+  background: var(--retro-accent);
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.newsletter-form button:hover {
+  border-style: inset;
+  background: #006666;
+}
+
+/* Playground styles */
+.playground-container {
+  border: 2px solid var(--retro-text);
+  background: #ffffff;
+  margin: 20px 0;
+}
+
+.playground-header {
+  background: var(--retro-header-bg);
+  color: var(--retro-header-text);
+  padding: 6px 12px;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  border-bottom: 2px solid var(--retro-text);
+}
+
+.playground-editor {
+  width: 100%;
+  min-height: 200px;
+  font-family: "Courier New", Courier, monospace !important;
+  font-size: 14px;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid var(--retro-border);
+  background: var(--retro-code-bg);
+  resize: vertical;
+  box-sizing: border-box;
+  tab-size: 4;
+}
+
+.playground-toolbar {
+  padding: 6px 10px;
+  background: var(--retro-bg-alt);
+  border-bottom: 2px solid var(--retro-border);
+}
+
+.playground-toolbar button {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 4px 14px;
+  margin-right: 6px;
+  border: 2px outset var(--retro-border);
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.playground-toolbar .run-btn {
+  background: var(--retro-success);
+  color: #ffffff;
+  border-color: #004400;
+}
+
+.playground-toolbar .clear-btn {
+  background: var(--retro-bg-alt);
+  color: var(--retro-text);
+}
+
+.playground-toolbar .run-btn:hover,
+.playground-toolbar .clear-btn:hover {
+  border-style: inset;
+}
+
+.playground-output {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  padding: 10px;
+  min-height: 80px;
+  background: #000000;
+  color: #00ff00;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.playground-output .error {
+  color: #ff4444;
+}
+
+.playground-output .error-explain {
+  color: #ffcc00;
+  font-style: italic;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed #444;
+}
+
+.playground-status {
+  padding: 4px 10px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  background: var(--retro-bg-alt);
+  border-top: 1px solid var(--retro-border);
+  color: var(--retro-border);
+}
+
+/* Exercise selector dropdown */
+.exercise-select {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  padding: 3px 8px;
+  border: 2px inset var(--retro-border);
+  background: #ffffff;
+  border-radius: 0;
+}
+
+/* Visitor counter (decorative retro touch) */
+.visitor-counter {
+  text-align: center;
+  margin: 20px 0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  color: var(--retro-border);
+}
+
+.visitor-counter img {
+  vertical-align: middle;
+}
+
+/* "Under construction" style banner */
+.retro-banner {
+  background: var(--retro-highlight);
+  border: 2px dashed var(--retro-warning);
+  padding: 8px 16px;
+  text-align: center;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* Dark mode adjustments */
+[data-md-color-scheme="slate"] .md-content {
+  background: #1e1e1e !important;
+  border-color: #444 !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset table td {
+  background: #1e1e1e !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset table tr:nth-child(even) td {
+  background: #2a2a2a !important;
+}
+
+[data-md-color-scheme="slate"] .stat-card,
+[data-md-color-scheme="slate"] .chapter-card,
+[data-md-color-scheme="slate"] .newsletter-form {
+  background: #1e1e1e !important;
+  border-color: #555 !important;
+}
+
+[data-md-color-scheme="slate"] .hero {
+  background: #2a2a1e !important;
+  border-color: #555 !important;
 }
