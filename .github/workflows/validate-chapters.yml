@@ -1,0 +1,99 @@
+name: Validate Chapters
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'chapters/**'
+      - 'interactive/**'
+      - 'templates/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'chapters/**'
+      - 'interactive/**'
+      - 'templates/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Validate chapter structure
+        run: |
+          python -c "
+          from pathlib import Path
+          import json, sys
+
+          errors = []
+          chapters = sorted(Path('chapters').glob('chapter-*'))
+
+          for chapter in chapters:
+              name = chapter.name
+              print(f'Validating {name}...')
+
+              required = ['README.md', 'requirements.txt']
+              for req in required:
+                  if not (chapter / req).exists():
+                      errors.append(f'{name}: missing {req}')
+
+              expected_dirs = ['notebooks', 'scripts', 'exercises']
+              for d in expected_dirs:
+                  if not (chapter / d).exists():
+                      errors.append(f'{name}: missing {d}/ directory')
+
+              for nb_path in chapter.glob('notebooks/*.ipynb'):
+                  try:
+                      with open(nb_path) as f:
+                          nb = json.load(f)
+                      assert 'cells' in nb, 'missing cells'
+                      assert 'nbformat' in nb, 'missing nbformat'
+                      print(f'  OK: {nb_path.name} ({len(nb[\"cells\"])} cells)')
+                  except Exception as e:
+                      errors.append(f'{name}/{nb_path.name}: {e}')
+
+          if errors:
+              print(f'\nValidation failed with {len(errors)} error(s):')
+              for err in errors:
+                  print(f'  ERROR: {err}')
+              sys.exit(1)
+          else:
+              print(f'\nAll {len(chapters)} chapter(s) validated successfully!')
+          "
+
+      - name: Run exercise solutions
+        run: |
+          for solutions in chapters/*/exercises/solutions/solutions.py; do
+            if [ -f "$solutions" ]; then
+              echo "Running $solutions..."
+              python "$solutions"
+            fi
+          done
+
+      - name: Validate interactive tools
+        run: |
+          python interactive/berta.py paths
+          python interactive/berta.py status
+          echo "Interactive tools validated!"
+
+      - name: Test chapter template
+        run: |
+          python templates/chapter_template.py -n 99 -t "Test Chapter" --hours 4 --track Foundation
+          test -d chapters/chapter-99-test-chapter
+          echo "Chapter template validated!"
+          rm -rf chapters/chapter-99-test-chapter

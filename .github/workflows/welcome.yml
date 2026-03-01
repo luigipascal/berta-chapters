@@ -1,0 +1,38 @@
+name: Welcome New Contributors
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            Welcome to Berta Chapters! Thanks for opening your first issue.
+
+            If this is a **chapter request**, Berta AI will analyze it and generate a complete chapter for you. You'll be notified when it's ready.
+
+            If this is a **bug report** or **suggestion**, we'll review it and respond as soon as possible.
+
+            In the meantime, check out:
+            - [Getting Started Guide](../blob/main/GETTING_STARTED.md)
+            - [Curriculum Overview](../blob/main/CURRICULUM.md)
+            - [Contributing Guide](../blob/main/CONTRIBUTING.md)
+          pr-message: |
+            Welcome to Berta Chapters! Thanks for your first pull request.
+
+            A maintainer will review your changes soon. Please make sure:
+            - Code follows the project style
+            - All notebooks execute without errors
+            - Tests pass (check the CI status above)
+
+            Thank you for contributing to open AI education!

@@ -1,0 +1,68 @@
+name: "Chapter Request"
+description: "Ask Berta to create a chapter on a specific AI topic"
+title: "Chapter Request: [Topic Name]"
+labels: ["requested-chapter"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for requesting a chapter! Fill out the details below and Berta AI will generate a complete, executable chapter for you.
+
+  - type: input
+    id: topic
+    attributes:
+      label: "Chapter Topic"
+      description: "What do you want to learn?"
+      placeholder: "e.g. Fine-tuning LLMs for domain-specific tasks"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: level
+    attributes:
+      label: "Your Experience Level"
+      options:
+        - Beginner (new to AI/programming)
+        - Intermediate (know Python & basic ML)
+        - Advanced (comfortable with ML/AI concepts)
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: "Learning Goal"
+      description: "Why do you need this chapter? What will you build or do with it?"
+      placeholder: "I work in healthcare and need to build a system that classifies medical images..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: focus
+    attributes:
+      label: "Specific Focus Areas"
+      description: "What subtopics or angles matter most to you?"
+      placeholder: "Focus on YOLO for real-time performance. Include edge deployment optimization."
+
+  - type: textarea
+    id: tech
+    attributes:
+      label: "Preferred Tech/Tools"
+      description: "Any specific frameworks, libraries, or tools you prefer?"
+      placeholder: "PyTorch preferred, not TensorFlow"
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "Real-World Context"
+      description: "Tell Berta about your specific use case for more relevant examples."
+      placeholder: "We have 5 years of customer data for a SaaS product..."
+
+  - type: checkboxes
+    id: involvement
+    attributes:
+      label: "Your Involvement"
+      options:
+        - label: "I'm willing to contribute improvements once the chapter is generated"
+        - label: "I'd like to help review the chapter before publication"
+        - label: "This is time-sensitive (needed by a specific date)"
