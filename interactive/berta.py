@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Berta Interactive Learning Hub
+Berta Interactive Learning Hub - v1.1
 
 The main entry point for the Berta Chapters interactive experience.
 Provides path selection, progress tracking, chapter navigation,
