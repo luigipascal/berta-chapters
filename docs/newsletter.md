@@ -4,7 +4,7 @@ Get notified when new chapters are published. No spam. Unsubscribe anytime.
 
 ---
 
-<form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/newsletter/thank-you/">
+<form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you/">
   <input type="hidden" name="form-name" value="newsletter">
   <p style="display:none"><label>Leave empty: <input name="bot-field"></label></p>
   <div class="newsletter-form">
