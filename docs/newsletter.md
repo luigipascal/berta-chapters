@@ -4,36 +4,52 @@ Get notified when new chapters are published. No spam. Unsubscribe anytime.
 
 ---
 
-<div class="newsletter-form" markdown>
-
-### Subscribe to Berta Chapters Updates
-
-Get an email when we publish new chapters, add exercises, or release major updates.
-We send **at most one email per week**.
-
-<form action="https://buttondown.com/api/emails/embed-subscribe/berta-chapters" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/berta-chapters', 'popupwindow')" class="embeddable-buttondown-form">
-  <p>
-    <input type="email" name="email" id="bd-email" placeholder="your@email.com" required style="font-family: 'Courier New', monospace; font-size: 14px; padding: 6px 10px; border: 2px inset #808080; width: 100%; box-sizing: border-box; border-radius: 0;">
-  </p>
-  <p>
-    <button type="submit" style="font-family: 'Times New Roman', serif; font-size: 14px; font-weight: bold; padding: 6px 20px; border: 2px outset #808080; background: #008080; color: #ffffff; cursor: pointer; border-radius: 0;">Subscribe</button>
-  </p>
+<form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/newsletter/thank-you/">
+  <input type="hidden" name="form-name" value="newsletter">
+  <p style="display:none"><label>Leave empty: <input name="bot-field"></label></p>
+  <div class="newsletter-form">
+    <h3>Subscribe to Berta Chapters Updates</h3>
+    <p>Get an email when we publish new chapters or release major updates.<br>
+    <strong>At most one email per week.</strong></p>
+    <p>
+      <label for="email"><strong>Your email address:</strong></label><br>
+      <input type="email" name="email" id="email" placeholder="your@email.com" required
+        style="font-family: 'Courier New', monospace; font-size: 14px; padding: 6px 10px;
+        border: 2px inset #808080; width: 100%; box-sizing: border-box; border-radius: 0;">
+    </p>
+    <p>
+      <label for="name"><strong>Your name (optional):</strong></label><br>
+      <input type="text" name="name" id="name" placeholder="Jane Doe"
+        style="font-family: 'Courier New', monospace; font-size: 14px; padding: 6px 10px;
+        border: 2px inset #808080; width: 100%; box-sizing: border-box; border-radius: 0;">
+    </p>
+    <p>
+      <label for="interest"><strong>What interests you most?</strong></label><br>
+      <select name="interest" id="interest"
+        style="font-family: 'Courier New', monospace; font-size: 14px; padding: 4px 8px;
+        border: 2px inset #808080; border-radius: 0; width: 100%; box-sizing: border-box;">
+        <option value="all">All chapters</option>
+        <option value="foundation">Foundation Track (Python, math, data structures)</option>
+        <option value="practitioner">Practitioner Track (ML, deep learning, NLP)</option>
+        <option value="advanced">Advanced Track (multi-agent, RAG, production)</option>
+        <option value="finance">AI for Finance</option>
+      </select>
+    </p>
+    <p>
+      <button type="submit"
+        style="font-family: 'Times New Roman', serif; font-size: 14px; font-weight: bold;
+        padding: 8px 24px; border: 2px outset #808080; background: #008080; color: #ffffff;
+        cursor: pointer; border-radius: 0;">Subscribe</button>
+    </p>
+  </div>
 </form>
-
-</div>
-
-!!! info "Newsletter Setup Note"
-    To activate the newsletter, create a free account at [buttondown.com](https://buttondown.com)
-    and replace `berta-chapters` in the form action URL with your Buttondown username.
-    Alternatively, you can use Mailchimp, ConvertKit, or any email service —
-    just replace the form HTML above with their embed code.
 
 ---
 
 ## What You'll Receive
 
 | Update Type | Frequency | Example |
-|------------|-----------|---------|
+|-------------|-----------|---------|
 | **New Chapter** | When published | "Chapter 8: Unsupervised Learning is now available" |
 | **Major Update** | Monthly | "10 new exercises added across chapters 1-5" |
 | **Community Highlight** | Occasional | "Community chapter: AI for Healthcare" |
@@ -44,6 +60,8 @@ We send **at most one email per week**.
 - :x: Third-party promotions
 - :x: More than one email per week
 - :x: Anything unrelated to Berta Chapters
+
+Your data is handled by Netlify and never shared with third parties.
 
 ---
 
