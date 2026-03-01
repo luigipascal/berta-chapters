@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c3e50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#34495e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3498db;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2980b9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#27ae60;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#229954;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9b59b6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8e44ad;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect width="600" height="450" fill="#ecf0f1"/>
+  <text x="300" y="30" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#2c3e50">Clean Code Principles: Layered Architecture</text>
+  
+  <!-- Layer 1: Naming Conventions -->
+  <rect x="40" y="55" width="520" height="65" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
+  <text x="300" y="78" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">1. NAMING CONVENTIONS (PEP 8)</text>
+  <text x="300" y="98" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">snake_case " descriptive names " meaningful variables " consistent prefixes (is_, has_, get_)</text>
+  
+  <!-- Layer 2: Functions -->
+  <rect x="40" y="135" width="520" height="65" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
+  <text x="300" y="158" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">2. FUNCTIONS &amp; METHODS</text>
+  <text x="300" y="178" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">Single responsibility " small (&lt;20 lines) " one level of abstraction " few parameters</text>
+  
+  <!-- Layer 3: Modules -->
+  <rect x="40" y="215" width="520" height="65" rx="8" fill="url(#grad4)" filter="url(#shadow)"/>
+  <text x="300" y="238" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">3. MODULES &amp; PACKAGES</text>
+  <text x="300" y="258" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">Cohesive grouping " high cohesion " low coupling " logical hierarchy</text>
+  
+  <!-- Layer 4: Separation of Concerns -->
+  <rect x="40" y="295" width="520" height="65" rx="8" fill="#e74c3c" filter="url(#shadow)"/>
+  <text x="300" y="318" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">4. SEPARATION OF CONCERNS</text>
+  <text x="300" y="338" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">Data " Model " Training " Evaluation " Config  each in its own domain</text>
+  
+  <!-- Principles Box -->
+  <rect x="40" y="380" width="520" height="55" rx="8" fill="url(#grad1)" filter="url(#shadow)"/>
+  <text x="300" y="403" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="white">DRY " KISS " YAGNI</text>
+  <text x="300" y="420" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#bdc3c7">Don't Repeat Yourself | Keep It Simple | You Ain't Gonna Need It</text>
+</svg>

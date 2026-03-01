@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 420" width="500" height="420">
+  <defs>
+    <linearGradient id="dirGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3498db"/>
+      <stop offset="100%" style="stop-color:#2980b9"/>
+    </linearGradient>
+    <linearGradient id="fileGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#95a5a6"/>
+      <stop offset="100%" style="stop-color:#7f8c8d"/>
+    </linearGradient>
+    <linearGradient id="dataGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#27ae60"/>
+      <stop offset="100%" style="stop-color:#229954"/>
+    </linearGradient>
+    <linearGradient id="srcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9b59b6"/>
+      <stop offset="100%" style="stop-color:#8e44ad"/>
+    </linearGradient>
+    <linearGradient id="configGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e67e22"/>
+      <stop offset="100%" style="stop-color:#d35400"/>
+    </linearGradient>
+  </defs>
+  <rect width="500" height="420" fill="#f8f9fa"/>
+  <text x="250" y="25" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#2c3e50">Ideal ML Project Directory Structure</text>
+  
+  <!-- Root -->
+  <rect x="20" y="45" width="140" height="28" rx="4" fill="url(#dirGrad)"/>
+  <text x="90" y="63" text-anchor="middle" font-family="monospace" font-size="12" fill="white">ml_project/</text>
+  <line x1="90" y1="73" x2="90" y2="85" stroke="#34495e" stroke-width="1"/>
+  
+  <!-- data/ -->
+  <rect x="40" y="88" width="100" height="22" rx="3" fill="url(#dataGrad)"/>
+  <text x="90" y="103" text-anchor="middle" font-family="monospace" font-size="10" fill="white">data/</text>
+  <line x1="90" y1="110" x2="90" y2="125" stroke="#34495e" stroke-width="1"/>
+  <rect x="60" y="128" width="80" height="18" rx="2" fill="url(#fileGrad)"/>
+  <text x="100" y="140" text-anchor="middle" font-family="monospace" font-size="9" fill="white">raw/, processed/</text>
+  
+  <!-- models/ -->
+  <rect x="40" y="158" width="100" height="22" rx="3" fill="url(#dirGrad)"/>
+  <text x="90" y="173" text-anchor="middle" font-family="monospace" font-size="10" fill="white">models/</text>
+  <line x1="90" y1="180" x2="90" y2="195" stroke="#34495e" stroke-width="1"/>
+  <rect x="60" y="198" width="80" height="18" rx="2" fill="url(#fileGrad)"/>
+  <text x="100" y="210" text-anchor="middle" font-family="monospace" font-size="9" fill="white">checkpoints/, .pkl</text>
+  
+  <!-- notebooks/ -->
+  <rect x="40" y="228" width="100" height="22" rx="3" fill="url(#dirGrad)"/>
+  <text x="90" y="243" text-anchor="middle" font-family="monospace" font-size="10" fill="white">notebooks/</text>
+  <line x1="90" y1="250" x2="90" y2="265" stroke="#34495e" stroke-width="1"/>
+  <rect x="60" y="268" width="80" height="18" rx="2" fill="url(#fileGrad)"/>
+  <text x="100" y="280" text-anchor="middle" font-family="monospace" font-size="9" fill="white">exploration, .ipynb</text>
+  
+  <!-- src/ -->
+  <rect x="40" y="298" width="100" height="22" rx="3" fill="url(#srcGrad)"/>
+  <text x="90" y="313" text-anchor="middle" font-family="monospace" font-size="10" fill="white">src/</text>
+  <line x1="90" y1="320" x2="90" y2="335" stroke="#34495e" stroke-width="1"/>
+  <rect x="50" y="338" width="60" height="16" rx="2" fill="url(#fileGrad)"/>
+  <text x="80" y="349" text-anchor="middle" font-family="monospace" font-size="8" fill="white">data.py</text>
+  <rect x="120" y="338" width="60" height="16" rx="2" fill="url(#fileGrad)"/>
+  <text x="150" y="349" text-anchor="middle" font-family="monospace" font-size="8" fill="white">model.py</text>
+  <rect x="50" y="358" width="60" height="16" rx="2" fill="url(#fileGrad)"/>
+  <text x="80" y="369" text-anchor="middle" font-family="monospace" font-size="8" fill="white">train.py</text>
+  <rect x="120" y="358" width="60" height="16" rx="2" fill="url(#fileGrad)"/>
+  <text x="150" y="369" text-anchor="middle" font-family="monospace" font-size="8" fill="white">eval.py</text>
+  
+  <!-- tests/ -->
+  <rect x="220" y="88" width="100" height="22" rx="3" fill="url(#dirGrad)"/>
+  <text x="270" y="103" text-anchor="middle" font-family="monospace" font-size="10" fill="white">tests/</text>
+  <line x1="270" y1="110" x2="270" y2="125" stroke="#34495e" stroke-width="1"/>
+  <rect x="240" y="128" width="60" height="18" rx="2" fill="url(#fileGrad)"/>
+  <text x="270" y="140" text-anchor="middle" font-family="monospace" font-size="9" fill="white">test_*.py</text>
+  
+  <!-- configs/ -->
+  <rect x="220" y="158" width="100" height="22" rx="3" fill="url(#configGrad)"/>
+  <text x="270" y="173" text-anchor="middle" font-family="monospace" font-size="10" fill="white">configs/</text>
+  <line x1="270" y1="180" x2="270" y2="195" stroke="#34495e" stroke-width="1"/>
+  <rect x="240" y="198" width="60" height="18" rx="2" fill="url(#fileGrad)"/>
+  <text x="270" y="210" text-anchor="middle" font-family="monospace" font-size="9" fill="white">train.yaml</text>
+  
+  <!-- README -->
+  <rect x="220" y="228" width="100" height="22" rx="3" fill="url(#fileGrad)"/>
+  <text x="270" y="243" text-anchor="middle" font-family="monospace" font-size="10" fill="white">README.md</text>
+  
+  <!-- requirements.txt -->
+  <rect x="220" y="258" width="100" height="22" rx="3" fill="url(#fileGrad)"/>
+  <text x="270" y="273" text-anchor="middle" font-family="monospace" font-size="10" fill="white">requirements.txt</text>
+  
+  <!-- Connecting lines from root -->
+  <line x1="90" y1="73" x2="90" y2="85" stroke="#34495e" stroke-width="1"/>
+  <line x1="160" y1="63" x2="270" y2="88" stroke="#bdc3c7" stroke-width="1" stroke-dasharray="4,2"/>
+</svg>
