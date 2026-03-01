@@ -6,7 +6,7 @@ A project born from the simple observation: **"People keep asking me how to lear
 
 ## 🤖 About Berta AI
 
-**Berta** is an advanced AI system designed to create educational content.
+**[Berta](https://berta.one)** is an advanced AI system designed to create educational content.
 
 ### What Berta Does
 
@@ -292,6 +292,7 @@ Berta Chapters stands on the shoulders of giants:
 
 ## 📞 Contact & Connect
 
+- 🤖 **Berta AI**: https://berta.one
 - 🌐 **Luigi's Website**: https://rondanini.net
 - 🎙️ **The Post-Project World Podcast**: [Link]
 - 🐙 **GitHub**: https://github.com/luigipascal/berta-chapters
