@@ -101,13 +101,34 @@ nav:
     - chapters/index.md
     - "Foundation Track":
       - "Ch 1: Python Fundamentals": chapters/chapter-01.md
+      - "1.1 Introduction": chapters/content/ch01-01_introduction.md
+      - "1.2 Intermediate": chapters/content/ch01-02_intermediate.md
+      - "1.3 Advanced": chapters/content/ch01-03_advanced.md
       - "Ch 2: Data Structures": chapters/chapter-02.md
+      - "2.1 Introduction": chapters/content/ch02-01_introduction.md
+      - "2.2 Intermediate": chapters/content/ch02-02_intermediate.md
+      - "2.3 Advanced": chapters/content/ch02-03_advanced.md
       - "Ch 3: Linear Algebra": chapters/chapter-03.md
+      - "3.1 Introduction": chapters/content/ch03-01_introduction.md
+      - "3.2 Intermediate": chapters/content/ch03-02_intermediate.md
+      - "3.3 Advanced": chapters/content/ch03-03_advanced.md
       - "Ch 4: Probability & Statistics": chapters/chapter-04.md
+      - "4.1 Introduction": chapters/content/ch04-01_introduction.md
+      - "4.2 Intermediate": chapters/content/ch04-02_intermediate.md
+      - "4.3 Advanced": chapters/content/ch04-03_advanced.md
       - "Ch 5: Software Design": chapters/chapter-05.md
+      - "5.1 Introduction": chapters/content/ch05-01_introduction.md
+      - "5.2 Intermediate": chapters/content/ch05-02_intermediate.md
+      - "5.3 Advanced": chapters/content/ch05-03_advanced.md
     - "Practitioner Track":
       - "Ch 6: Intro to ML": chapters/chapter-06.md
+      - "6.1 Introduction": chapters/content/ch06-01_introduction.md
+      - "6.2 Intermediate": chapters/content/ch06-02_intermediate.md
+      - "6.3 Advanced": chapters/content/ch06-03_advanced.md
       - "Ch 7: Supervised Learning": chapters/chapter-07.md
+      - "7.1 Introduction": chapters/content/ch07-01_introduction.md
+      - "7.2 Intermediate": chapters/content/ch07-02_intermediate.md
+      - "7.3 Advanced": chapters/content/ch07-03_advanced.md
   - Playground: playground.md
   - Community:
     - Contributing: guides/contributing.md

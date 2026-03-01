@@ -50,6 +50,20 @@ Write clean, maintainable code and design systems that scale—critical for AI a
 
 ---
 
+
+
+---
+
+## Read Online
+
+You can read the full chapter content right here on the website:
+
+- **[05.1 Introduction](content/ch05-01_introduction.md)** -- Clean code, PEP 8, DRY/KISS/YAGNI, refactoring
+- **[05.2 Intermediate](content/ch05-02_intermediate.md)** -- Design patterns (Factory, Strategy, Pipeline, Observer), testing
+- **[05.3 Advanced](content/ch05-03_advanced.md)** -- Project structure, version control, logging, refactoring capstone
+
+Or [try the code in the Playground](../playground.md).
+
 ## How to Use This Chapter
 
 !!! tip "Quick Start"

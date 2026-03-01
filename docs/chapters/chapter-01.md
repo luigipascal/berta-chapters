@@ -49,6 +49,20 @@ Build the Python foundation every AI practitioner needs.
 
 ---
 
+
+
+---
+
+## Read Online
+
+You can read the full chapter content right here on the website:
+
+- **[01.1 Introduction](content/ch01-01_introduction.md)** -- Variables, types, strings, control flow, loops, comprehensions
+- **[01.2 Intermediate](content/ch01-02_intermediate.md)** -- Collections, functions, error handling, modules, data pipelines
+- **[01.3 Advanced](content/ch01-03_advanced.md)** -- OOP, file I/O, generators, decorators, experiment tracker capstone
+
+Or [try the code in the Playground](../playground.md).
+
 ## How to Use This Chapter
 
 !!! tip "Quick Start"

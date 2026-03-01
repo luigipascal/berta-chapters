@@ -51,6 +51,20 @@ Your first steps into machine learning—from concepts to your first model and c
 
 ---
 
+
+
+---
+
+## Read Online
+
+You can read the full chapter content right here on the website:
+
+- **[06.1 Introduction](content/ch06-01_introduction.md)** -- What is ML, types of learning, first linear regression model
+- **[06.2 Intermediate](content/ch06-02_intermediate.md)** -- Feature engineering, evaluation metrics, bias-variance tradeoff
+- **[06.3 Advanced](content/ch06-03_advanced.md)** -- Customer churn prediction end-to-end capstone
+
+Or [try the code in the Playground](../playground.md).
+
 ## How to Use This Chapter
 
 !!! tip "Quick Start"
