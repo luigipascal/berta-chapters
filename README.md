@@ -268,12 +268,13 @@ pie title Curriculum Breakdown
     "Community Requested" : 999
 ```
 
+- **Chapters Available Now**: 7 (56 hours of content)
 - **Total Planned Chapters**: 25+
+- **Jupyter Notebooks**: 21 interactive notebooks
+- **SVG Diagrams**: 21 professional diagrams
+- **Exercises**: 37 problems with solutions
+- **Datasets**: 5 practice datasets
 - **Community-Requested Chapters**: Growing daily
-- **Total Learning Hours**: 500+
-- **Topics Covered**: Fundamentals → Cutting Edge
-- **Code Examples**: 100+
-- **Exercises**: 200+
 
 ---
 

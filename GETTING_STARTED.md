@@ -69,9 +69,17 @@ The hub offers:
 ### Step 3: Pick a Chapter
 
 Choose from available chapters:
+
+**Foundation Track (Complete)**
 - **Chapter 1**: [Python Fundamentals](./chapters/chapter-01-python-fundamentals/)
 - **Chapter 2**: [Data Structures & Algorithms](./chapters/chapter-02-data-structures/)
 - **Chapter 3**: [Linear Algebra & Calculus](./chapters/chapter-03-linear-algebra/)
+- **Chapter 4**: [Probability & Statistics](./chapters/chapter-04-probability-statistics/)
+- **Chapter 5**: [Software Design & Best Practices](./chapters/chapter-05-software-design/)
+
+**Practitioner Track (In Progress)**
+- **Chapter 6**: [Introduction to Machine Learning](./chapters/chapter-06-intro-machine-learning/)
+- **Chapter 7**: [Supervised Learning](./chapters/chapter-07-supervised-learning/)
 
 Or browse the full curriculum in [SYLLABUS.md](./SYLLABUS.md).
 

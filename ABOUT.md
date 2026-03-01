@@ -154,8 +154,8 @@ Both exist simultaneously, creating a living curriculum.
 
 ### Near-term (2026)
 - ✅ Launch master repository (this!)
-- 🔄 Complete Foundation Track (5 chapters)
-- 🔄 Release Practitioner Track (10 chapters)
+- ✅ Complete Foundation Track (5 chapters — all available!)
+- 🔄 Release Practitioner Track (2 of 10 chapters available)
 - 🔄 Establish community request process
 - 🔄 Build 100+ community-contributed chapters
 
@@ -178,15 +178,17 @@ Both exist simultaneously, creating a living curriculum.
 ## 📊 By The Numbers
 
 **Current State:**
-- 1 master repository
-- 25+ planned chapters
-- 200+ exercises (planned)
-- 500+ learning hours (planned)
-- 100+ code examples (planned)
+- 7 chapters available (Foundation complete + Practitioner started)
+- 21 Jupyter notebooks with interactive content
+- 21 professional SVG diagrams
+- 37 exercises with solutions
+- 56 hours of learning content available
+- 5 practice datasets
+- 25+ total chapters planned
 - $0 barrier to entry
 - 0 ads, tracking, or paywalls
 
-**Community Metrics** (coming soon):
+**Community Metrics** (tracking soon):
 - Active learners
 - Chapters requested
 - Contributions merged
