@@ -93,6 +93,7 @@ plugins:
 nav:
   - Home: index.md
   - Getting Started: guides/getting-started.md
+  - "Setup Guide (Step by Step)": guides/setup.md
   - Curriculum:
     - Overview: guides/curriculum.md
     - Syllabus: guides/syllabus.md
