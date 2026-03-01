@@ -29,9 +29,8 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
-  font:
-    text: Inter
-    code: JetBrains Mono
+  custom_dir: docs/overrides
+  font: false
   icon:
     repo: fontawesome/brands/github
     logo: material/robot-happy
@@ -120,10 +119,12 @@ nav:
     - "Practitioner Track":
       - "Ch 6: Intro to ML": chapters/chapter-06.md
       - "Ch 7: Supervised Learning": chapters/chapter-07.md
+  - Playground: playground.md
   - Community:
     - Contributing: guides/contributing.md
     - Request a Chapter: guides/chapter-requests.md
     - Roadmap: guides/roadmap.md
+  - Newsletter: newsletter.md
   - About:
     - About Berta: guides/about.md
     - Links: guides/links.md
