@@ -4,7 +4,8 @@ Get notified when new chapters are published. No spam. Unsubscribe anytime.
 
 ---
 
-<form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you/">
+<div id="newsletter-form-container">
+<form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="newsletterForm">
   <input type="hidden" name="form-name" value="newsletter">
   <p style="display:none"><label>Leave empty: <input name="bot-field"></label></p>
   <div class="newsletter-form">
@@ -36,13 +37,70 @@ Get notified when new chapters are published. No spam. Unsubscribe anytime.
       </select>
     </p>
     <p>
-      <button type="submit"
+      <button type="submit" id="submitBtn"
         style="font-family: 'Times New Roman', serif; font-size: 14px; font-weight: bold;
         padding: 8px 24px; border: 2px outset #808080; background: #008080; color: #ffffff;
         cursor: pointer; border-radius: 0;">Subscribe</button>
+      <span id="formStatus" style="margin-left: 10px; font-family: 'Courier New', monospace; font-size: 13px;"></span>
     </p>
   </div>
 </form>
+</div>
+
+<div id="newsletter-success" style="display: none;">
+<div class="newsletter-form" style="text-align: center;">
+    <h3>You're subscribed!</h3>
+    <p>Thank you for subscribing to Berta Chapters updates.</p>
+    <p>You'll receive an email when new chapters are published.<br>
+    At most one email per week. Unsubscribe anytime.</p>
+    <hr>
+    <p><strong>While you wait:</strong></p>
+    <p>
+      <a href="chapters/index.md">Browse chapters</a> |
+      <a href="playground.md">Try the Playground</a> |
+      <a href="https://github.com/luigipascal/berta-chapters">Star on GitHub</a>
+    </p>
+</div>
+</div>
+
+<script>
+document.getElementById("newsletterForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  var form = e.target;
+  var btn = document.getElementById("submitBtn");
+  var status = document.getElementById("formStatus");
+
+  btn.disabled = true;
+  btn.textContent = "Sending...";
+  status.textContent = "";
+
+  var formData = new FormData(form);
+
+  fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(formData).toString()
+  })
+  .then(function(response) {
+    if (response.ok) {
+      document.getElementById("newsletter-form-container").style.display = "none";
+      document.getElementById("newsletter-success").style.display = "block";
+    } else {
+      status.textContent = "Something went wrong. Please try again.";
+      status.style.color = "#cc0000";
+      btn.disabled = false;
+      btn.textContent = "Subscribe";
+    }
+  })
+  .catch(function(error) {
+    status.textContent = "Network error. Please try again.";
+    status.style.color = "#cc0000";
+    btn.disabled = false;
+    btn.textContent = "Subscribe";
+  });
+});
+</script>
 
 ---
 
