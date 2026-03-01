@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 380" width="480" height="380">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#475569" />
+    </marker>
+  </defs>
+  <rect width="480" height="380" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" rx="4"/>
+  <text x="240" y="28" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="bold" fill="#1e293b">Hypothesis Testing Workflow</text>
+
+  <!-- Step 1: Formulate H0 / H1 -->
+  <rect x="140" y="50" width="200" height="42" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="240" y="72" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" fill="#1e40af">1. Formulate HÄ and HÅ</text>
+  <text x="240" y="86" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#3b82f6">Null vs alternative hypothesis</text>
+
+  <line x1="240" y1="92" x2="240" y2="110" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Step 2: Choose significance level -->
+  <rect x="140" y="110" width="200" height="42" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="240" y="132" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" fill="#047857">2. Choose ± (e.g., 0.05)</text>
+  <text x="240" y="146" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#059669">Significance level</text>
+
+  <line x1="240" y1="152" x2="240" y2="170" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Step 3: Collect data -->
+  <rect x="140" y="170" width="200" height="42" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="240" y="192" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" fill="#b45309">3. Collect Data</text>
+  <text x="240" y="206" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#d97706">Sample from population</text>
+
+  <line x1="240" y1="212" x2="240" y2="230" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Step 4: Compute test statistic -->
+  <rect x="140" y="230" width="200" height="42" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="240" y="252" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" fill="#4338ca">4. Compute Test Statistic</text>
+  <text x="240" y="266" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#4f46e5">z-score, t-score, etc.</text>
+
+  <line x1="240" y1="272" x2="240" y2="290" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Step 5: Compare to critical value -->
+  <rect x="140" y="290" width="200" height="42" rx="8" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+  <text x="240" y="312" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" fill="#be185d">5. Compare to Critical Value / p-value</text>
+  <text x="240" y="326" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#db2777">Reject HÄ if p &lt; ±</text>
+
+  <line x1="240" y1="332" x2="240" y2="350" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Step 6: Decision -->
+  <rect x="140" y="350" width="200" height="26" rx="6" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="240" y="368" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="bold" fill="#166534">6. Decision: Reject HÄ or Fail to Reject HÄ</text>
+</svg>
