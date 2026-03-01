@@ -392,7 +392,7 @@ class BertaHub:
 
         return Prompt.ask("Your choice", choices=["0", "1", "2", "3", "4", "5", "6", "7"], default="1")
 
-    def show_learning_paths(self):
+    def show_learning_paths(self, interactive=True):
         self.console.print("\n[bold cyan]Learning Paths[/bold cyan]\n")
 
         for key, path in LEARNING_PATHS.items():
@@ -423,6 +423,9 @@ class BertaHub:
                 border_style="green" if pct == 100 else "cyan" if pct > 0 else "dim",
             )
             self.console.print(panel)
+
+        if not interactive:
+            return
 
         self.console.print()
         choice = Prompt.ask(
@@ -761,7 +764,7 @@ def main():
         if cmd == "paths":
             if HAS_RICH:
                 hub = BertaHub()
-                hub.show_learning_paths()
+                hub.show_learning_paths(interactive=False)
             else:
                 for key, path in LEARNING_PATHS.items():
                     print(f"\nPath {key}: {path['name']} ({path['hours']}h)")
