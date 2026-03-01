@@ -1,0 +1,101 @@
+:root {
+  --md-primary-fg-color: #3f51b5;
+  --md-accent-fg-color: #00bcd4;
+}
+
+.md-header {
+  backdrop-filter: blur(8px);
+}
+
+.hero {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.hero .subtitle {
+  font-size: 1.25rem;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: var(--md-code-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.stat-card .number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--md-accent-fg-color);
+}
+
+.stat-card .label {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin-top: 0.25rem;
+}
+
+.chapter-card {
+  padding: 1.25rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--md-accent-fg-color);
+  background: var(--md-code-bg-color);
+  margin-bottom: 1rem;
+  transition: transform 0.15s ease;
+}
+
+.chapter-card:hover {
+  transform: translateX(4px);
+}
+
+.chapter-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+.chapter-card .meta {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.track-badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.track-badge.foundation { background: #e3f2fd; color: #1565c0; }
+.track-badge.practitioner { background: #f3e5f5; color: #7b1fa2; }
+.track-badge.advanced { background: #e8f5e9; color: #2e7d32; }
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.cta-buttons .md-button {
+  min-width: 200px;
+}
