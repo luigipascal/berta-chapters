@@ -57,11 +57,11 @@ Luigi Pascal Rondanini is the creative force and vision behind Berta Chapters.
 - Organizations: RBC, Société Générale, Wells Fargo, Marex, and others
 - Expertise: Front-office trading, systems architecture, organizational transformation
 
-**Multimedia Creator**
-- Founder of Rondanini Publishing Ltd (20+ digital properties)
-- Host of "The Post-Project World" podcast (exploring AI's transformation of work)
-- Composer and audiobook narrator
-- Author and digital product designer
+**Author & Publisher**
+- Founder of [Rondanini Publishing Ltd](https://www.rondanini.com/) (20+ digital properties)
+- Host of [Unseen Author Journeys](https://medium.com/rondanini-publishing) podcast
+- Author on [Medium](https://medium.com/@info_38412) and [Goodreads](https://www.goodreads.com/author/show/43665358.Luigi_Pascal_Rondanini)
+- Composer, audiobook narrator, and multimedia creator
 
 ### Why Luigi Built Berta Chapters
 
@@ -282,19 +282,29 @@ Berta Chapters stands on the shoulders of giants:
 - Learners everywhere (pushing to be better)
 
 **Technology by:**
-- Claude AI (powering Berta)
-- Anthropic (supporting AI education)
+- [Berta AI](https://berta.one) (the platform behind the chapters)
+- [LLM Cost Optimizer](https://llm.berta.one) (efficient AI infrastructure)
+- Claude AI and Anthropic (powering AI generation)
 - GitHub (hosting everything)
 - Jupyter (making interactive learning possible)
 - Python ecosystem (amazing libraries and tools)
+
+**Publishing by:**
+- [Rondanini Publishing Ltd](https://www.rondanini.com/) (independent literary publisher)
+- [Rondanini on Medium](https://medium.com/rondanini-publishing) (articles and insights)
 
 ---
 
 ## 📞 Contact & Connect
 
 - 🤖 **Berta AI**: https://berta.one
+- 💰 **LLM Cost Optimizer**: https://llm.berta.one
 - 🌐 **Luigi's Website**: https://rondanini.net
-- 🎙️ **The Post-Project World Podcast**: [Link]
+- 📚 **Rondanini Publishing**: https://www.rondanini.com
+- 🔗 **All Sites Directory**: https://sites.rondanini.net
+- 💼 **LinkedIn**: https://uk.linkedin.com/in/rondanini
+- ✍️ **Medium**: https://medium.com/@info_38412
+- 📖 **Goodreads**: https://www.goodreads.com/author/show/43665358.Luigi_Pascal_Rondanini
 - 🐙 **GitHub**: https://github.com/luigipascal/berta-chapters
 - 💬 **Discussions**: [GitHub Discussions](https://github.com/luigipascal/berta-chapters/discussions)
 - 📧 **Questions**: Open an issue on GitHub
