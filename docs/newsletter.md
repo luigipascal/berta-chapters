@@ -5,7 +5,7 @@ Get notified when new chapters are published. No spam. Unsubscribe anytime.
 ---
 
 <div id="newsletter-form-container">
-<form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="newsletterForm">
+<form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="newsletterForm" action="/newsletter/">
   <input type="hidden" name="form-name" value="newsletter">
   <p style="display:none"><label>Leave empty: <input name="bot-field"></label></p>
   <div class="newsletter-form">
@@ -77,7 +77,7 @@ document.getElementById("newsletterForm").addEventListener("submit", function(e)
 
   var formData = new FormData(form);
 
-  fetch("/", {
+  fetch(form.getAttribute("action") || window.location.pathname, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams(formData).toString()
