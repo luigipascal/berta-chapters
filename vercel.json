@@ -1,0 +1,6 @@
+{
+  "buildCommand": "pip install mkdocs-material mkdocs-minify-plugin && mkdocs build",
+  "outputDirectory": "site",
+  "installCommand": "pip install mkdocs-material mkdocs-minify-plugin",
+  "framework": null
+}

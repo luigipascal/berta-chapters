@@ -16,6 +16,8 @@ env/
 
 .berta_progress.json
 
+site/
+
 *.log
 
 .DS_Store
