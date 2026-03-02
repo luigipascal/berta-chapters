@@ -42,6 +42,7 @@ Practice Python directly in your browser. No installation required. Errors are e
       </optgroup>
     </select>
   </div>
+  <div id="editorWrapper" style="position:relative;overflow:hidden;">
   <textarea class="playground-editor" id="codeEditor" spellcheck="false"># Welcome to the Berta Playground!
 # Write Python code here and click [Run] to execute.
 #
@@ -54,6 +55,7 @@ print("2 + 2 =", 2 + 2)
 # Try making an error to see friendly explanations:
 # print(undefined_variable)
 </textarea>
+  </div>
   <div class="playground-toolbar">
     <button class="run-btn" onclick="runCode()" id="runBtn" disabled>&#9654; Run</button>
     <button class="clear-btn" onclick="clearOutput()">Clear Output</button>
@@ -231,9 +233,8 @@ async function runCode() {
   statusText.style.color = "#996600";
   outputEl.textContent = "";
 
-  // Run user code INSIDE Python's own try/except so we always get
-  // the full traceback, even for SyntaxError.
-  // We pass the code as a variable to avoid escaping issues.
+  clearErrorHighlight();
+
   pyodide.globals.set("__user_code__", code);
 
   var wrapper = [
@@ -242,11 +243,19 @@ async function runCode() {
     "sys.stderr = io.StringIO()",
     "__berta_error__ = ''",
     "__berta_error_type__ = ''",
+    "__berta_error_line__ = 0",
     "try:",
     "    exec(compile(__user_code__, '<playground>', 'exec'))",
     "except BaseException as __e__:",
     "    __berta_error_type__ = type(__e__).__name__",
     "    __berta_error__ = traceback.format_exc()",
+    "    import sys as _s",
+    "    _tb = _s.exc_info()[2]",
+    "    while _tb and _tb.tb_next:",
+    "        _tb = _tb.tb_next",
+    "    __berta_error_line__ = _tb.tb_lineno if _tb else (getattr(__e__, 'lineno', 0) or 0)",
+    "    if __berta_error_type__ == 'SyntaxError' and hasattr(__e__, 'lineno') and __e__.lineno:",
+    "        __berta_error_line__ = __e__.lineno",
   ].join("\n");
 
   try {
@@ -263,12 +272,11 @@ async function runCode() {
   var stderr = pyodide.runPython("sys.stderr.getvalue()");
   var errorTraceback = pyodide.runPython("__berta_error__");
   var errorType = pyodide.runPython("__berta_error_type__");
+  var errorLine = pyodide.runPython("__berta_error_line__");
 
   if (errorTraceback) {
-    // We have a Python error with full traceback
     var explanation = getErrorExplanation(errorType, errorTraceback);
 
-    // Extract just the last line (the actual error message)
     var tbLines = errorTraceback.trim().split("\n");
     var lastLine = tbLines[tbLines.length - 1];
 
@@ -280,18 +288,22 @@ async function runCode() {
       display = "<span class=\"error\">" + escapeHtml(errorTraceback) + "</span>";
     }
 
-    // Also show any stdout that was produced before the error
     var preOutput = "";
     if (stdout) {
       preOutput = escapeHtml(stdout) + "\n\n";
     }
 
-    outputEl.innerHTML = preOutput + display +
+    var lineInfo = "";
+    if (errorLine > 0) {
+      lineInfo = "<div style=\"color:#ffcc00;margin-top:6px;\">Line " + errorLine + " in your code.</div>";
+      highlightErrorLine(errorLine);
+    }
+
+    outputEl.innerHTML = preOutput + display + lineInfo +
       "<div class=\"error-explain\">EXPLANATION: " + escapeHtml(explanation) + "</div>";
-    statusText.textContent = errorType;
+    statusText.textContent = errorType + " (line " + errorLine + ")";
     statusText.style.color = "#cc0000";
   } else {
-    // No error -- show output
     var result = "";
     if (stdout) result += stdout;
     if (stderr) result += stderr;
@@ -329,7 +341,7 @@ document.addEventListener("keydown", function(e) {
   }
 });
 
-// Tab key in editor inserts spaces
+// Tab key in editor inserts spaces; typing clears error highlight
 document.addEventListener("DOMContentLoaded", function() {
   var editor = document.getElementById("codeEditor");
   if (editor) {
@@ -342,8 +354,53 @@ document.addEventListener("DOMContentLoaded", function() {
         this.selectionStart = this.selectionEnd = start + 4;
       }
     });
+    editor.addEventListener("input", clearErrorHighlight);
   }
 });
+
+// Error line highlighting in the editor
+function highlightErrorLine(lineNum) {
+  var editor = document.getElementById("codeEditor");
+  var lines = editor.value.split("\n");
+  if (lineNum < 1 || lineNum > lines.length) return;
+
+  // Replace textarea with a div overlay approach:
+  // We'll set the textarea background and use a highlight div
+  var highlightDiv = document.getElementById("editorHighlight");
+  if (!highlightDiv) {
+    highlightDiv = document.createElement("div");
+    highlightDiv.id = "editorHighlight";
+    highlightDiv.style.cssText = "position:absolute;left:0;right:0;height:1.3em;background:rgba(204,0,0,0.25);border-left:3px solid #cc0000;pointer-events:none;z-index:1;";
+    var wrapper = document.getElementById("editorWrapper");
+    if (wrapper) wrapper.appendChild(highlightDiv);
+  }
+
+  // Calculate position: each line is about 1.3em tall with 14px font
+  var lineHeight = 18; // approximate px per line at 14px font
+  var scrollTop = editor.scrollTop;
+  var topOffset = (lineNum - 1) * lineHeight - scrollTop;
+  highlightDiv.style.top = topOffset + "px";
+  highlightDiv.style.display = "block";
+
+  // Also select the error line in the textarea
+  var start = 0;
+  for (var i = 0; i < lineNum - 1; i++) {
+    start += lines[i].length + 1;
+  }
+  var end = start + lines[lineNum - 1].length;
+  editor.focus();
+  editor.setSelectionRange(start, end);
+
+  // Scroll the editor to show the error line
+  var editorHeight = editor.clientHeight;
+  var targetScroll = (lineNum - 1) * lineHeight - editorHeight / 3;
+  if (targetScroll > 0) editor.scrollTop = targetScroll;
+}
+
+function clearErrorHighlight() {
+  var highlightDiv = document.getElementById("editorHighlight");
+  if (highlightDiv) highlightDiv.style.display = "none";
+}
 
 // Initialize after Pyodide script has loaded
 initPyodide();
