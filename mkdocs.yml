@@ -40,6 +40,9 @@ theme:
     - toc.follow
 
 extra:
+  analytics:
+    provider: google
+    property: G-ZGYSK3Q7WT
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/luigipascal/berta-chapters
