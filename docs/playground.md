@@ -252,14 +252,50 @@ async function runCode() {
     statusText.style.color = "#006600";
   } catch (e) {
     var errorStr = e.message || String(e);
-    var errorMatch = errorStr.match(/(\w+Error)/);
-    var errorType = errorMatch ? errorMatch[1] : "Error";
+
+    // Pyodide wraps Python errors in PythonError. The actual Python error
+    // (NameError, TypeError, etc.) is at the END of the traceback string.
+    // Find ALL matches and use the LAST one.
+    var allMatches = errorStr.match(/\b([A-Z]\w*Error)\b/g);
+    var errorType = "Error";
+    if (allMatches && allMatches.length > 0) {
+      // Use the last match -- that's the actual Python error, not PythonError
+      var lastMatch = allMatches[allMatches.length - 1];
+      // If we only got PythonError and there's a second-to-last, use that
+      if (lastMatch === "PythonError" && allMatches.length > 1) {
+        errorType = allMatches[allMatches.length - 2];
+      } else if (lastMatch !== "PythonError") {
+        errorType = lastMatch;
+      }
+    }
+
+    // Also extract just the final error line for a cleaner display
+    var lines = errorStr.split("\n");
+    var errorLine = "";
+    for (var i = lines.length - 1; i >= 0; i--) {
+      if (lines[i].match(/^\w+Error:/) || lines[i].match(/^\w+Error\b/)) {
+        errorLine = lines[i].trim();
+        break;
+      }
+    }
+
     var explanation = getErrorExplanation(errorType, errorStr);
 
+    var displayError = "";
+    if (errorLine) {
+      displayError = errorLine;
+      // Show full traceback in dimmer text if there's more detail
+      if (lines.length > 3) {
+        displayError = "<span style=\"color:#aa6666\">" + escapeHtml(errorStr) + "</span>\n\n<span style=\"color:#ff4444;font-weight:bold\">" + escapeHtml(errorLine) + "</span>";
+      }
+    } else {
+      displayError = escapeHtml(errorStr);
+    }
+
     outputEl.innerHTML =
-      "<span class=\"error\">" + escapeHtml(errorStr) + "</span>" +
+      "<span class=\"error\">" + displayError + "</span>" +
       "<div class=\"error-explain\">EXPLANATION: " + escapeHtml(explanation) + "</div>";
-    statusText.textContent = "Error";
+    statusText.textContent = errorType;
     statusText.style.color = "#cc0000";
   }
 }
