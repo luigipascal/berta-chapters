@@ -231,17 +231,67 @@ async function runCode() {
   statusText.style.color = "#996600";
   outputEl.textContent = "";
 
+  // Run user code INSIDE Python's own try/except so we always get
+  // the full traceback, even for SyntaxError.
+  // We pass the code as a variable to avoid escaping issues.
+  pyodide.globals.set("__user_code__", code);
+
+  var wrapper = [
+    "import sys, io, traceback",
+    "sys.stdout = io.StringIO()",
+    "sys.stderr = io.StringIO()",
+    "__berta_error__ = ''",
+    "__berta_error_type__ = ''",
+    "try:",
+    "    exec(compile(__user_code__, '<playground>', 'exec'))",
+    "except BaseException as __e__:",
+    "    __berta_error_type__ = type(__e__).__name__",
+    "    __berta_error__ = traceback.format_exc()",
+  ].join("\n");
+
   try {
-    // Redirect stdout/stderr
-    pyodide.runPython("import sys, io\nsys.stdout = io.StringIO()\nsys.stderr = io.StringIO()");
+    pyodide.runPython(wrapper);
+  } catch (e) {
+    // This should almost never happen now, but just in case
+    outputEl.innerHTML = "<span class=\"error\">" + escapeHtml(String(e)) + "</span>";
+    statusText.textContent = "Error";
+    statusText.style.color = "#cc0000";
+    return;
+  }
 
-    // Run user code
-    pyodide.runPython(code);
+  var stdout = pyodide.runPython("sys.stdout.getvalue()");
+  var stderr = pyodide.runPython("sys.stderr.getvalue()");
+  var errorTraceback = pyodide.runPython("__berta_error__");
+  var errorType = pyodide.runPython("__berta_error_type__");
 
-    // Capture output
-    var stdout = pyodide.runPython("sys.stdout.getvalue()");
-    var stderr = pyodide.runPython("sys.stderr.getvalue()");
+  if (errorTraceback) {
+    // We have a Python error with full traceback
+    var explanation = getErrorExplanation(errorType, errorTraceback);
 
+    // Extract just the last line (the actual error message)
+    var tbLines = errorTraceback.trim().split("\n");
+    var lastLine = tbLines[tbLines.length - 1];
+
+    var display = "";
+    if (tbLines.length > 2) {
+      display = "<span style=\"color:#aa6666\">" + escapeHtml(errorTraceback) + "</span>" +
+        "\n<span style=\"color:#ff4444;font-weight:bold\">" + escapeHtml(lastLine) + "</span>";
+    } else {
+      display = "<span class=\"error\">" + escapeHtml(errorTraceback) + "</span>";
+    }
+
+    // Also show any stdout that was produced before the error
+    var preOutput = "";
+    if (stdout) {
+      preOutput = escapeHtml(stdout) + "\n\n";
+    }
+
+    outputEl.innerHTML = preOutput + display +
+      "<div class=\"error-explain\">EXPLANATION: " + escapeHtml(explanation) + "</div>";
+    statusText.textContent = errorType;
+    statusText.style.color = "#cc0000";
+  } else {
+    // No error -- show output
     var result = "";
     if (stdout) result += stdout;
     if (stderr) result += stderr;
@@ -250,53 +300,6 @@ async function runCode() {
     outputEl.innerHTML = escapeHtml(result);
     statusText.textContent = "Done";
     statusText.style.color = "#006600";
-  } catch (e) {
-    var errorStr = e.message || String(e);
-
-    // Pyodide wraps Python errors in PythonError. The actual Python error
-    // (NameError, TypeError, etc.) is at the END of the traceback string.
-    // Find ALL matches and use the LAST one.
-    var allMatches = errorStr.match(/\b([A-Z]\w*Error)\b/g);
-    var errorType = "Error";
-    if (allMatches && allMatches.length > 0) {
-      // Use the last match -- that's the actual Python error, not PythonError
-      var lastMatch = allMatches[allMatches.length - 1];
-      // If we only got PythonError and there's a second-to-last, use that
-      if (lastMatch === "PythonError" && allMatches.length > 1) {
-        errorType = allMatches[allMatches.length - 2];
-      } else if (lastMatch !== "PythonError") {
-        errorType = lastMatch;
-      }
-    }
-
-    // Also extract just the final error line for a cleaner display
-    var lines = errorStr.split("\n");
-    var errorLine = "";
-    for (var i = lines.length - 1; i >= 0; i--) {
-      if (lines[i].match(/^\w+Error:/) || lines[i].match(/^\w+Error\b/)) {
-        errorLine = lines[i].trim();
-        break;
-      }
-    }
-
-    var explanation = getErrorExplanation(errorType, errorStr);
-
-    var displayError = "";
-    if (errorLine) {
-      displayError = errorLine;
-      // Show full traceback in dimmer text if there's more detail
-      if (lines.length > 3) {
-        displayError = "<span style=\"color:#aa6666\">" + escapeHtml(errorStr) + "</span>\n\n<span style=\"color:#ff4444;font-weight:bold\">" + escapeHtml(errorLine) + "</span>";
-      }
-    } else {
-      displayError = escapeHtml(errorStr);
-    }
-
-    outputEl.innerHTML =
-      "<span class=\"error\">" + displayError + "</span>" +
-      "<div class=\"error-explain\">EXPLANATION: " + escapeHtml(explanation) + "</div>";
-    statusText.textContent = errorType;
-    statusText.style.color = "#cc0000";
   }
 }
 
