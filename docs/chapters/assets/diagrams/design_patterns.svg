@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" width="700" height="380">
+  <defs>
+    <linearGradient id="factoryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498db"/>
+      <stop offset="100%" style="stop-color:#2980b9"/>
+    </linearGradient>
+    <linearGradient id="strategyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#27ae60"/>
+      <stop offset="100%" style="stop-color:#229954"/>
+    </linearGradient>
+    <linearGradient id="observerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9b59b6"/>
+      <stop offset="100%" style="stop-color:#8e44ad"/>
+    </linearGradient>
+    <linearGradient id="pipelineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e67e22"/>
+      <stop offset="100%" style="stop-color:#d35400"/>
+    </linearGradient>
+    <filter id="boxShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="3" dy="3" stdDeviation="4" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="700" height="380" fill="#f5f6fa"/>
+  <text x="350" y="28" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#2c3e50">Design Patterns for AI/ML</text>
+  
+  <!-- Factory Pattern -->
+  <rect x="25" y="50" width="320" height="150" rx="10" fill="url(#factoryGrad)" filter="url(#boxShadow)"/>
+  <text x="185" y="80" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="white">FACTORY  Model Creation</text>
+  <text x="185" y="105" text-anchor="middle" font-family="sans-serif" font-size="11" fill="rgba(255,255,255,0.95)">Centralizes model instantiation. Create models by name/config</text>
+  <text x="185" y="130" text-anchor="middle" font-family="monospace" font-size="10" fill="#ecf0f1">model = ModelFactory.create("bert", config)</text>
+  <text x="185" y="155" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#bdc3c7">Use: Switch models without changing training pipeline</text>
+  
+  <!-- Strategy Pattern -->
+  <rect x="355" y="50" width="320" height="150" rx="10" fill="url(#strategyGrad)" filter="url(#boxShadow)"/>
+  <text x="515" y="80" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="white">STRATEGY  Algorithm Selection</text>
+  <text x="515" y="105" text-anchor="middle" font-family="sans-serif" font-size="11" fill="rgba(255,255,255,0.95)">Swap algorithms at runtime. Same interface, different behavior</text>
+  <text x="515" y="130" text-anchor="middle" font-family="monospace" font-size="10" fill="#ecf0f1">trainer = Trainer(strategy=AdamStrategy())</text>
+  <text x="515" y="155" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#bdc3c7">Use: Optimizers, preprocessing, loss functions</text>
+  
+  <!-- Observer Pattern -->
+  <rect x="25" y="215" width="320" height="150" rx="10" fill="url(#observerGrad)" filter="url(#boxShadow)"/>
+  <text x="185" y="245" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="white">OBSERVER  Training Callbacks</text>
+  <text x="185" y="270" text-anchor="middle" font-family="sans-serif" font-size="11" fill="rgba(255,255,255,0.95)">Subscribe to training events (epoch end, batch, etc.)</text>
+  <text x="185" y="295" text-anchor="middle" font-family="monospace" font-size="10" fill="#ecf0f1">trainer.add_callback(EarlyStoppingCallback())</text>
+  <text x="185" y="320" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#bdc3c7">Use: Logging, checkpointing, early stopping</text>
+  
+  <!-- Pipeline Pattern -->
+  <rect x="355" y="215" width="320" height="150" rx="10" fill="url(#pipelineGrad)" filter="url(#boxShadow)"/>
+  <text x="515" y="245" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="white">PIPELINE  Data Processing</text>
+  <text x="515" y="270" text-anchor="middle" font-family="sans-serif" font-size="11" fill="rgba(255,255,255,0.95)">Chain transforms: load ’ preprocess ’ featurize ’ train</text>
+  <text x="515" y="295" text-anchor="middle" font-family="monospace" font-size="10" fill="#ecf0f1">pipe = Pipeline([Load(), Normalize(), Model()])</text>
+  <text x="515" y="320" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#bdc3c7">Use: sklearn Pipeline, custom preprocessing chains</text>
+</svg>
