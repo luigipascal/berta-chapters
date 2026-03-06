@@ -6,23 +6,17 @@
 [build.environment]
   PYTHON_VERSION = "3.11"
 
-# Newsletter notification — set these in Netlify Dashboard to send chapter alerts:
-#
-# Required (already set for welcome emails):
+# Newsletter: auto-sends on deploy when chapter_notification.json changes.
+# One-time setup in Netlify Dashboard > Site settings > Environment variables:
 #   RESEND_API_KEY       = your Resend API key
 #   CONFIRM_FROM_EMAIL   = verified sender email
 #   SITE_URL             = https://chapters.berta.one
+#   NETLIFY_API_TOKEN    = personal access token (app.netlify.com/user/applications)
+#   NETLIFY_SITE_ID      = site ID (Site settings > General)
 #
-# Required for chapter notifications:
-#   NETLIFY_API_TOKEN    = personal access token from app.netlify.com/user/applications
-#   NETLIFY_SITE_ID      = site ID from Site settings > General
-#
-# To trigger a notification on next deploy, set:
-#   NOTIFY_CHAPTER       = 8
-#   NOTIFY_TITLE         = Unsupervised Learning
-#   NOTIFY_DESCRIPTION   = (optional custom description)
-#
-# After deploy sends the emails, REMOVE NOTIFY_CHAPTER to stop re-sending.
+# To notify subscribers about a new chapter:
+#   1. Edit netlify/functions/chapter_notification.json
+#   2. Commit and deploy — done. No dashboard changes needed.
 
 [[redirects]]
   from = "/chapters"

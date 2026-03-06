@@ -2,57 +2,59 @@
  * Netlify Function: deploy-succeeded (Background Event)
  *
  * Automatically triggered after every successful Netlify deploy.
- * Sends a "new chapter published" email to all newsletter subscribers
- * when the NOTIFY_CHAPTER environment variable is set.
+ * Reads chapter_notification.json to determine what to notify about,
+ * then checks LAST_NOTIFIED_CHAPTER to avoid re-sending.
  *
- * How to use:
- * 1. Set these environment variables in Netlify Dashboard > Site settings > Environment:
- *    RESEND_API_KEY       - Your Resend API key (https://resend.com/api-keys)
- *    CONFIRM_FROM_EMAIL   - Verified sender email in Resend
- *    SITE_URL             - https://chapters.berta.one (or your site URL)
- *    NETLIFY_API_TOKEN    - Personal access token from https://app.netlify.com/user/applications
- *    NETLIFY_SITE_ID      - Your site ID (Site settings > General > Site ID)
- *    NOTIFY_CHAPTER       - Chapter number to notify about (e.g., "8")
- *    NOTIFY_TITLE         - Chapter title (e.g., "Unsupervised Learning")
- *    NOTIFY_DESCRIPTION   - Brief description for the email body (optional)
+ * How to send a newsletter for a new chapter:
+ * 1. Update chapter_notification.json with the new chapter details.
+ * 2. Commit, push, and deploy. That's it.
  *
- * 2. Deploy the site (merge the branch or trigger a deploy).
- *    The function will automatically send the notification.
+ * The function compares the chapter number in the JSON file against
+ * LAST_NOTIFIED_CHAPTER (stored as a Netlify env var). If they differ,
+ * it fetches all subscribers from Netlify Forms and emails them via
+ * Resend, then updates LAST_NOTIFIED_CHAPTER so subsequent deploys
+ * won't re-send.
  *
- * 3. After the emails are sent, REMOVE the NOTIFY_CHAPTER variable
- *    to prevent re-sending on subsequent deploys.
+ * One-time setup (Netlify Dashboard > Site settings > Environment variables):
+ *   RESEND_API_KEY       - Resend API key
+ *   CONFIRM_FROM_EMAIL   - Verified sender email in Resend
+ *   SITE_URL             - https://chapters.berta.one
+ *   NETLIFY_API_TOKEN    - Personal access token (app.netlify.com/user/applications)
+ *   NETLIFY_SITE_ID      - Site ID (Site settings > General)
  *
- * If NOTIFY_CHAPTER is not set, this function does nothing.
+ * No per-release changes needed in the dashboard.
  */
 
-exports.handler = async function (event) {
-  var chapterNumber = process.env.NOTIFY_CHAPTER;
-  if (!chapterNumber) {
-    console.log("NOTIFY_CHAPTER not set — skipping newsletter notification");
-    return { statusCode: 200, body: "No notification configured" };
-  }
+var config = require("./chapter_notification.json");
 
-  var chapterTitle = process.env.NOTIFY_TITLE || "Unsupervised Learning";
-  var chapterDescription = process.env.NOTIFY_DESCRIPTION ||
-    "A brand new chapter is available with interactive notebooks, exercises with solutions, toolkit scripts, SVG diagrams, and datasets.";
+exports.handler = async function () {
+  var chapterNumber = String(config.chapter_number);
+  var chapterTitle = config.chapter_title;
+  var chapterDescription = config.chapter_description;
+
+  var lastNotified = process.env.LAST_NOTIFIED_CHAPTER || "";
+  if (lastNotified === chapterNumber) {
+    console.log("Chapter " + chapterNumber + " already notified — skipping");
+    return { statusCode: 200, body: "Already notified for chapter " + chapterNumber };
+  }
 
   var apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    console.log("RESEND_API_KEY not set — cannot send notification emails");
+    console.log("RESEND_API_KEY not set — cannot send emails");
     return { statusCode: 200, body: "No email service configured" };
   }
 
   var netlifyToken = process.env.NETLIFY_API_TOKEN;
   var siteId = process.env.NETLIFY_SITE_ID;
   if (!netlifyToken || !siteId) {
-    console.log("NETLIFY_API_TOKEN or NETLIFY_SITE_ID not set — cannot fetch subscribers");
-    return { statusCode: 200, body: "Netlify API not configured — set NETLIFY_API_TOKEN and NETLIFY_SITE_ID" };
+    console.log("NETLIFY_API_TOKEN or NETLIFY_SITE_ID not set");
+    return { statusCode: 200, body: "Netlify API not configured" };
   }
 
   var fromEmail = process.env.CONFIRM_FROM_EMAIL || "onboarding@resend.dev";
   var siteUrl = process.env.SITE_URL || "https://chapters.berta.one";
 
-  // Fetch all newsletter subscribers from Netlify Forms API
+  // ── Fetch subscribers from Netlify Forms ──
   var subscribers = [];
   try {
     var formsRes = await fetch(
@@ -67,11 +69,9 @@ exports.handler = async function (event) {
     var newsletterForm = forms.find(function (f) { return f.name === "newsletter"; });
 
     if (!newsletterForm) {
-      console.log("Newsletter form not found in Netlify Forms");
+      console.log("Newsletter form not found");
       return { statusCode: 200, body: "Newsletter form not found" };
     }
-
-    console.log("Found newsletter form: " + newsletterForm.id + " (" + newsletterForm.submission_count + " submissions)");
 
     var page = 1;
     var perPage = 100;
@@ -99,13 +99,16 @@ exports.handler = async function (event) {
   }
 
   if (subscribers.length === 0) {
-    console.log("No subscribers found — nothing to send");
-    return { statusCode: 200, body: "No subscribers found" };
+    console.log("No subscribers found");
+    return { statusCode: 200, body: "No subscribers" };
   }
 
-  console.log("Sending Chapter " + chapterNumber + ": " + chapterTitle + " notification to " + subscribers.length + " subscriber(s)");
+  console.log("Sending Chapter " + chapterNumber + ": " + chapterTitle +
+    " notification to " + subscribers.length + " subscriber(s)");
 
-  var chapterUrl = siteUrl + "/chapters/chapter-" + (parseInt(chapterNumber) < 10 ? "0" : "") + chapterNumber + "/";
+  // ── Build email ──
+  var chapterUrl = siteUrl + "/chapters/chapter-" +
+    (parseInt(chapterNumber) < 10 ? "0" : "") + chapterNumber + "/";
 
   var htmlBody = [
     "<div style='font-family: Times New Roman, serif; max-width: 600px; margin: 0 auto;'>",
@@ -113,7 +116,8 @@ exports.handler = async function (event) {
     "  <h3 style='color: #4a90d9;'>Chapter " + chapterNumber + ": " + chapterTitle + "</h3>",
     "  <p>" + chapterDescription + "</p>",
     "  <p style='margin: 20px 0;'>",
-    "    <a href='" + chapterUrl + "' style='background: #003366; color: #ffffff; padding: 10px 24px; text-decoration: none; font-weight: bold;'>",
+    "    <a href='" + chapterUrl + "' style='background: #003366; color: #ffffff; " +
+    "padding: 10px 24px; text-decoration: none; font-weight: bold;'>",
     "      Read Chapter " + chapterNumber + " Now</a>",
     "  </p>",
     "  <hr style='border-top: 2px solid #808080;'>",
@@ -139,6 +143,7 @@ exports.handler = async function (event) {
     "</div>",
   ].join("\n");
 
+  // ── Send emails ──
   var sent = 0;
   var failed = 0;
 
@@ -164,17 +169,57 @@ exports.handler = async function (event) {
       } else {
         failed++;
         var errorText = await response.text();
-        console.log("Failed to send to " + subscribers[j] + ": " + errorText);
+        console.log("Failed: " + subscribers[j] + " — " + errorText);
       }
     } catch (err) {
       failed++;
-      console.log("Error sending to " + subscribers[j] + ": " + err.message);
+      console.log("Error: " + subscribers[j] + " — " + err.message);
     }
   }
 
-  var summary = "Chapter " + chapterNumber + " notification — Sent: " + sent + ", Failed: " + failed + ", Total: " + subscribers.length;
-  console.log(summary);
-  console.log("IMPORTANT: Remove NOTIFY_CHAPTER from environment variables to prevent re-sending on the next deploy.");
+  // ── Update LAST_NOTIFIED_CHAPTER via Netlify API ──
+  if (sent > 0) {
+    try {
+      // Fetch existing env vars for this account (scoped to site)
+      var envRes = await fetch(
+        "https://api.netlify.com/api/v1/accounts/me/env?site_id=" + siteId,
+        { headers: { "Authorization": "Bearer " + netlifyToken } }
+      );
+      var envVars = await envRes.json();
+      var existing = Array.isArray(envVars)
+        ? envVars.find(function (v) { return v.key === "LAST_NOTIFIED_CHAPTER"; })
+        : null;
 
+      if (existing) {
+        // Delete then recreate (Netlify API pattern for updating)
+        await fetch(
+          "https://api.netlify.com/api/v1/accounts/me/env/LAST_NOTIFIED_CHAPTER?site_id=" + siteId,
+          { method: "DELETE", headers: { "Authorization": "Bearer " + netlifyToken } }
+        );
+      }
+      await fetch(
+        "https://api.netlify.com/api/v1/accounts/me/env?site_id=" + siteId,
+        {
+          method: "POST",
+          headers: {
+            "Authorization": "Bearer " + netlifyToken,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify([{
+            key: "LAST_NOTIFIED_CHAPTER",
+            scopes: ["functions"],
+            values: [{ value: chapterNumber, context: "all" }],
+          }]),
+        }
+      );
+      console.log("Updated LAST_NOTIFIED_CHAPTER to " + chapterNumber);
+    } catch (err) {
+      console.log("Could not update LAST_NOTIFIED_CHAPTER: " + err.message);
+    }
+  }
+
+  var summary = "Chapter " + chapterNumber + " — Sent: " + sent +
+    ", Failed: " + failed + ", Total: " + subscribers.length;
+  console.log(summary);
   return { statusCode: 200, body: summary };
 };
