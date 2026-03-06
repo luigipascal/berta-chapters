@@ -1,9 +1,28 @@
 [build]
   command = "pip install mkdocs-material mkdocs-minify-plugin && mkdocs build"
   publish = "site"
+  functions = "netlify/functions"
 
 [build.environment]
   PYTHON_VERSION = "3.11"
+
+# Newsletter notification — set these in Netlify Dashboard to send chapter alerts:
+#
+# Required (already set for welcome emails):
+#   RESEND_API_KEY       = your Resend API key
+#   CONFIRM_FROM_EMAIL   = verified sender email
+#   SITE_URL             = https://chapters.berta.one
+#
+# Required for chapter notifications:
+#   NETLIFY_API_TOKEN    = personal access token from app.netlify.com/user/applications
+#   NETLIFY_SITE_ID      = site ID from Site settings > General
+#
+# To trigger a notification on next deploy, set:
+#   NOTIFY_CHAPTER       = 8
+#   NOTIFY_TITLE         = Unsupervised Learning
+#   NOTIFY_DESCRIPTION   = (optional custom description)
+#
+# After deploy sends the emails, REMOVE NOTIFY_CHAPTER to stop re-sending.
 
 [[redirects]]
   from = "/chapters"
