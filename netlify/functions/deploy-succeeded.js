@@ -9,15 +9,10 @@
  * 1. Update chapter_notification.json with the new chapter details.
  * 2. Commit, push, and deploy. That's it.
  *
- * The function compares the chapter number in the JSON file against
- * LAST_NOTIFIED_CHAPTER (stored as a Netlify env var). If they differ,
- * it fetches all subscribers from Netlify Forms and emails them via
- * Resend, then updates LAST_NOTIFIED_CHAPTER so subsequent deploys
- * won't re-send.
- *
  * One-time setup (Netlify Dashboard > Site settings > Environment variables):
- *   RESEND_API_KEY       - Resend API key
- *   CONFIRM_FROM_EMAIL   - Verified sender email in Resend
+ *   BREVO_API_KEY        - Brevo API key (https://app.brevo.com/settings/keys/api)
+ *   SENDER_EMAIL         - Verified sender email in Brevo
+ *   SENDER_NAME          - Sender display name (default: "Berta Chapters")
  *   SITE_URL             - https://chapters.berta.one
  *   NETLIFY_API_TOKEN    - Personal access token (app.netlify.com/user/applications)
  *   NETLIFY_SITE_ID      - Site ID (Site settings > General)
@@ -39,9 +34,9 @@ exports.handler = async function () {
     return { statusCode: 200, body: "Already notified for version " + notifyVersion };
   }
 
-  var apiKey = process.env.RESEND_API_KEY;
+  var apiKey = process.env.BREVO_API_KEY;
   if (!apiKey) {
-    console.log("RESEND_API_KEY not set — cannot send emails");
+    console.log("BREVO_API_KEY not set — cannot send emails");
     return { statusCode: 200, body: "No email service configured" };
   }
 
@@ -52,7 +47,8 @@ exports.handler = async function () {
     return { statusCode: 200, body: "Netlify API not configured" };
   }
 
-  var fromEmail = process.env.CONFIRM_FROM_EMAIL || "onboarding@resend.dev";
+  var senderEmail = process.env.SENDER_EMAIL || "no-reply@berta.one";
+  var senderName = process.env.SENDER_NAME || "Berta Chapters";
   var siteUrl = process.env.SITE_URL || "https://chapters.berta.one";
 
   // ── Fetch subscribers from Netlify Forms ──
@@ -144,7 +140,7 @@ exports.handler = async function () {
     "</div>",
   ].join("\n");
 
-  // ── Send emails (with 600ms delay between sends to respect rate limits) ──
+  // ── Send emails (with 600ms delay to respect rate limits) ──
   var sent = 0;
   var failed = 0;
 
@@ -153,17 +149,17 @@ exports.handler = async function () {
   for (var j = 0; j < subscribers.length; j++) {
     if (j > 0) await delay(600);
     try {
-      var response = await fetch("https://api.resend.com/emails", {
+      var response = await fetch("https://api.brevo.com/v3/smtp/email", {
         method: "POST",
         headers: {
-          "Authorization": "Bearer " + apiKey,
+          "api-key": apiKey,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: "Berta Chapters <" + fromEmail + ">",
-          to: [subscribers[j]],
+          sender: { name: senderName, email: senderEmail },
+          to: [{ email: subscribers[j] }],
           subject: "New Chapter: " + chapterTitle + " (Chapter " + chapterNumber + ")",
-          html: htmlBody,
+          htmlContent: htmlBody,
         }),
       });
 
@@ -184,7 +180,6 @@ exports.handler = async function () {
   // ── Update LAST_NOTIFIED_CHAPTER via Netlify API ──
   if (sent > 0) {
     try {
-      // Fetch existing env vars for this account (scoped to site)
       var envRes = await fetch(
         "https://api.netlify.com/api/v1/accounts/me/env?site_id=" + siteId,
         { headers: { "Authorization": "Bearer " + netlifyToken } }
@@ -195,7 +190,6 @@ exports.handler = async function () {
         : null;
 
       if (existing) {
-        // Delete then recreate (Netlify API pattern for updating)
         await fetch(
           "https://api.netlify.com/api/v1/accounts/me/env/LAST_NOTIFIED_CHAPTER?site_id=" + siteId,
           { method: "DELETE", headers: { "Authorization": "Bearer " + netlifyToken } }

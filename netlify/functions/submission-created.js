@@ -2,19 +2,15 @@
  * Netlify Function: submission-created
  *
  * Automatically triggered when a Netlify Form receives a submission.
- * Sends a confirmation email to the subscriber using Resend.
+ * Sends a confirmation email to the subscriber using Brevo (Sendinblue).
  *
- * Setup:
- * 1. Create a free account at https://resend.com
- * 2. Get your API key from https://resend.com/api-keys
- * 3. Verify your domain at https://resend.com/domains
- *    (or use the free onboarding@resend.dev for testing)
- * 4. In Netlify Dashboard > Site settings > Environment variables, add:
- *    RESEND_API_KEY = your_resend_api_key
- *    CONFIRM_FROM_EMAIL = updates@yourdomain.com (must be verified in Resend)
- *    SITE_URL = https://chapters.berta.one
+ * Setup (one-time, in Netlify Dashboard > Environment variables):
+ *   BREVO_API_KEY        - Brevo API key (https://app.brevo.com/settings/keys/api)
+ *   SENDER_EMAIL         - Verified sender email in Brevo
+ *   SENDER_NAME          - Sender display name (default: "Berta Chapters")
+ *   SITE_URL             - https://chapters.berta.one
  *
- * If RESEND_API_KEY is not set, this function silently skips (form still works).
+ * If BREVO_API_KEY is not set, this function silently skips (form still works).
  */
 
 exports.handler = async function (event) {
@@ -24,15 +20,16 @@ exports.handler = async function (event) {
     return { statusCode: 200, body: "Not a newsletter submission" };
   }
 
-  var apiKey = process.env.RESEND_API_KEY;
+  var apiKey = process.env.BREVO_API_KEY;
   if (!apiKey) {
-    console.log("RESEND_API_KEY not set, skipping confirmation email");
+    console.log("BREVO_API_KEY not set, skipping confirmation email");
     return { statusCode: 200, body: "No email service configured" };
   }
 
   var email = payload.data.email;
   var name = payload.data.name || "Learner";
-  var fromEmail = process.env.CONFIRM_FROM_EMAIL || "onboarding@resend.dev";
+  var senderEmail = process.env.SENDER_EMAIL || "no-reply@berta.one";
+  var senderName = process.env.SENDER_NAME || "Berta Chapters";
   var siteUrl = process.env.SITE_URL || "https://chapters.berta.one";
 
   var htmlBody = [
@@ -42,7 +39,7 @@ exports.handler = async function (event) {
     "  <p>You'll receive an email when new chapters are published. At most one email per week.</p>",
     "  <hr style='border-top: 2px solid #808080;'>",
     "  <p><strong>Latest chapter:</strong></p>",
-    "  <p><a href='" + siteUrl + "/chapters/chapter-08/'>Chapter 8: Unsupervised Learning</a> — ",
+    "  <p><a href='" + siteUrl + "/chapters/chapter-08/'>Chapter 8: Unsupervised Learning</a> &mdash; ",
     "  K-Means, hierarchical clustering, DBSCAN, PCA, t-SNE, anomaly detection, and a customer segmentation capstone.</p>",
     "  <p><strong>Start learning now:</strong></p>",
     "  <ul>",
@@ -63,17 +60,17 @@ exports.handler = async function (event) {
   ].join("\n");
 
   try {
-    var response = await fetch("https://api.resend.com/emails", {
+    var response = await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
       headers: {
-        "Authorization": "Bearer " + apiKey,
+        "api-key": apiKey,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Berta Chapters <" + fromEmail + ">",
-        to: [email],
+        sender: { name: senderName, email: senderEmail },
+        to: [{ email: email, name: name }],
         subject: "Welcome to Berta Chapters!",
-        html: htmlBody,
+        htmlContent: htmlBody,
       }),
     });
 

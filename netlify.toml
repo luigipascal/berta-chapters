@@ -8,8 +8,9 @@
 
 # Newsletter: auto-sends on deploy when chapter_notification.json changes.
 # One-time setup in Netlify Dashboard > Site settings > Environment variables:
-#   RESEND_API_KEY       = your Resend API key
-#   CONFIRM_FROM_EMAIL   = verified sender email
+#   BREVO_API_KEY        = Brevo API key (app.brevo.com/settings/keys/api)
+#   SENDER_EMAIL         = verified sender email in Brevo
+#   SENDER_NAME          = sender display name (default: Berta Chapters)
 #   SITE_URL             = https://chapters.berta.one
 #   NETLIFY_API_TOKEN    = personal access token (app.netlify.com/user/applications)
 #   NETLIFY_SITE_ID      = site ID (Site settings > General)
