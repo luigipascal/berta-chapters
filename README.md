@@ -53,7 +53,7 @@ Apply what you've learned to real-world machine learning and AI problems.
 |---------|-------|------|--------|
 | 6 | [Introduction to Machine Learning](./chapters/chapter-06-intro-machine-learning/) | 8h | ✅ Available |
 | 7 | [Supervised Learning: Regression & Classification](./chapters/chapter-07-supervised-learning/) | 10h | ✅ Available |
-| 8 | Unsupervised Learning: Clustering & Dimensionality Reduction | 8h | 🔄 Coming Soon |
+| 8 | [Unsupervised Learning: Clustering & Dimensionality Reduction](./chapters/chapter-08-unsupervised-learning/) | 8h | ✅ Available |
 | 9 | Deep Learning Fundamentals | 12h | 🔄 Coming Soon |
 | 10 | Natural Language Processing Basics | 10h | 🔄 Coming Soon |
 | 11 | Large Language Models & Transformers | 10h | 🔄 Coming Soon |
@@ -268,7 +268,7 @@ pie title Curriculum Breakdown
     "Community Requested" : 999
 ```
 
-- **Chapters Available Now**: 7 (56 hours of content)
+- **Chapters Available Now**: 8 (64 hours of content)
 - **Total Planned Chapters**: 25+
 - **Jupyter Notebooks**: 21 interactive notebooks
 - **SVG Diagrams**: 21 professional diagrams

@@ -16,7 +16,7 @@ graph TD
 
     CH6["Ch 6: Intro to ML<br/>8h | Available"]
     CH7["Ch 7: Supervised Learning<br/>10h | Available"]
-    CH8["Ch 8: Unsupervised Learning<br/>8h | Coming Soon"]
+    CH8["Ch 8: Unsupervised Learning<br/>8h | Available"]
     CH9["Ch 9: Deep Learning<br/>12h | Coming Soon"]
     CH10["Ch 10: NLP Basics<br/>10h | Coming Soon"]
     CH11["Ch 11: LLMs & Transformers<br/>10h | Coming Soon"]
@@ -56,7 +56,7 @@ graph TD
     style CH5 fill:#4caf50,color:#fff
     style CH6 fill:#4caf50,color:#fff
     style CH7 fill:#4caf50,color:#fff
-    style CH8 fill:#f3e5f5
+    style CH8 fill:#4caf50,color:#fff
     style CH9 fill:#f3e5f5
     style CH10 fill:#f3e5f5
     style CH11 fill:#f3e5f5
@@ -66,7 +66,7 @@ graph TD
     style CH15 fill:#f3e5f5
 ```
 
-**Legend**: Green = Available | Purple = Practitioner (Coming Soon) | Chapters 1-7 fully available with SVG diagrams
+**Legend**: Green = Available | Purple = Practitioner (Coming Soon) | Chapters 1-8 fully available with SVG diagrams
 
 ---
 
@@ -81,7 +81,7 @@ graph TD
 | 5 | [Software Design & Best Practices](./chapters/chapter-05-software-design/) | Foundation | 6h | Available | 3 notebooks, scripts, 5 exercises, 3 SVGs |
 | 6 | [Introduction to Machine Learning](./chapters/chapter-06-intro-machine-learning/) | Practitioner | 8h | Available | 3 notebooks, scripts, 5 exercises, 3 SVGs |
 | 7 | [Supervised Learning](./chapters/chapter-07-supervised-learning/) | Practitioner | 10h | Available | 3 notebooks, scripts, 5 exercises, 3 SVGs |
-| 8 | Unsupervised Learning | Practitioner | 8h | Planned | - |
+| 8 | [Unsupervised Learning](./chapters/chapter-08-unsupervised-learning/) | Practitioner | 8h | Available | 3 notebooks, scripts, 5 exercises, 3 SVGs |
 | 9 | Deep Learning Fundamentals | Practitioner | 12h | Planned | - |
 | 10 | Natural Language Processing | Practitioner | 10h | Planned | - |
 | 11 | LLMs & Transformers | Practitioner | 10h | Planned | - |

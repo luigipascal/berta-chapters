@@ -10,7 +10,7 @@
 
 **[Berta AI](https://berta.one)** — AI-powered tools for tomorrow's world
 
-- **[Berta Chapters](https://github.com/luigipascal/berta-chapters)** — Free, open-source AI curriculum. 7 chapters live, 25 planned. Learn Python to production ML through interactive notebooks, exercises, and an online playground. No paywall, no signup.
+- **[Berta Chapters](https://github.com/luigipascal/berta-chapters)** — Free, open-source AI curriculum. 8 chapters live, 25 planned. Learn Python to production ML through interactive notebooks, exercises, and an online playground. No paywall, no signup.
 - **[LLM Cost Optimizer](https://llm.berta.one)** — Cut LLM API costs 80-95% while keeping data private. Local processing, text anonymization, automatic model routing.
 - **OrbaOS** — A framework for post-project work. AI handles coordination so teams focus on strategy and creative output.
 

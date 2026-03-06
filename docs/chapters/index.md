@@ -48,6 +48,10 @@ Apply your knowledge to real-world ML and AI problems.
     *10h · 3 notebooks, 5 exercises, 3 SVGs*  
     Regression, regularization; classification, SVM, ROC; ensembles, tuning, credit-risk
 
+- **Ch 8: [Unsupervised Learning](chapter-08.md)**  
+    *8h · 3 notebooks, 5 exercises, 3 SVGs*  
+    K-Means, hierarchical, DBSCAN; PCA, t-SNE; anomaly detection, customer segmentation
+
 </div>
 
 ---
@@ -63,15 +67,16 @@ Apply your knowledge to real-world ML and AI problems.
 | [5: Software Design](chapter-05.md) | Foundation | 6h | 3 | 5 | 3 |
 | [6: Intro to ML](chapter-06.md) | Practitioner | 8h | 3 | 5 | 3 |
 | [7: Supervised Learning](chapter-07.md) | Practitioner | 10h | 3 | 5 | 3 |
+| [8: Unsupervised Learning](chapter-08.md) | Practitioner | 8h | 3 | 5 | 3 |
 
 ---
 
 ## Coming Soon
 
-!!! info "Chapters 8–25"
+!!! info "Chapters 9–25"
     Additional chapters are planned for the Practitioner and Advanced tracks:
     
-    - **Practitioner** (8–15): Unsupervised Learning, Deep Learning, NLP, LLMs, Prompt Engineering, RAG, Fine-tuning, MLOps
+    - **Practitioner** (9–15): Deep Learning, NLP, LLMs, Prompt Engineering, RAG, Fine-tuning, MLOps
     - **Advanced** (16–25): Multi-Agent Systems, Advanced RAG, Reinforcement Learning, Model Optimization, Production AI, Finance, Safety, AI Products, Research, Governance & Ethics
     
     [Request a custom chapter](../guides/chapter-requests.md) on any AI topic while you wait!

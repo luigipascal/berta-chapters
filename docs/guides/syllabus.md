@@ -16,7 +16,7 @@ graph TD
 
     CH6["Ch 6: Intro to ML<br/>8h | Available"]
     CH7["Ch 7: Supervised Learning<br/>10h | Available"]
-    CH8["Ch 8: Unsupervised Learning<br/>8h | Coming Soon"]
+    CH8["Ch 8: Unsupervised Learning<br/>8h | Available"]
     CH9["Ch 9: Deep Learning<br/>12h | Coming Soon"]
     CH10["Ch 10: NLP Basics<br/>10h | Coming Soon"]
     CH11["Ch 11: LLMs & Transformers<br/>10h | Coming Soon"]
@@ -56,7 +56,7 @@ graph TD
     style CH5 fill:#4caf50,color:#fff
     style CH6 fill:#4caf50,color:#fff
     style CH7 fill:#4caf50,color:#fff
-    style CH8 fill:#f3e5f5
+    style CH8 fill:#4caf50,color:#fff
     style CH9 fill:#f3e5f5
     style CH10 fill:#f3e5f5
     style CH11 fill:#f3e5f5
@@ -89,7 +89,7 @@ graph TD
 | 5 | Software Design | Foundation | 6h | Available |
 | 6 | Introduction to ML | Practitioner | 8h | Available |
 | 7 | Supervised Learning | Practitioner | 10h | Available |
-| 8 | Unsupervised Learning | Practitioner | 8h | Coming soon |
+| 8 | Unsupervised Learning | Practitioner | 8h | Available |
 | 9 | Deep Learning Fundamentals | Practitioner | 12h | Coming soon |
 | 10 | NLP Basics | Practitioner | 10h | Coming soon |
 | 11 | LLMs & Transformers | Practitioner | 10h | Coming soon |

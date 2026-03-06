@@ -10,10 +10,10 @@ Our vision for the future of AI education. Priorities evolve based on community 
 |-----------|--------|
 | Master Repository | Live |
 | Foundation Track | Complete (5 chapters) |
-| Practitioner Track | In progress (2 of 10 chapters) |
+| Practitioner Track | In progress (3 of 10 chapters) |
 | Advanced Track | Planned (10 chapters) |
 | Community Requests | Starting |
-| **Available Now** | 7 chapters, 56 hours, 21 SVGs |
+| **Available Now** | 8 chapters, 64 hours, 24 SVGs |
 
 ---
 
@@ -28,13 +28,13 @@ Our vision for the future of AI education. Priorities evolve based on community 
 ## Phase 1: Foundation & Launch — Complete
 
 !!! success "Complete"
-    Foundation Track complete. Chapters 6-7 available. Core infrastructure done.
+    Foundation Track complete. Chapters 6-8 available. Core infrastructure done.
 
 ### Objectives
 
 - [x] Establish master repository
 - [x] Complete Foundation Track (Chapters 1-5)
-- [x] Begin Practitioner Track (Ch 6-7)
+- [x] Begin Practitioner Track (Ch 6-8)
 - [ ] Establish community request process
 - [ ] Build first 100 community chapters
 
@@ -63,7 +63,7 @@ Our vision for the future of AI education. Priorities evolve based on community 
 |---|---------|--------|
 | 6 | Introduction to ML | Done |
 | 7 | Supervised Learning | Done |
-| 8 | Unsupervised Learning | Next |
+| 8 | Unsupervised Learning | Done |
 | 9 | Deep Learning Fundamentals | Planned |
 | 10 | NLP Basics | Planned |
 | 11 | LLMs & Transformers | Planned |
