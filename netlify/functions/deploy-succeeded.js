@@ -29,13 +29,14 @@ var config = require("./chapter_notification.json");
 
 exports.handler = async function () {
   var chapterNumber = String(config.chapter_number);
+  var notifyVersion = String(config.notify_version || config.chapter_number);
   var chapterTitle = config.chapter_title;
   var chapterDescription = config.chapter_description;
 
   var lastNotified = process.env.LAST_NOTIFIED_CHAPTER || "";
-  if (lastNotified === chapterNumber) {
-    console.log("Chapter " + chapterNumber + " already notified — skipping");
-    return { statusCode: 200, body: "Already notified for chapter " + chapterNumber };
+  if (lastNotified === notifyVersion) {
+    console.log("Version " + notifyVersion + " already notified — skipping");
+    return { statusCode: 200, body: "Already notified for version " + notifyVersion };
   }
 
   var apiKey = process.env.RESEND_API_KEY;
@@ -143,11 +144,14 @@ exports.handler = async function () {
     "</div>",
   ].join("\n");
 
-  // ── Send emails ──
+  // ── Send emails (with 600ms delay between sends to respect rate limits) ──
   var sent = 0;
   var failed = 0;
 
+  function delay(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
   for (var j = 0; j < subscribers.length; j++) {
+    if (j > 0) await delay(600);
     try {
       var response = await fetch("https://api.resend.com/emails", {
         method: "POST",
@@ -208,11 +212,11 @@ exports.handler = async function () {
           body: JSON.stringify([{
             key: "LAST_NOTIFIED_CHAPTER",
             scopes: ["functions"],
-            values: [{ value: chapterNumber, context: "all" }],
+            values: [{ value: notifyVersion, context: "all" }],
           }]),
         }
       );
-      console.log("Updated LAST_NOTIFIED_CHAPTER to " + chapterNumber);
+      console.log("Updated LAST_NOTIFIED_CHAPTER to " + notifyVersion);
     } catch (err) {
       console.log("Could not update LAST_NOTIFIED_CHAPTER: " + err.message);
     }
