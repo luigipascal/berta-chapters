@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300">
+  <style>
+    text { font-family: Arial, sans-serif; }
+    .title { font-size: 14px; font-weight: bold; fill: #333; }
+    .label { font-size: 11px; fill: #555; }
+    .axis { stroke: #999; stroke-width: 1; }
+  </style>
+
+  <!-- Panel 1: Normal Distribution -->
+  <rect x="10" y="10" width="270" height="280" rx="8" fill="#f0f7ff" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="145" y="35" text-anchor="middle" class="title" fill="#4a90d9">Statistical (Z-Score)</text>
+  <line x1="40" y1="240" x2="250" y2="240" class="axis"/>
+  <line x1="40" y1="240" x2="40" y2="60" class="axis"/>
+  <!-- Bell curve -->
+  <path d="M50,235 Q80,230 100,200 Q120,140 145,80 Q170,140 190,200 Q210,230 240,235" fill="none" stroke="#4a90d9" stroke-width="2.5"/>
+  <!-- Threshold lines -->
+  <line x1="75" y1="60" x2="75" y2="240" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="215" y1="60" x2="215" y2="240" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="75" y="55" text-anchor="middle" style="font-size:9px" fill="#c0392b">-3 sigma</text>
+  <text x="215" y="55" text-anchor="middle" style="font-size:9px" fill="#c0392b">+3 sigma</text>
+  <!-- Normal points -->
+  <circle cx="120" cy="225" r="3" fill="#4a90d9"/><circle cx="140" cy="225" r="3" fill="#4a90d9"/>
+  <circle cx="155" cy="225" r="3" fill="#4a90d9"/><circle cx="170" cy="225" r="3" fill="#4a90d9"/>
+  <circle cx="130" cy="225" r="3" fill="#4a90d9"/><circle cx="160" cy="225" r="3" fill="#4a90d9"/>
+  <!-- Anomaly points -->
+  <circle cx="55" cy="225" r="5" fill="#c0392b" stroke="#c0392b" stroke-width="1"/>
+  <circle cx="240" cy="225" r="5" fill="#c0392b" stroke="#c0392b" stroke-width="1"/>
+  <text x="55" y="218" text-anchor="middle" style="font-size:9px; font-weight:bold" fill="#c0392b">!</text>
+  <text x="240" y="218" text-anchor="middle" style="font-size:9px; font-weight:bold" fill="#c0392b">!</text>
+  <text x="145" y="265" text-anchor="middle" class="label">Points beyond threshold</text>
+  <text x="145" y="280" text-anchor="middle" class="label" fill="#4a90d9">Simple, fast, assumes normal</text>
+
+  <!-- Panel 2: Isolation Forest -->
+  <rect x="300" y="10" width="270" height="280" rx="8" fill="#f0fff0" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="435" y="35" text-anchor="middle" class="title" fill="#27ae60">Isolation Forest</text>
+  <!-- Normal cluster -->
+  <circle cx="380" cy="160" r="3" fill="#27ae60"/><circle cx="395" cy="150" r="3" fill="#27ae60"/>
+  <circle cx="390" cy="170" r="3" fill="#27ae60"/><circle cx="405" cy="155" r="3" fill="#27ae60"/>
+  <circle cx="385" cy="165" r="3" fill="#27ae60"/><circle cx="400" cy="145" r="3" fill="#27ae60"/>
+  <circle cx="375" cy="155" r="3" fill="#27ae60"/><circle cx="410" cy="165" r="3" fill="#27ae60"/>
+  <circle cx="398" cy="160" r="3" fill="#27ae60"/><circle cx="388" cy="148" r="3" fill="#27ae60"/>
+  <circle cx="402" cy="172" r="3" fill="#27ae60"/><circle cx="392" cy="158" r="3" fill="#27ae60"/>
+  <!-- Anomaly (isolated) -->
+  <circle cx="500" cy="80" r="6" fill="#c0392b" stroke="#c0392b" stroke-width="1"/>
+  <text x="500" y="72" text-anchor="middle" style="font-size:9px; font-weight:bold" fill="#c0392b">anomaly</text>
+  <!-- Tree splits -->
+  <line x1="350" y1="100" x2="350" y2="230" stroke="#27ae60" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+  <line x1="350" y1="130" x2="530" y2="130" stroke="#27ae60" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+  <text x="480" y="115" style="font-size:9px" fill="#27ae60">Split 1</text>
+  <text x="340" y="115" style="font-size:9px" fill="#27ae60">Split 2</text>
+  <!-- Short path annotation -->
+  <path d="M500,90 L500,100 L505,100" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="515" y="104" style="font-size:9px" fill="#c0392b">short path</text>
+  <!-- Long path annotation -->
+  <path d="M392,175 L392,190 L385,190 L385,200 L390,200" fill="none" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="400" y="205" style="font-size:9px" fill="#27ae60">long path</text>
+  <text x="435" y="265" text-anchor="middle" class="label">Anomalies isolated quickly</text>
+  <text x="435" y="280" text-anchor="middle" class="label" fill="#27ae60">Works with any distribution</text>
+
+  <!-- Panel 3: Applications -->
+  <rect x="590" y="10" width="270" height="280" rx="8" fill="#fff7f0" stroke="#e67e22" stroke-width="1.5"/>
+  <text x="725" y="35" text-anchor="middle" class="title" fill="#e67e22">Applications</text>
+  <!-- Fraud icon -->
+  <rect x="620" y="55" width="40" height="30" rx="4" fill="#e67e22" opacity="0.2" stroke="#e67e22"/>
+  <text x="640" y="75" text-anchor="middle" style="font-size:10px" fill="#e67e22">$</text>
+  <text x="670" y="75" class="label" fill="#333">Fraud Detection</text>
+  <text x="670" y="88" style="font-size:9px" fill="#888">Unusual transactions</text>
+  <!-- Defect icon -->
+  <rect x="620" y="105" width="40" height="30" rx="4" fill="#e67e22" opacity="0.2" stroke="#e67e22"/>
+  <text x="640" y="124" text-anchor="middle" style="font-size:14px" fill="#e67e22">!</text>
+  <text x="670" y="122" class="label" fill="#333">Manufacturing QA</text>
+  <text x="670" y="135" style="font-size:9px" fill="#888">Defective products</text>
+  <!-- Network icon -->
+  <rect x="620" y="155" width="40" height="30" rx="4" fill="#e67e22" opacity="0.2" stroke="#e67e22"/>
+  <circle cx="633" cy="170" r="4" fill="none" stroke="#e67e22" stroke-width="1.5"/>
+  <circle cx="647" cy="170" r="4" fill="none" stroke="#e67e22" stroke-width="1.5"/>
+  <line x1="637" y1="170" x2="643" y2="170" stroke="#e67e22" stroke-width="1"/>
+  <text x="670" y="172" class="label" fill="#333">Network Intrusion</text>
+  <text x="670" y="185" style="font-size:9px" fill="#888">Unusual traffic patterns</text>
+  <!-- Health icon -->
+  <rect x="620" y="205" width="40" height="30" rx="4" fill="#e67e22" opacity="0.2" stroke="#e67e22"/>
+  <text x="640" y="225" text-anchor="middle" style="font-size:12px" fill="#e67e22">+</text>
+  <text x="670" y="222" class="label" fill="#333">Health Monitoring</text>
+  <text x="670" y="235" style="font-size:9px" fill="#888">Abnormal sensor readings</text>
+  <!-- Sensor icon -->
+  <rect x="620" y="250" width="40" height="30" rx="4" fill="#e67e22" opacity="0.2" stroke="#e67e22"/>
+  <text x="640" y="268" text-anchor="middle" style="font-size:9px" fill="#e67e22">IoT</text>
+  <text x="670" y="268" class="label" fill="#333">Predictive Maintenance</text>
+  <text x="670" y="281" style="font-size:9px" fill="#888">Equipment failure warnings</text>
+</svg>
