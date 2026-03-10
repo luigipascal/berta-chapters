@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300">
+  <style>
+    text { font-family: Arial, sans-serif; }
+    .title { font-size: 14px; font-weight: bold; fill: #333; }
+    .label { font-size: 11px; fill: #555; }
+    .small { font-size: 9px; }
+    .formula { font-size: 10px; font-style: italic; }
+  </style>
+
+  <text x="450" y="25" text-anchor="middle" class="title">Backpropagation: Gradient Flow</text>
+
+  <!-- Forward Pass (top) -->
+  <text x="450" y="55" text-anchor="middle" class="label" fill="#4a90d9">Forward Pass (left to right)</text>
+
+  <!-- Nodes -->
+  <rect x="40" y="80" width="90" height="50" rx="8" fill="#e8f0fe" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="85" y="100" text-anchor="middle" class="small" fill="#4a90d9">Input X</text>
+  <text x="85" y="115" text-anchor="middle" class="formula" fill="#4a90d9">x</text>
+
+  <rect x="190" y="80" width="90" height="50" rx="8" fill="#e8f8e8" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="235" y="100" text-anchor="middle" class="small" fill="#27ae60">Linear</text>
+  <text x="235" y="115" text-anchor="middle" class="formula" fill="#27ae60">z = Wx + b</text>
+
+  <rect x="340" y="80" width="90" height="50" rx="8" fill="#fef5e7" stroke="#e67e22" stroke-width="1.5"/>
+  <text x="385" y="100" text-anchor="middle" class="small" fill="#e67e22">Activation</text>
+  <text x="385" y="115" text-anchor="middle" class="formula" fill="#e67e22">a = sigma(z)</text>
+
+  <rect x="490" y="80" width="90" height="50" rx="8" fill="#e8f8e8" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="535" y="100" text-anchor="middle" class="small" fill="#27ae60">Linear</text>
+  <text x="535" y="115" text-anchor="middle" class="formula" fill="#27ae60">z2 = W2a + b2</text>
+
+  <rect x="640" y="80" width="90" height="50" rx="8" fill="#fef5e7" stroke="#e67e22" stroke-width="1.5"/>
+  <text x="685" y="100" text-anchor="middle" class="small" fill="#e67e22">Output</text>
+  <text x="685" y="115" text-anchor="middle" class="formula" fill="#e67e22">y_hat</text>
+
+  <rect x="790" y="80" width="80" height="50" rx="8" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="830" y="100" text-anchor="middle" class="small" fill="#c0392b">Loss</text>
+  <text x="830" y="115" text-anchor="middle" class="formula" fill="#c0392b">L(y, y_hat)</text>
+
+  <!-- Forward arrows -->
+  <line x1="130" y1="105" x2="190" y2="105" stroke="#4a90d9" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <line x1="280" y1="105" x2="340" y2="105" stroke="#27ae60" stroke-width="1.5"/>
+  <line x1="430" y1="105" x2="490" y2="105" stroke="#e67e22" stroke-width="1.5"/>
+  <line x1="580" y1="105" x2="640" y2="105" stroke="#27ae60" stroke-width="1.5"/>
+  <line x1="730" y1="105" x2="790" y2="105" stroke="#e67e22" stroke-width="1.5"/>
+
+  <!-- Backward Pass (bottom) -->
+  <text x="450" y="170" text-anchor="middle" class="label" fill="#c0392b">Backward Pass (right to left)  Chain Rule</text>
+
+  <!-- Gradient nodes -->
+  <rect x="790" y="190" width="80" height="50" rx="8" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="830" y="210" text-anchor="middle" class="small" fill="#c0392b">dL/dy_hat</text>
+  <text x="830" y="225" text-anchor="middle" class="formula" fill="#c0392b">start here</text>
+
+  <rect x="640" y="190" width="90" height="50" rx="8" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="685" y="210" text-anchor="middle" class="small" fill="#c0392b">dL/dz2</text>
+  <text x="685" y="225" text-anchor="middle" class="formula" fill="#c0392b">= dL/dy * dy/dz2</text>
+
+  <rect x="490" y="190" width="90" height="50" rx="8" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="535" y="210" text-anchor="middle" class="small" fill="#c0392b">dL/dW2, dL/da</text>
+  <text x="535" y="225" text-anchor="middle" class="formula" fill="#c0392b">update W2, b2</text>
+
+  <rect x="340" y="190" width="90" height="50" rx="8" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="385" y="210" text-anchor="middle" class="small" fill="#c0392b">dL/dz1</text>
+  <text x="385" y="225" text-anchor="middle" class="formula" fill="#c0392b">= dL/da * da/dz1</text>
+
+  <rect x="190" y="190" width="90" height="50" rx="8" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="235" y="210" text-anchor="middle" class="small" fill="#c0392b">dL/dW1</text>
+  <text x="235" y="225" text-anchor="middle" class="formula" fill="#c0392b">update W1, b1</text>
+
+  <!-- Backward arrows -->
+  <line x1="790" y1="215" x2="730" y2="215" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="640" y1="215" x2="580" y2="215" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="490" y1="215" x2="430" y2="215" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="340" y1="215" x2="280" y2="215" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Summary -->
+  <text x="450" y="270" text-anchor="middle" class="label">Chain Rule: dL/dW1 = dL/dy_hat * dy_hat/dz2 * dz2/da * da/dz1 * dz1/dW1</text>
+  <text x="450" y="290" text-anchor="middle" class="small" fill="#c0392b">Gradients flow backward through each layer, updating weights to minimize loss</text>
+</svg>
