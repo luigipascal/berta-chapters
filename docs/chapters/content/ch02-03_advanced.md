@@ -164,7 +164,7 @@ We built a directed graph with an adjacency list (each node maps to its neighbor
 
 ## 3. Dynamic Programming
 
-**DP breaks big problems into smaller ones and remembers the answers.** Instead of recomputing the same subproblem over and over, you store results in a table. When you need "what's the answer for size 5?" you look it up instead of recomputing. Classic example: Fibonacci. F(5) = F(4) + F(3), and F(4) needs F(3) and F(2)—F(3) gets computed many times without DP. With a table, each F(k) is computed once.
+**DP breaks big problems into smaller ones and remembers the answers.** Instead of recomputing the same subproblem over and over, you store results in a table. When you need "what's the answer for size 5?" you look it up instead of recomputing. Classic example: Fibonacci. \( F(5) = F(4) + F(3) \), and \( F(4) \) needs \( F(3) \) and \( F(2) \)—\( F(3) \) gets computed many times without DP. With a table, each \( F(k) \) is computed once.
 
 In AI: sequence alignment (NLP), Viterbi algorithm (HMMs), optimal policy computation (RL).
 

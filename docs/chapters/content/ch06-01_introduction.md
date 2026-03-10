@@ -129,9 +129,9 @@ print("Data shape:", sqft.shape)
 
 ## 5. Linear Regression from Scratch (NumPy)
 
-The linear model is simple: $y = w \cdot x + b$. Here $w$ is the slope (how much price increases per sqft) and $b$ is the intercept (base price). We find $w$ and $b$ by minimizing the average squared error between predictions and actual prices—this is called Mean Squared Error (MSE). The closed-form solution (normal equation) gives us the optimal values directly, no iteration needed.
+The linear model is simple: \( y = w \cdot x + b \). Here \( w \) is the slope (how much price increases per sqft) and \( b \) is the intercept (base price). We find \( w \) and \( b \) by minimizing the average squared error between predictions and actual prices—this is called Mean Squared Error (MSE). The closed-form solution (normal equation) gives us the optimal values directly, no iteration needed.
 
-**Implementing the fit:** The cell below uses the normal equation to find optimal $w$ and $b$ in one shot. No loops, no gradient descent—just matrix algebra.
+**Implementing the fit:** The cell below uses the normal equation to find optimal \( w \) and \( b \) in one shot. No loops, no gradient descent—just matrix algebra.
 
 **Before we visualize:** Let's plot the fitted line over the data to see how well it captures the relationship.
 
@@ -152,7 +152,7 @@ w, b = linear_regression_fit(sqft, price)
 print(f"Fitted model: price = {w:.1f} * sqft + {b:.0f}")
 ```
 
-**What just happened:** We found optimal $w$ and $b$. The printed formula is your model—you can now predict any house price by plugging in sqft.
+**What just happened:** We found optimal \( w \) and \( b \). The printed formula is your model—you can now predict any house price by plugging in sqft.
 
 ```python
 # Visualize: scatter plot + fitted line
@@ -235,7 +235,7 @@ plt.show()
 - **Machine learning** = learning from data instead of explicit rules
 - **Supervised** (labels) vs **Unsupervised** (no labels) vs **Reinforcement** (rewards)
 - **ML Pipeline:** Data → Clean → Features → Split → Train → Evaluate → Deploy
-- **Linear regression** predicts a continuous value: $y = w x + b$
+- **Linear regression** predicts a continuous value: \( y = wx + b \)
 - **Train/test split** ensures we measure generalization, not memorization
 
 **Next:** Feature engineering, cross-validation, and evaluation metrics.

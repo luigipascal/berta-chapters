@@ -38,11 +38,11 @@ In AI/ML work, the **choice of data structure** directly impacts:
 
 | Operation | List | Dict | Set |
 |-----------|------|------|-----|
-| Lookup by index | O(1) | - | - |
-| Lookup by value | O(n) | O(1) | O(1) |
-| Insert at end | O(1)* | O(1)* | O(1)* |
-| Insert at start | O(n) | - | - |
-| Delete by value | O(n) | O(1) | O(1) |
+| Lookup by index | \( O(1) \) | - | - |
+| Lookup by value | \( O(n) \) | \( O(1) \) | \( O(1) \) |
+| Insert at end | \( O(1) \)* | \( O(1) \)* | \( O(1) \)* |
+| Insert at start | \( O(n) \) | - | - |
+| Delete by value | \( O(n) \) | \( O(1) \) | \( O(1) \) |
 
 \* amortized
 
@@ -80,22 +80,22 @@ print(f"\nDict is ~{list_time/max(dict_time,1e-10):.0f}x faster than list for lo
 
 ### What just happened
 
-The benchmark ran the same lookup operation 100 times and averaged the result. The numbers show **microseconds per lookup** (1 us = 0.000001 seconds). A list must scan from the start until it finds the item—or reaches the end—so with 10,000 items and a target at the end, it checks all 10,000. A dict and set use hashing: they jump directly to the right "bucket," so lookup time is nearly constant no matter how many items. That's why dict is tens or hundreds of times faster for this operation. In ML, vocab lookups, feature hashing, and deduplication all rely on O(1) structures—this speedup scales with your data size.
+The benchmark ran the same lookup operation 100 times and averaged the result. The numbers show **microseconds per lookup** (1 us = 0.000001 seconds). A list must scan from the start until it finds the item—or reaches the end—so with 10,000 items and a target at the end, it checks all 10,000. A dict and set use hashing: they jump directly to the right "bucket," so lookup time is nearly constant no matter how many items. That's why dict is tens or hundreds of times faster for this operation. In ML, vocab lookups, feature hashing, and deduplication all rely on \( O(1) \) structures—this speedup scales with your data size.
 
 ## 2. Big O Notation
 
-**Big O is like speed ratings for algorithms.** Imagine a restaurant: O(1) is like already knowing your order—you don't need to read the menu. O(n) is reading the whole menu, one item at a time—more items means more time. O(n²) is comparing every dish to every other dish—that gets slow fast. Big O tells you how the *worst case* scales: if you double the data, does your algorithm take twice as long (O(n)), four times as long (O(n²)), or the same (O(1))? For AI, this matters when your dataset grows from 1K to 1M samples.
+**Big O is like speed ratings for algorithms.** Imagine a restaurant: \( O(1) \) is like already knowing your order—you don't need to read the menu. \( O(n) \) is reading the whole menu, one item at a time—more items means more time. \( O(n^2) \) is comparing every dish to every other dish—that gets slow fast. Big O tells you how the *worst case* scales: if you double the data, does your algorithm take twice as long (\( O(n) \)), four times as long (\( O(n^2) \)), or the same (\( O(1) \))? For AI, this matters when your dataset grows from 1K to 1M samples.
 
 Big O describes how an algorithm's time or space grows as input size increases. It's the language engineers use to discuss efficiency.
 
 | Big O | Name | Example | 1K items | 1M items |
 |-------|------|---------|----------|----------|
-| O(1) | Constant | Dict lookup | 1 op | 1 op |
-| O(log n) | Logarithmic | Binary search | 10 ops | 20 ops |
-| O(n) | Linear | Linear search | 1K ops | 1M ops |
-| O(n log n) | Linearithmic | Merge sort | 10K ops | 20M ops |
-| O(n²) | Quadratic | Bubble sort | 1M ops | 1T ops |
-| O(2ⁿ) | Exponential | Brute-force | Heat death | Heat death |
+| \( O(1) \) | Constant | Dict lookup | 1 op | 1 op |
+| \( O(\log n) \) | Logarithmic | Binary search | 10 ops | 20 ops |
+| \( O(n) \) | Linear | Linear search | 1K ops | 1M ops |
+| \( O(n \log n) \) | Linearithmic | Merge sort | 10K ops | 20M ops |
+| \( O(n^2) \) | Quadratic | Bubble sort | 1M ops | 1T ops |
+| \( O(2^n) \) | Exponential | Brute-force | Heat death | Heat death |
 
 ```python
 import math
@@ -120,7 +120,7 @@ demonstrate_complexity()
 
 ### What just happened
 
-The table shows how many "operations" each complexity class requires as `n` grows. Notice O(n²) explodes: 100,000 items means 10 billion operations. O(n log n) stays manageable—merge sort on a million items is around 20 million ops. This is why we care: a poorly chosen algorithm on big data can mean the difference between seconds and days.
+The table shows how many "operations" each complexity class requires as \( n \) grows. Notice \( O(n^2) \) explodes: 100,000 items means 10 billion operations. \( O(n \log n) \) stays manageable—merge sort on a million items is around 20 million ops. This is why we care: a poorly chosen algorithm on big data can mean the difference between seconds and days.
 
 ## 3. Searching Algorithms
 
@@ -128,7 +128,7 @@ Searching is one of the most fundamental operations. In AI you search through da
 
 **Linear search (plain English):** Imagine looking for your keys in your apartment. You check the kitchen, then the bedroom, then the couch—one place at a time until you find them. Linear search does exactly that: start at the beginning, check each element in order. It always works but can be slow if the item is at the end.
 
-**Binary search (plain English):** Now imagine your keys could only be in drawers numbered 1 to 100, and the drawers are sorted. You open drawer 50: too high. So it must be in 1–49. Open 25: too low. So 26–49. You keep halving the range. Binary search works the same way—but it *requires* the data to be sorted. Each step cuts the search space in half, so you find the item in about log₂(n) steps instead of n.
+**Binary search (plain English):** Now imagine your keys could only be in drawers numbered 1 to 100, and the drawers are sorted. You open drawer 50: too high. So it must be in 1–49. Open 25: too low. So 26–49. You keep halving the range. Binary search works the same way—but it *requires* the data to be sorted. Each step cuts the search space in half, so you find the item in about \( \log_2(n) \) steps instead of \( n \).
 
 ```python
 def linear_search(arr, target):
@@ -178,11 +178,13 @@ print(f"  Binary search was {comp_lin / comp_bin:.0f}x more efficient!")
 
 We searched for an element near the end of a sorted list of 100,000 numbers. Linear search had to check almost every element (about 99,000 comparisons). Binary search repeatedly halved the range, so it needed only around 17 comparisons. That's roughly 5,800× fewer checks—and it shows. For sorted data, binary search is almost always the right choice. In ML, this pattern appears in hyperparameter search (when you binary-search over learning rates) and in nearest-neighbor structures like KD-trees.
 
+Linear search: \( O(n) \). Binary search: \( O(\log n) \).
+
 **Try it yourself:** Change `target` to `data[0]` (first element) or `data[50_000]` (middle). How do the comparison counts change for linear vs binary search?
 
 ### Two-pointer and sliding window
 
-**Two-pointer (plain English):** You have a sorted list and need two numbers that sum to a target. Put one finger at the start and one at the end. If the sum is too small, move the left finger right (bigger numbers). If too big, move the right finger left (smaller numbers). You converge in one pass—O(n) instead of checking every pair O(n²). Used for feature selection, nearest-neighbor variants, and constraint problems.
+**Two-pointer (plain English):** You have a sorted list and need two numbers that sum to a target. Put one finger at the start and one at the end. If the sum is too small, move the left finger right (bigger numbers). If too big, move the right finger left (smaller numbers). You converge in one pass—\( O(n) \) instead of checking every pair \( O(n^2) \). Used for feature selection, nearest-neighbor variants, and constraint problems.
 
 **Sliding window (plain English):** Imagine a fixed-width frame sliding along a signal. At each position, you compute something (max, sum, etc.) inside the window. This is exactly what max-pooling does in CNNs: reduce spatial dimensions by taking the maximum in each local region. The code below shows both techniques.
 
@@ -238,7 +240,7 @@ print(f"Max pool (k=3): {pooled}")
 
 **Sliding window:** For each 3-element window, we took the max. The result `[4, 4, 5, 9, 9, 6, 5]` is the max-pooled version of the signal. In a CNN, this downsamples the feature map while preserving the strongest activations.
 
-**Common mistake:** Using two-pointer on *unsorted* data. The algorithm assumes sorted order so that moving left/right predictably changes the sum. If your data isn't sorted, sort it first—O(n log n)—or use a different approach like a hash set.
+**Common mistake:** Using two-pointer on *unsorted* data. The algorithm assumes sorted order so that moving left/right predictably changes the sum. If your data isn't sorted, sort it first—\( O(n \log n) \)—or use a different approach like a hash set.
 
 ## What's Next?
 

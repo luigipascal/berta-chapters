@@ -29,15 +29,15 @@ Build on the basics: feature engineering, proper data splits, cross-validation, 
 
 ## 1. Feature Engineering
 
-**Feature engineering is like choosing the right ingredients for your recipe.** The model can only "see" what you give it—the features are the model's view of the world. If you feed it raw sqft, it learns from sqft. If you also add sqft², it can capture curved relationships. Bad features = bad predictions, no matter how fancy your algorithm.
+**Feature engineering is like choosing the right ingredients for your recipe.** The model can only "see" what you give it—the features are the model's view of the world. If you feed it raw sqft, it learns from sqft. If you also add \( \text{sqft}^2 \), it can capture curved relationships. Bad features = bad predictions, no matter how fancy your algorithm.
 
 Common techniques:
 - **Binning** continuous variables (e.g., age into age groups)
-- **Polynomial features** (sqft, sqft²) for curved relationships
+- **Polynomial features** (sqft, \( \text{sqft}^2 \)) for curved relationships
 - **Encoding** categorical variables (Male/Female → 0/1)
 - **Normalization/scaling** so features are on similar scales
 
-**What do you think will happen?** If we use raw `sqft` and also `sqft²`, will the model fit curved relationships better?
+**What do you think will happen?** If we use raw `sqft` and also \( \text{sqft}^2 \), will the model fit curved relationships better?
 
 **Creating curved data:** We generate house data where price has a slight curve—bigger houses gain more value per sqft. This lets us compare linear vs polynomial features.
 
@@ -61,7 +61,7 @@ y = price
 
 **What just happened:** We created 120 houses with a curved price relationship. The data is ready for linear vs polynomial comparison.
 
-**Comparing linear vs polynomial:** Below we add sqft² as a feature and fit both models. The polynomial model can capture the curve.
+**Comparing linear vs polynomial:** Below we add \( \text{sqft}^2 \) as a feature and fit both models. The polynomial model can capture the curve.
 
 ```python
 # Feature engineering: add polynomial terms
@@ -175,11 +175,11 @@ plt.show()
 
 For classification (e.g., churn yes/no, spam/not spam), one number isn't enough. Here's each metric with a real scenario:
 
-- **Accuracy:** What percentage did the model get right? (TP + TN) / total. Simple, but misleading when classes are imbalanced—a spam filter that says "not spam" to everything is 99% accurate if 99% of emails aren't spam, but it's useless.
+- **Accuracy:** What percentage did the model get right? \( (\text{TP} + \text{TN}) / \text{total} \). Simple, but misleading when classes are imbalanced—a spam filter that says "not spam" to everything is 99% accurate if 99% of emails aren't spam, but it's useless.
 
-- **Precision:** When the model says YES, how often is it right? TP / (TP + FP). For a spam filter: of the emails we put in the spam folder, how many were actually spam? High precision = few false alarms.
+- **Precision:** When the model says YES, how often is it right? \( \text{TP} / (\text{TP} + \text{FP}) \). For a spam filter: of the emails we put in the spam folder, how many were actually spam? High precision = few false alarms.
 
-- **Recall:** Of all the actual positives, how many did the model find? TP / (TP + FN). For cancer screening: of all people who have cancer, how many did we catch? High recall = we don't miss the important cases.
+- **Recall:** Of all the actual positives, how many did the model find? \( \text{TP} / (\text{TP} + \text{FN}) \). For cancer screening: of all people who have cancer, how many did we catch? High recall = we don't miss the important cases.
 
 - **F1:** The balance between precision and recall. Harmonic mean. Use when you need both—catching all defaults (recall) without too many false alarms (precision).
 
@@ -279,7 +279,7 @@ plt.show()
 
 ## 6. Overfitting and Regularization
 
-**Regularization is putting the model on a diet.** It penalizes complex models so they don't memorize the training data. Ridge (L2) adds $\lambda \sum w^2$ to the loss—it shrinks all weights toward zero. Lasso (L1) can set some weights to exactly zero, doing automatic feature selection.
+**Regularization is putting the model on a diet.** It penalizes complex models so they don't memorize the training data. Ridge (L2) adds \( \lambda \sum w_i^2 \) to the loss—it shrinks all weights toward zero. Lasso (L1) can set some weights to exactly zero, doing automatic feature selection.
 
 With Ridge, we can use high-degree polynomials without overfitting. The penalty keeps the curve smooth.
 

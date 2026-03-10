@@ -29,18 +29,18 @@ Hypothesis testing, confidence intervals, A/B testing for ML experiments, and ca
 
 ## 1. Hypothesis Testing Workflow
 
-**Hypothesis testing uses an "innocent until proven guilty" analogy.** The null hypothesis H₀ is the default: "nothing interesting is happening." (E.g., "Model A and B perform the same.") We only reject it if the data is sufficiently unlikely under H₀. The p-value answers: "If H₀ were true, how often would we see data this extreme or more?"
+**Hypothesis testing uses an "innocent until proven guilty" analogy.** The null hypothesis \( H_0 \) is the default: "nothing interesting is happening." (E.g., "Model A and B perform the same.") We only reject it if the data is sufficiently unlikely under \( H_0 \). The p-value answers: "If \( H_0 \) were true, how often would we see data this extreme or more?"
 
 See `assets/diagrams/hypothesis_testing.svg` for the flowchart.
 
-1. Formulate H₀ (null) and H₁ (alternative)
-2. Choose α (significance level, e.g., 0.05)
+1. Formulate \( H_0 \) (null) and \( H_1 \) (alternative)
+2. Choose \( \alpha \) (significance level, e.g., 0.05)
 3. Collect data
 4. Compute test statistic (z, t, etc.)
 5. Compare to critical value or p-value
-6. Decision: Reject H₀ or fail to reject
+6. Decision: Reject \( H_0 \) or fail to reject
 
-**Z-test: Known variance.** When we know the population standard deviation (e.g., from historical data), we use the z-test. We compare our sample mean to the known μ₀ and see how many standard errors apart they are.
+**Z-test: Known variance.** When we know the population standard deviation (e.g., from historical data), we use the z-test. We compare our sample mean to the known \( \mu_0 \) and see how many standard errors apart they are.
 
 ```python
 import numpy as np
@@ -63,9 +63,9 @@ print(f"  p-value = {p_value:.4f}")
 print(f"  Reject H₀ at α=0.05? {p_value < 0.05}")
 ```
 
-**What just happened:** We computed z = (x̄ - μ₀) / (σ/√n). A z far from 0 means our sample mean is unlikely if μ₀ were true. The p-value is the probability of seeing such extreme z under H₀. If p < 0.05, we reject.
+**What just happened:** We computed \( z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} \). A \( z \) far from 0 means our sample mean is unlikely if \( \mu_0 \) were true. The p-value is the probability of seeing such extreme \( z \) under \( H_0 \). If \( p < 0.05 \), we reject.
 
-**T-test: Unknown variance.** Usually we don't know σ—we estimate it from the sample. The t-test uses the t-distribution (wider tails) to account for that uncertainty. We compare two groups: Model A vs Model B accuracy.
+**T-test: Unknown variance.** Usually we don't know \( \sigma \)—we estimate it from the sample. The t-test uses the t-distribution (wider tails) to account for that uncertainty. We compare two groups: Model A vs Model B accuracy.
 
 ```python
 # T-test: unknown variance. Compare two groups.
@@ -86,9 +86,9 @@ print(f"  Reject H₀ (no difference)? {p_value < 0.05}")
 
 **A range of plausible values.** When a poll says "Candidate X has 52% support ± 3%," that's a confidence interval. We're 95% confident the true proportion lies between 49% and 55%. It's not "95% chance the true value is in this interval"—the interval is fixed once computed; the randomness was in drawing the sample.
 
-95% CI for mean: $\bar{x} \pm 1.96 \frac{\sigma}{\sqrt{n}}$ (z) or use t-distribution when σ unknown.
+95% CI for mean: \( \bar{x} \pm 1.96 \frac{\sigma}{\sqrt{n}} \) (z) or use t-distribution when \( \sigma \) unknown.
 
-**Computing a 95% CI.** We use the t-distribution since we're estimating σ from the sample. The formula gives us (low, high) such that 95% of the time, the true mean falls in that range.
+**Computing a 95% CI.** We use the t-distribution since we're estimating \( \sigma \) from the sample. The formula gives us (low, high) such that 95% of the time, the true mean falls in that range.
 
 ```python
 def confidence_interval(sample, confidence=0.95):
@@ -140,7 +140,7 @@ plt.show()
 
 Compare conversion rates (or accuracy as proportion) between variant A and B. Use two-proportion z-test.
 
-**Two-proportion z-test.** We pool the conversion rates, compute standard error, and form z = (p_A - p_B) / SE. Then we get a p-value.
+**Two-proportion z-test.** We pool the conversion rates, compute standard error, and form \( z = (p_A - p_B) / SE \). Then we get a p-value.
 
 ```python
 def ab_test_two_proportion(n_a, conv_a, n_b, conv_b):
@@ -194,11 +194,11 @@ plt.show()
 
 ## 5. P-values: What They Mean (and Misconceptions)
 
-**The p-value is the probability of seeing this result (or more extreme) if nothing interesting is happening.** It is NOT the probability the hypothesis is true! Common misconception: "p=0.05 means 95% chance we're right." Wrong. It means: if H₀ were true, we'd see data this extreme 5% of the time. Small p suggests the data is inconsistent with H₀—we reject it. But we haven't proven H₁; we've just failed to support H₀.
+**The p-value is the probability of seeing this result (or more extreme) if nothing interesting is happening.** It is NOT the probability the hypothesis is true! Common misconception: "\( p = 0.05 \) means 95% chance we're right." Wrong. It means: if \( H_0 \) were true, we'd see data this extreme 5% of the time. Small \( p \) suggests the data is inconsistent with \( H_0 \)—we reject it. But we haven't proven \( H_1 \); we've just failed to support \( H_0 \).
 
-- **Correct**: P-value = P(data or more extreme | H₀ true). Small p → inconsistent with H₀.
-- **Wrong**: P-value ≠ P(H₀ true). P-value is not probability of null!
-- **Wrong**: p=0.05 does not mean 95% sure. It means 5% chance of such extreme data if H₀ were true.
+- **Correct**: P-value = \( P(\text{data or more extreme} \mid H_0 \text{ true}) \). Small \( p \) → inconsistent with \( H_0 \).
+- **Wrong**: P-value \( \neq P(H_0 \text{ true}) \). P-value is not probability of null!
+- **Wrong**: \( p = 0.05 \) does not mean 95% sure. It means 5% chance of such extreme data if \( H_0 \) were true.
 
 ## 6. Capstone: Complete A/B Test Analysis
 
@@ -236,7 +236,7 @@ print(f"  Conclusion: {'Reject H₀ — significant difference' if p < 0.05 else
 
 **What just happened:** We get z and p. If p < 0.05, we reject the null (no difference) and conclude A and B differ significantly. We also report the actual conversion rates.
 
-**Bootstrap CI for the difference.** We resample each group with replacement 1000 times, compute the difference in conversion rates each time, and take the 2.5% and 97.5% percentiles. This gives a 95% CI for (rate_A - rate_B).
+**Bootstrap CI for the difference.** We resample each group with replacement 1000 times, compute the difference in conversion rates each time, and take the 2.5% and 97.5% percentiles. This gives a 95% CI for \( \text{rate}_A - \text{rate}_B \).
 
 ```python
 # Bootstrap CI for difference in conversion rates
@@ -260,7 +260,7 @@ print(f"Bootstrap 95% CI for difference (A - B): [{low:.4f}, {high:.4f}]")
 
 ## 7. Summary
 
-- **Hypothesis testing**: z-test (known σ), t-test (unknown σ). Interpret p-values correctly—they're not P(H₀ true)!
+- **Hypothesis testing**: z-test (known \( \sigma \)), t-test (unknown \( \sigma \)). Interpret p-values correctly—they're not \( P(H_0 \text{ true}) \)!
 - **Confidence intervals**: A range of plausible values; 95% means the procedure captures the true value 95% of the time
 - **A/B testing**: Two-proportion z-test for conversion/accuracy comparison; like a clinical trial
 - **Correlation ≠ causation**: Beware spurious correlations and confounders

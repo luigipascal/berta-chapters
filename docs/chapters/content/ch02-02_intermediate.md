@@ -146,15 +146,15 @@ while scheduler.size > 0:
 
 ### What just happened
 
-We used Python's `deque` (double-ended queue) from `collections` for O(1) append and popleft. The `TaskQueue` has three priority levels; `dequeue` always takes from high first, then normal, then low. So "fix_data_pipeline" and "retrain_urgent" run before "train_model_v2" and "evaluate_model," which run before "generate_report." Real ML schedulers (e.g., Kubernetes, Ray) use similar priority queues.
+We used Python's `deque` (double-ended queue) from `collections` for \( O(1) \) append and popleft. The `TaskQueue` has three priority levels; `dequeue` always takes from high first, then normal, then low. So "fix_data_pipeline" and "retrain_urgent" run before "train_model_v2" and "evaluate_model," which run before "generate_report." Real ML schedulers (e.g., Kubernetes, Ray) use similar priority queues.
 
 ## 3. Sorting Algorithms
 
 Sorting is fundamental to data processing. Understanding *how* sorting works helps you choose the right approach for your data.
 
-**Merge sort (plain English):** Imagine sorting a deck of cards by dividing it in half, sorting each half separately (by recursively dividing again until you have single cards), then merging the two sorted halves. To merge, you look at the top card of each pile and always take the smaller one. Merge sort always does O(n log n) work—predictable and stable (equal elements keep their relative order). Used when you need guaranteed performance.
+**Merge sort (plain English):** Imagine sorting a deck of cards by dividing it in half, sorting each half separately (by recursively dividing again until you have single cards), then merging the two sorted halves. To merge, you look at the top card of each pile and always take the smaller one. Merge sort always does \( O(n \log n) \) work—predictable and stable (equal elements keep their relative order). Used when you need guaranteed performance.
 
-**Quicksort (plain English):** Pick a "pivot" (e.g., the middle element). Put everything smaller left, everything larger right, pivot in the middle. Now recursively sort the left and right halves. On average, O(n log n); in the worst case (bad pivot choices), O(n²). Often faster in practice due to better cache behavior and simpler inner loops. Python's `sorted()` uses Timsort, a hybrid of merge sort and insertion sort optimized for real-world data.
+**Quicksort (plain English):** Pick a "pivot" (e.g., the middle element). Put everything smaller left, everything larger right, pivot in the middle. Now recursively sort the left and right halves. On average, \( O(n \log n) \); in the worst case (bad pivot choices), \( O(n^2) \). Often faster in practice due to better cache behavior and simpler inner loops. Python's `sorted()` uses Timsort, a hybrid of merge sort and insertion sort optimized for real-world data.
 
 ```python
 def merge_sort(arr):
@@ -230,7 +230,7 @@ All three methods produce the same sorted output. The performance comparison sho
 | Problem | Best Structure | Why |
 |---------|---------------|-----|
 | Store training batches in order | List | Index access, append |
-| Fast lookup of labels | Dict/Set | O(1) lookup |
+| Fast lookup of labels | Dict/Set | \( O(1) \) lookup |
 | Processing jobs in order | Queue (deque) | FIFO |
 | Undo/redo history | Stack | LIFO |
 | Unique vocabulary | Set | Auto-dedup |

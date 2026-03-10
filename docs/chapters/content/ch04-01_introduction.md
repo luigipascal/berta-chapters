@@ -17,7 +17,7 @@
 
 **What you'll learn:**
 - What is probability? Sample spaces, events
-- Conditional probability with AI relevance: P(spam|word)
+- Conditional probability with AI relevance: \( P(\text{spam} \mid \text{word}) \)
 - Independence and the Law of Large Numbers
 - Interactive experiments: predict before running!
 
@@ -28,12 +28,12 @@
 
 ## 1. What is Probability?
 
-**Probability measures uncertainty**—and we encounter it constantly in AI. Spam filters assign probabilities to emails. Recommendation systems estimate P(click|user, ad). Medical AI outputs P(disease|symptoms). Even "model accuracy" is a probability: the proportion of correct predictions over many trials.
+**Probability measures uncertainty**—and we encounter it constantly in AI. Spam filters assign probabilities to emails. Recommendation systems estimate \( P(\text{click} \mid \text{user, ad}) \). Medical AI outputs \( P(\text{disease} \mid \text{symptoms}) \). Even "model accuracy" is a probability: the proportion of correct predictions over many trials.
 
 From coins and dice we build intuition, then apply to AI:
-- **Coins**: P(heads) = 0.5 — binary outcomes (like: is this email spam or not?)
-- **Dice**: P(rolling 6) = 1/6 — discrete outcomes
-- **AI**: P(model correct), P(spam|"viagra"), P(conversion|variant A)
+- **Coins**: \( P(\text{heads}) = 0.5 \) — binary outcomes (like: is this email spam or not?)
+- **Dice**: \( P(\text{rolling 6}) = 1/6 \) — discrete outcomes
+- **AI**: \( P(\text{model correct}) \), \( P(\text{spam} \mid \text{"viagra"}) \), \( P(\text{conversion} \mid \text{variant A}) \)
 
 **Predict**: What happens when we flip a fair coin 10 times? How many heads do you expect? Will you always get exactly 5?
 
@@ -60,7 +60,7 @@ print("Expected: ~5 (0.5 × 10)")
 
 ## 2. Sample Spaces and Events
 
-The **sample space** (Ω) is the set of all possible outcomes. An **event** is a subset of outcomes we care about. For a fair die, Ω = {1,2,3,4,5,6}. The event "even" = {2,4,6} has probability 3/6 = 0.5 because three out of six outcomes satisfy it.
+The **sample space** \( \Omega \) is the set of all possible outcomes. An **event** is a subset of outcomes we care about. For a fair die, \( \Omega = \{1,2,3,4,5,6\} \). The event "even" = \( \{2,4,6\} \) has probability \( 3/6 = 0.5 \) because three out of six outcomes satisfy it.
 
 ```mermaid
 flowchart TD
@@ -73,7 +73,7 @@ flowchart TD
     F --> G[P(A and B)]
 ```
 
-For a 6-sided die: Ω = {1,2,3,4,5,6}. Event "even" = {2,4,6} → P(even) = 3/6 = 0.5.
+For a 6-sided die: \( \Omega = \{1,2,3,4,5,6\} \). Event "even" = \( \{2,4,6\} \) → \( P(\text{even}) = 3/6 = 0.5 \).
 
 **From coins to dice.** A die has six equally likely outcomes. We'll roll 60 times and count how many evens (2, 4, 6) we get. By the law of large numbers, we expect about half—but 60 rolls is still a small sample, so we might see 28 or 32.
 
@@ -92,17 +92,19 @@ print("Expected: 0.5")
 
 **What changes when you learn new information?** Imagine you're deciding whether to bring an umbrella. Before checking the forecast, P(rain) might be 0.3. After the forecast says "80% chance of rain," your belief changes—that's conditional probability! P(rain | forecast says rain) is much higher.
 
-**Bayesian spam filtering in plain English:** Email filters ask: "Given that this email contains the word 'viagra,' what's the probability it's spam?" They use counts from training data: how often "viagra" appears in spam vs. ham. The formula P(spam|word) = P(word|spam)×P(spam) / P(word) is Bayes' theorem—and it powers most spam filters.
+**Bayesian spam filtering in plain English:** Email filters ask: "Given that this email contains the word 'viagra,' what's the probability it's spam?" They use counts from training data: how often "viagra" appears in spam vs. ham. The formula \( P(\text{spam} \mid \text{word}) = \frac{P(\text{word} \mid \text{spam}) \, P(\text{spam})}{P(\text{word})} \) is Bayes' theorem—and it powers most spam filters.
 
-## 3. Conditional Probability: P(A|B)
+## 3. Conditional Probability: \( P(A \mid B) \)
 
-**P(A|B) = P(A and B) / P(B)** — probability of A given B occurred.
+\[ P(A \mid B) = \frac{P(A \cap B)}{P(B)} \]
 
-**AI Example**: Spam classification. P(spam | "viagra" in email)?
+Probability of \( A \) given \( B \) occurred.
+
+**AI Example**: Spam classification. \( P(\text{spam} \mid \text{"viagra" in email}) \)?
 - If "viagra" appears, how likely is it spam?
 - This is the core of Naive Bayes classifiers!
 
-**Predict**: If P(spam)=0.3, P("viagra"|spam)=0.8, P("viagra"|ham)=0.01, what is P(spam|"viagra")?
+**Predict**: If \( P(\text{spam}) = 0.3 \), \( P(\text{"viagra"} \mid \text{spam}) = 0.8 \), \( P(\text{"viagra"} \mid \text{ham}) = 0.01 \), what is \( P(\text{spam} \mid \text{"viagra"}) \)?
 
 ```python
 def conditional_probability(p_a_and_b, p_b):
@@ -127,9 +129,9 @@ print(f"P(spam | 'viagra') = {p_spam_given_viagra:.3f}")
 print("→ Very high! Word 'viagra' strongly indicates spam.")
 ```
 
-**What just happened:** We applied the formula P(A|B) = P(A and B) / P(B). First we computed P("viagra") using the law of total probability—it can come from spam or ham. Then we divided. The result (~0.99) means: if you see "viagra," it's almost certainly spam.
+**What just happened:** We applied the formula \( P(A \mid B) = P(A \cap B) / P(B) \). First we computed \( P(\text{"viagra"}) \) using the law of total probability—it can come from spam or ham. Then we divided. The result (~0.99) means: if you see "viagra," it's almost certainly spam.
 
-**Common mistake:** Confusing P(spam|"viagra") with P("viagra"|spam). The first is "given the word, is it spam?"—what we want. The second is "given it's spam, does it have the word?"—what we measure from data.
+**Common mistake:** Confusing \( P(\text{spam} \mid \text{"viagra"}) \) with \( P(\text{"viagra"} \mid \text{spam}) \). The first is "given the word, is it spam?"—what we want. The second is "given it's spam, does it have the word?"—what we measure from data.
 
 ## 4. Probability Concepts Hierarchy
 
@@ -153,7 +155,7 @@ flowchart TB
 
 ## 5. Independence
 
-**Two events are independent when knowing one tells you nothing about the other.** Flipping a coin and rolling a die are independent—the coin result doesn't change the die probabilities. Mathematically: P(A and B) = P(A) × P(B), which means P(A|B) = P(A).
+**Two events are independent when knowing one tells you nothing about the other.** Flipping a coin and rolling a die are independent—the coin result doesn't change the die probabilities. Mathematically: \( P(A \cap B) = P(A) \times P(B) \), which means \( P(A \mid B) = P(A) \).
 
 **AI relevance**: Naive Bayes assumes that words in an email are independent given the class. That's often false ("free" and "money" appear together in spam), but the assumption still leads to good classifiers in practice.
 
@@ -188,7 +190,7 @@ print("Plot saved to assets/diagrams/dice_distribution.svg")
 
 **Predict**: As we increase the number of coin flips, what happens to the proportion of heads?
 
-The LLN says: sample mean → true mean as n → ∞. Let's simulate and visualize!
+The LLN says: sample mean → true mean as \( n \to \infty \). Let's simulate and visualize!
 
 ```python
 import numpy as np
@@ -220,7 +222,7 @@ print("Sample proportion converges toward 0.5 as n increases.")
 
 ## 7. Probability Heatmap: Joint Distribution
 
-Visualize P(A, B) for two events. **Predict**: For two independent coins, what does the joint distribution look like?
+Visualize \( P(A, B) \) for two events. **Predict**: For two independent coins, what does the joint distribution look like?
 
 **Joint distribution: two events at once.** When we flip two coins, we have four outcomes: (T,T), (T,H), (H,T), (H,H). For independent fair coins, each has probability 0.25. The heatmap below visualizes this—each cell is one outcome.
 
@@ -257,8 +259,8 @@ print("Each cell ≈ 0.25 for independent fair coins.")
 
 You've seen:
 - **Sample spaces and events** — coins, dice, then AI examples
-- **Conditional probability** P(A|B) — spam classification, and why P(spam|word) is the key question
-- **Independence** — when P(A|B) = P(A); Naive Bayes assumes it
+- **Conditional probability** \( P(A \mid B) \) — spam classification, and why \( P(\text{spam} \mid \text{word}) \) is the key question
+- **Independence** — when \( P(A \mid B) = P(A) \); Naive Bayes assumes it
 - **Law of Large Numbers** — empirical proportions converge to true probabilities; the more data, the closer
 
 Next: probability distributions (Bernoulli, Binomial, Normal, Poisson) and Bayes' theorem.

@@ -30,7 +30,7 @@ Key probability distributions, Central Limit Theorem, Bayes' theorem, and Maximu
 
 **Each distribution models a different kind of randomness.** Think of them as templates: when your data looks a certain way, you pick the matching distribution.
 
-- **Bernoulli**: A single yes/no question. "Is this email spam?" One trial, two outcomes. Parameter p = P(success).
+- **Bernoulli**: A single yes/no question. "Is this email spam?" One trial, two outcomes. Parameter \( p = P(\text{success}) \).
 - **Binomial**: How many yeses in N tries. "How many spam emails in 100?" Same as N independent Bernoulli trials.
 - **Normal**: The bell curve. Most things cluster around the average—heights, test scores, measurement errors. Central Limit Theorem makes it show up everywhere.
 - **Poisson**: How many rare events in a time period. "Server crashes per day." "Customer arrivals per hour."
@@ -40,8 +40,8 @@ Key probability distributions, Central Limit Theorem, Bayes' theorem, and Maximu
 |--------------|----------|------------|
 | Bernoulli | Single binary trial (correct/incorrect) | p |
 | Binomial | n Bernoulli trials (accuracy over n samples) | n, p |
-| Normal | Continuous, CLT, activations | μ, σ² |
-| Poisson | Counts per interval (events, requests) | λ |
+| Normal | Continuous, CLT, activations | \( \mu, \sigma^2 \) |
+| Poisson | Counts per interval (events, requests) | \( \lambda \) |
 | Uniform | Equal probability over range | a, b |
 
 See `assets/diagrams/probability_distributions.svg` for relationships.
@@ -106,9 +106,9 @@ plt.savefig('../assets/diagrams/distributions_overview.svg')
 plt.show()
 ```
 
-**What just happened:** We drew the four distribution shapes. Bernoulli: just two bars (failure/success). Binomial: peaks in the middle (most likely to get ~10 heads in 20 flips). Normal: the iconic bell. Poisson: skewed for rare events (λ=4 means typically 3–5 events).
+**What just happened:** We drew the four distribution shapes. Bernoulli: just two bars (failure/success). Binomial: peaks in the middle (most likely to get ~10 heads in 20 flips). Normal: the iconic bell. Poisson: skewed for rare events (\( \lambda = 4 \) means typically 3–5 events).
 
-**Try it yourself:** Change the Binomial to Bin(20, 0.2)—now successes are rare. The peak moves left. Change Poisson to λ=10—the shape becomes more symmetric, approaching Normal. The CLT explains why!
+**Try it yourself:** Change the Binomial to \( \text{Bin}(20, 0.2) \)—now successes are rare. The peak moves left. Change Poisson to \( \lambda = 10 \)—the shape becomes more symmetric, approaching Normal. The CLT explains why!
 
 ## 2. Central Limit Theorem
 
@@ -118,7 +118,7 @@ plt.show()
 
 **Predict**: If we repeatedly sample means of 30 random values from a *Uniform* distribution, what shape will the distribution of those means have?
 
-**Simulating the CLT.** We take 10,000 samples of size 30 from Uniform(0,1), compute each sample's mean, and histogram those 10,000 means. The left panel shows raw uniform data (flat). The right shows the distribution of means—bell-shaped!
+**Simulating the CLT.** We take 10,000 samples of size 30 from \( \text{Uniform}(0,1) \), compute each sample's mean, and histogram those 10,000 means. The left panel shows raw uniform data (flat). The right shows the distribution of means—bell-shaped!
 
 ```python
 # Simulate CLT: sample means from Uniform(0,1)
@@ -162,17 +162,17 @@ print("As n increases, distribution of sample means becomes Normal (CLT).")
 
 ## 3. Bayes' Theorem
 
-**Updating beliefs with evidence.** You start with a *prior* belief P(H). You see evidence E. Bayes tells you how to update to the *posterior* P(H|E). A full worked example: 1% of people have a rare disease. The test is 95% sensitive (catches true cases) and 98% specific (correctly clears healthy people). You test positive. What's P(disease|positive)? Most people guess 95%—but it's only ~32%! Why? The disease is rare, so most positives are false positives from the 99% healthy population.
+**Updating beliefs with evidence.** You start with a *prior* belief \( P(H) \). You see evidence \( E \). Bayes tells you how to update to the *posterior* \( P(H \mid E) \). A full worked example: 1% of people have a rare disease. The test is 95% sensitive (catches true cases) and 98% specific (correctly clears healthy people). You test positive. What's \( P(\text{disease} \mid \text{positive}) \)? Most people guess 95%—but it's only ~32%! Why? The disease is rare, so most positives are false positives from the 99% healthy population.
 
-$$P(H|E) = \frac{P(E|H) \cdot P(H)}{P(E)}$$
+\[ P(H \mid E) = \frac{P(E \mid H) \cdot P(H)}{P(E)} \]
 
-- **Prior** P(H): belief before evidence
-- **Likelihood** P(E|H): how likely evidence given hypothesis
-- **Posterior** P(H|E): updated belief after evidence
+- **Prior** \( P(H) \): belief before evidence
+- **Likelihood** \( P(E \mid H) \): how likely evidence given hypothesis
+- **Posterior** \( P(H \mid E) \): updated belief after evidence
 
 See `assets/diagrams/bayes_theorem.svg` for the medical test example.
 
-**Medical test in code.** We implement the Bayes update and apply it to the disease example. The key is computing P(positive) = P(positive|disease)×P(disease) + P(positive|healthy)×P(healthy)—the denominator.
+**Medical test in code.** We implement the Bayes update and apply it to the disease example. The key is computing \( P(\text{positive}) = P(\text{positive} \mid \text{disease}) \cdot P(\text{disease}) + P(\text{positive} \mid \text{healthy}) \cdot P(\text{healthy}) \)—the denominator.
 
 ```python
 def bayes_update(p_prior, p_likelihood, p_evidence):
@@ -197,7 +197,7 @@ print("→ Even with positive test, only ~32% chance of disease (rare prior).")
 
 **What just happened:** Even with a positive test (95% sensitive!), the posterior is only ~32% because the prior was 1%. Rare diseases need very specific tests. This is why Bayes matters: the prior shifts the conclusion dramatically.
 
-**Spam classification:** Same formula, different domain. "Free" appears in 60% of spam but only 10% of ham. Given that an email contains "free," we update P(spam) upward.
+**Spam classification:** Same formula, different domain. "Free" appears in 60% of spam but only 10% of ham. Given that an email contains "free," we update \( P(\text{spam}) \) upward.
 
 ```python
 # Spam classification: P(spam)=0.4, P('free'|spam)=0.6, P('free'|ham)=0.1
@@ -214,13 +214,13 @@ print(f"  P(spam|'free') = {p_spam_given_free:.3f}")
 print("→ Word 'free' raises spam probability significantly.")
 ```
 
-**What just happened:** P(spam|"free") jumps from the prior 0.4 to about 0.86. One word can strongly shift the probability—that's how Naive Bayes spam filters work (using many words).
+**What just happened:** \( P(\text{spam} \mid \text{"free"}) \) jumps from the prior 0.4 to about 0.86. One word can strongly shift the probability—that's how Naive Bayes spam filters work (using many words).
 
-**Try it yourself:** Change p_spam to 0.1 (less spam overall). How does P(spam|"free") change? The prior influences the posterior: with less spam in the world, the word "free" is less indicative.
+**Try it yourself:** Change p_spam to 0.1 (less spam overall). How does \( P(\text{spam} \mid \text{"free"}) \) change? The prior influences the posterior: with less spam in the world, the word "free" is less indicative.
 
 ## 4. Expected Value and Variance
 
-**E[X]** is the long-run average. **Var(X)** is the spread. For model selection: a model with higher mean accuracy might still be worse if its variance is huge—you can't trust any single run. Under a limited evaluation budget (e.g., 5 random seeds), the low-variance model might be preferred.
+\( E[X] \) is the long-run average. \( \text{Var}(X) \) is the spread. For model selection: a model with higher mean accuracy might still be worse if its variance is huge—you can't trust any single run. Under a limited evaluation budget (e.g., 5 random seeds), the low-variance model might be preferred.
 
 **ML example**: Two models A and B. A has higher mean but higher variance. Under limited evaluation budget, B might be preferred (more reliable).
 
@@ -250,11 +250,11 @@ print(f"Model B: E[X]={model_b.mean():.3f}, Var={model_b.var():.4f}")
 
 ## 5. Maximum Likelihood Estimation (MLE) Intuition
 
-**MLE: Finding the most likely explanation for your data.** Given observed data, which parameter values make that data most probable? For Bernoulli: given [1,0,1,1,0], what p makes this sequence most likely? The answer: p = proportion of 1s = 3/5. Simple!
+**MLE: Finding the most likely explanation for your data.** Given observed data, which parameter values make that data most probable? For Bernoulli: given [1,0,1,1,0], what \( p \) makes this sequence most likely? The answer: \( p = \) proportion of 1s \( = 3/5 \). Simple!
 
 **Predict**: If we observe 7 heads in 10 flips, what is the MLE of p?
 
-**Bernoulli MLE in code.** We compute p_hat = 7/10 and plot the likelihood function L(p) = p^7 × (1-p)^3. It peaks at p=0.7.
+**Bernoulli MLE in code.** We compute \( \hat{p} = 7/10 \) and plot the likelihood function \( L(p) = p^7 (1-p)^3 \). It peaks at \( p = 0.7 \).
 
 ```python
 def mle_bernoulli(data):
@@ -281,11 +281,11 @@ plt.savefig('../assets/diagrams/mle_bernoulli.svg')
 plt.show()
 ```
 
-**What just happened:** The likelihood curve shows how probable the data is for each p. At p=0.7, it's maximized. MLE is the foundation of most parameter estimation in ML—including neural network training (cross-entropy is log-likelihood).
+**What just happened:** The likelihood curve shows how probable the data is for each \( p \). At \( p = 0.7 \), it's maximized. MLE is the foundation of most parameter estimation in ML—including neural network training (cross-entropy is log-likelihood).
 
 **Try it yourself:** Change the data to [1,1,1,0,0] (3 heads in 5 flips). Run mle_bernoulli. The MLE should be 0.6. Then try [1,1,1,1,1] — what happens? The MLE is 1.0, but the likelihood curve is skewed.
 
-**Common mistake:** Confusing MLE with the true parameter. MLE gives the best guess from the data. With only 10 flips, p_hat=0.7 could easily happen even if the true coin is fair (p=0.5). More data tightens the estimate.
+**Common mistake:** Confusing MLE with the true parameter. MLE gives the best guess from the data. With only 10 flips, \( \hat{p} = 0.7 \) could easily happen even if the true coin is fair (\( p = 0.5 \)). More data tightens the estimate.
 
 **Why this matters for AI:** When we train a model, we are often doing MLE. The loss function we minimize corresponds to negative log-likelihood. Understanding MLE connects optimization to probability.
 
@@ -294,7 +294,7 @@ plt.show()
 - **Distributions**: Bernoulli (one trial), Binomial (n trials), Normal (bell curve), Poisson (counts), Uniform—each models a different scenario
 - **CLT**: Sample means → Normal as n increases; justifies normal-based inference
 - **Bayes**: Update beliefs with evidence (medical test, spam)—prior matters!
-- **E[X], Var(X)**: Mean and spread both matter for model selection
+- \( E[X] \), \( \text{Var}(X) \): Mean and spread both matter for model selection
 - **MLE**: Choose parameters that maximize likelihood of observed data
 
 Next: Hypothesis testing, confidence intervals, A/B testing.

@@ -142,7 +142,7 @@ print(f"Trained: y = {w:.3f}*x + {b:.3f}")
 
 **YAGNI (You Aren't Gonna Need It):** Don't build for hypothetical futures. Premature optimization: spending a week on a "scalable" data loader when 10K rows fit in memory. Build what you need now; refactor when you have real requirements.
 
-**DRY in action.** We had (x - mean) / std copy-pasted for train, val, test. Now: one normalize() function. We pass mean and std (computed from training data) and get normalized values.
+**DRY in action.** We had \( (x - \text{mean}) / \text{std} \) copy-pasted for train, val, test. Now: one normalize() function. We pass mean and std (computed from training data) and get normalized values.
 
 ```python
 # DRY violation: Same normalization in 3 places

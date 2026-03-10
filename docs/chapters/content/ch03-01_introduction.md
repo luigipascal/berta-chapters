@@ -60,9 +60,9 @@ Three core operations we need:
 
 | Operation | Formula | AI Use Case |
 |-----------|---------|-------------|
-| Addition | u + v = (u₁+v₁, u₂+v₂, ...) | Combining embeddings, batch updates |
-| Scalar multiply | c·u = (c·u₁, c·u₂, ...) | Learning rate scaling, normalization |
-| Dot product | u·v = Σ uᵢ·vᵢ | Similarity, attention scores, linear layer output |
+| Addition | \( \mathbf{u} + \mathbf{v} = (u_1+v_1, u_2+v_2, \ldots) \) | Combining embeddings, batch updates |
+| Scalar multiply | \( c \cdot \mathbf{u} = (c \cdot u_1, c \cdot u_2, \ldots) \) | Learning rate scaling, normalization |
+| Dot product | \( \mathbf{u} \cdot \mathbf{v} = \sum u_i v_i \) | Similarity, attention scores, linear layer output |
 
 ```python
 def vector_add(u, v):
@@ -97,7 +97,7 @@ print(f"  (1*4 + 2*5 + 3*6 = {1*4+2*5+3*6})")
 
 ### What just happened
 
-We implemented `vector_add`, `vector_scale`, and `vector_dot` in pure Python. The dot product 1×4 + 2×5 + 3×6 = 32 measures how much the vectors "align." In a linear layer, each neuron computes a dot product between its weight vector and the input. **Try it yourself:** Compute `vector_dot(house_a, house_b)`—what does a high or low value mean for house similarity?
+We implemented `vector_add`, `vector_scale`, and `vector_dot` in pure Python. The dot product \( 1 \times 4 + 2 \times 5 + 3 \times 6 = 32 \) measures how much the vectors "align." In a linear layer, each neuron computes a dot product between its weight vector and the input. **Try it yourself:** Compute `vector_dot(house_a, house_b)`—what does a high or low value mean for house similarity?
 
 ## 3. Dot Product: The Heart of ML
 
@@ -141,8 +141,8 @@ A **norm** measures the "length" or "magnitude" of a vector.
 
 | Norm | Formula | Use Case |
 |------|---------|----------|
-| L1 (Manhattan) | ‖u‖₁ = Σ|uᵢ| | Sparsity (L1 regularization), robust to outliers |
-| L2 (Euclidean) | ‖u‖₂ = √(Σ uᵢ²) | Distance, normalization, L2 regularization |
+| L1 (Manhattan) | \( \lVert u \rVert_1 = \sum \lvert u_i \rvert \) | Sparsity (L1 regularization), robust to outliers |
+| L2 (Euclidean) | \( \lVert u \rVert_2 = \sqrt{\sum u_i^2} \) | Distance, normalization, L2 regularization |
 
 L2 norm is the standard geometric length. Used in: cosine similarity, gradient clipping, weight decay.
 
@@ -173,7 +173,7 @@ print(f"  L2 norm: {norm_l2(v)} (3-4-5 triangle: sqrt(9+16)=5)")
 
 Dot product alone depends on magnitude. **Cosine similarity** normalizes by vector lengths:
 
-$$\text{cosine}(u, v) = \frac{u \cdot v}{\|u\|_2 \cdot \|v\|_2} = \frac{u \cdot v}{\|u\| \|v\|}$$
+\[ \text{cosine}(u, v) = \frac{u \cdot v}{\|u\|_2 \cdot \|v\|_2} = \frac{u \cdot v}{\|u\| \|v\|} \]
 
 Range: -1 (opposite) to +1 (identical direction). **Most common similarity metric in NLP** for embeddings.
 
@@ -200,7 +200,7 @@ for w1, w2 in [("king", "queen"), ("king", "car"), ("queen", "woman")]:
 
 In k-NN, clustering, and retrieval: we find "nearest" points using **Euclidean distance**:
 
-$$d(u, v) = \|u - v\|_2 = \sqrt{\sum_i (u_i - v_i)^2}$$
+\[ d(u, v) = \|u - v\|_2 = \sqrt{\sum_i (u_i - v_i)^2} \]
 
 ```python
 def vector_subtract(u, v):

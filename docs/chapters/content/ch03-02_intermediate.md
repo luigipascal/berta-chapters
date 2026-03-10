@@ -35,8 +35,8 @@ Matrices are how we represent batches of data, linear transformations, and neura
 |-----------|--------|
 | Matrix (2D) | Batch of feature vectors, weight matrix, image (grayscale) |
 | Tensor (3D+) | Batch of images, sequence of embeddings, video |
-| Linear layer | y = XW + b — matrix multiply + bias |
-| Attention | scores = QKᵀ — dot products in matrix form |
+| Linear layer | \( y = XW + b \) — matrix multiply + bias |
+| Attention | \( \text{scores} = QK^\top \) — dot products in matrix form |
 
 ```python
 # Data as matrix: rows = samples, columns = features
@@ -55,9 +55,9 @@ for i, row in enumerate(X):
 
 ## 2. Matrix Operations (Pure Python First)
 
-**Transpose**: swap rows and columns. Row 1 becomes column 1, row 2 becomes column 2. (Aᵀ)ᵢⱼ = Aⱼᵢ
+**Transpose**: swap rows and columns. Row 1 becomes column 1, row 2 becomes column 2. \( (A^\top)_{ij} = A_{ji} \)
 
-**Matrix multiply (step-by-step in words):** To get the (i,j) entry of AB, take row i of A and column j of B, multiply corresponding elements, and sum. So each output cell is a dot product. For A (2×2) and B (2×2), you compute 4 dot products. The inner dimensions must match: A (m×k) × B (k×n) → (m×n). Matrix multiply is the core of every linear layer: each output neuron = dot product of one weight row with the input.
+**Matrix multiply (step-by-step in words):** To get the \( (i,j) \) entry of \( AB \), take row \( i \) of \( A \) and column \( j \) of \( B \), multiply corresponding elements, and sum. So each output cell is a dot product. For \( A \) (2×2) and \( B \) (2×2), you compute 4 dot products. The inner dimensions must match: \( A \) \( (m \times k) \) \( \times \) \( B \) \( (k \times n) \) \( \rightarrow \) \( (m \times n) \). Matrix multiply is the core of every linear layer: each output neuron = dot product of one weight row with the input.
 
 ```python
 def matrix_transpose(A):
@@ -92,13 +92,13 @@ print("A @ B =", matrix_multiply(A, B))
 
 ## 3. Matrix-Vector Multiplication
 
-A linear layer: **y = Wx** (plus bias). The weight matrix W transforms input x into output y.
+A linear layer: \( \mathbf{y} = W\mathbf{x} \) (plus bias). The weight matrix \( W \) transforms input \( \mathbf{x} \) into output \( \mathbf{y} \).
 
-Treat vector as column: W (m×n) @ x (n×1) → y (m×1)
+Treat vector as column: \( W \; (m \times n) \; @ \; \mathbf{x} \; (n \times 1) \rightarrow \mathbf{y} \; (m \times 1) \)
 
 ### What just happened
 
-We transposed A (rows became columns) and computed A×B element by element. Each cell of the result is the dot product of the corresponding row of A and column of B. This is exactly what happens in a linear layer: the weight matrix W has one row per output neuron, and each row is dotted with the input vector.
+We transposed \( A \) (rows became columns) and computed \( A \times B \) element by element. Each cell of the result is the dot product of the corresponding row of \( A \) and column of \( B \). This is exactly what happens in a linear layer: the weight matrix \( W \) has one row per output neuron, and each row is dotted with the input vector.
 
 ```python
 def matrix_vector_multiply(A, x):
@@ -117,9 +117,9 @@ print(f"  W (2×3) @ x (3) = {y}")
 
 ## 4. Identity and Inverse
 
-**Identity matrix I**: 1s on diagonal, 0s elsewhere. A·I = I·A = A.
+**Identity matrix \( I \)**: 1s on diagonal, 0s elsewhere. \( AI = IA = A \).
 
-**Inverse A⁻¹**: A·A⁻¹ = I. Only exists for square, full-rank matrices. Used in least squares, some optimizers.
+**Inverse \( A^{-1} \)**: \( A \cdot A^{-1} = I \). Only exists for square, full-rank matrices. Used in least squares, some optimizers.
 
 **What "transforming" data means.** Multiplying by a matrix changes the data: scale it (stretch/shrink), rotate it, or project it onto a lower dimension. Scaling multiplies each dimension by a factor. Rotation changes direction without changing length. In data augmentation for images, we apply rotation matrices to pixel coordinates. In neural networks, each linear layer applies a learned matrix—the network learns which transformations best map input to output.
 
@@ -142,7 +142,9 @@ print(f"\nI @ X[0] = {matrix_vector_multiply(I, X[0])}")
 
 Matrix multiplication = **linear transformation**: rotation, scaling, shearing, projection.
 
-Example: 2D rotation by θ: R = [[cos θ, -sin θ], [sin θ, cos θ]]
+Example: 2D rotation by \( \theta \):
+
+\[ R = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix} \]
 
 ```python
 import math
