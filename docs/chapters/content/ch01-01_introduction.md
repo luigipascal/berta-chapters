@@ -624,7 +624,7 @@ print(f"Best model: {best} ({model_scores[best]:.0%})")
 
 ### What just happened?
 
-The nested comprehension creates a 3×4 matrix (a list of lists). In AI, you work with matrices constantly — they represent images, weight matrices, attention scores, and more. The flattening operation `[val for row in matrix for val in row]` reads left to right: “for each row, for each value in that row, give me the value.”
+The nested comprehension creates a \( 3 \times 4 \) matrix (a list of lists). In AI, you work with matrices constantly — they represent images, weight matrices, attention scores, and more. The flattening operation `[val for row in matrix for val in row]` reads left to right: “for each row, for each value in that row, give me the value.”
 
 The dictionary comprehension `{model: score for model, score in zip(models, scores)}` pairs up model names with their scores using `zip()`. Then `max(model_scores, key=model_scores.get)` finds the model with the highest score — a one-liner you’ll use frequently to identify the best result.
 

@@ -37,7 +37,7 @@ From coins and dice we build intuition, then apply to AI:
 
 **Predict**: What happens when we flip a fair coin 10 times? How many heads do you expect? Will you always get exactly 5?
 
-**Running our first simulation.** The code below simulates 10 coin flips using Python's `random` module. We treat 1 as heads and 0 as tails. Even though we *expect* about 5 heads (because 0.5 × 10 = 5), randomness means we might get 4, 6, or even 3 or 7. That's the essence of probability: we know the long-run average, but individual runs vary.
+**Running our first simulation.** The code below simulates 10 coin flips using Python's `random` module. We treat 1 as heads and 0 as tails. Even though we *expect* about 5 heads (because \( 0.5 \times 10 = 5 \)), randomness means we might get 4, 6, or even 3 or 7. That's the essence of probability: we know the long-run average, but individual runs vary.
 
 ```python
 import random
@@ -88,13 +88,13 @@ print(f"60 rolls: evens = {even_count}, P(even) ≈ {even_count/60:.3f}")
 print("Expected: 0.5")
 ```
 
-**What just happened:** We simulated 60 rolls, counted evens, and computed the empirical P(even). The theoretical value is 3/6 = 0.5. Your run may show something like 0.467 or 0.533—both are normal for 60 trials.
+**What just happened:** We simulated 60 rolls, counted evens, and computed the empirical \( P(\text{even}) \). The theoretical value is \( 3/6 = 0.5 \). Your run may show something like 0.467 or 0.533—both are normal for 60 trials.
 
-**What changes when you learn new information?** Imagine you're deciding whether to bring an umbrella. Before checking the forecast, P(rain) might be 0.3. After the forecast says "80% chance of rain," your belief changes—that's conditional probability! P(rain | forecast says rain) is much higher.
+**What changes when you learn new information?** Imagine you're deciding whether to bring an umbrella. Before checking the forecast, \( P(\text{rain}) \) might be 0.3. After the forecast says "80% chance of rain," your belief changes—that's conditional probability! \( P(\text{rain} \mid \text{forecast says rain}) \) is much higher.
 
 **Bayesian spam filtering in plain English:** Email filters ask: "Given that this email contains the word 'viagra,' what's the probability it's spam?" They use counts from training data: how often "viagra" appears in spam vs. ham. The formula \( P(\text{spam} \mid \text{word}) = \frac{P(\text{word} \mid \text{spam}) \, P(\text{spam})}{P(\text{word})} \) is Bayes' theorem—and it powers most spam filters.
 
-## 3. Conditional Probability: P(A|B)
+## 3. Conditional Probability: \( P(A \mid B) \)
 
 \[ P(A \mid B) = \frac{P(A \cap B)}{P(B)} \]
 
@@ -159,7 +159,7 @@ flowchart TB
 
 **AI relevance**: Naive Bayes assumes that words in an email are independent given the class. That's often false ("free" and "money" appear together in spam), but the assumption still leads to good classifiers in practice.
 
-**Visualizing empirical distributions.** We'll plot a bar chart of how often each die face appeared in our 60 rolls. The red dashed line shows the theoretical 1/6 for each face. With more rolls, the bars would flatten toward that line.
+**Visualizing empirical distributions.** We'll plot a bar chart of how often each die face appeared in our 60 rolls. The red dashed line shows the theoretical \( 1/6 \) for each face. With more rolls, the bars would flatten toward that line.
 
 ```python
 import matplotlib.pyplot as plt
@@ -182,7 +182,7 @@ plt.show()
 print("Plot saved to assets/diagrams/dice_distribution.svg")
 ```
 
-**What just happened:** The bar chart shows our 60-roll sample. Some faces may have appeared more often than others—that's random variation. As we roll more (e.g., 600 or 6000), the bars would converge to 1/6.
+**What just happened:** The bar chart shows our 60-roll sample. Some faces may have appeared more often than others—that's random variation. As we roll more (e.g., 600 or 6000), the bars would converge to \( 1/6 \).
 
 **The more you flip a coin, the closer you get to 50/50.** This is the Law of Large Numbers—one of the most important results in probability. Casinos rely on it: a single customer might win big, but over millions of bets, the house edge dominates. In AI, we use it when we say "our model is 92% accurate"—we mean that over many predictions, about 92% are correct.
 
@@ -253,7 +253,7 @@ plt.show()
 print("Each cell ≈ 0.25 for independent fair coins.")
 ```
 
-**What just happened:** We simulated 1000 pairs of coin flips and built a 2×2 heatmap. Each cell shows the empirical probability of that combination. For independent coins, all four cells should be close to 0.25. Random variation might give 0.23 or 0.27—both fine.
+**What just happened:** We simulated 1000 pairs of coin flips and built a \( 2 \times 2 \) heatmap. Each cell shows the empirical probability of that combination. For independent coins, all four cells should be close to 0.25. Random variation might give 0.23 or 0.27—both fine.
 
 ## 8. Summary
 

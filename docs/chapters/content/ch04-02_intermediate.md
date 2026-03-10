@@ -46,7 +46,7 @@ Key probability distributions, Central Limit Theorem, Bayes' theorem, and Maximu
 
 See `assets/diagrams/probability_distributions.svg` for relationships.
 
-**Plotting all four distributions.** The code below builds a 2×2 grid: Bernoulli (two bars), Binomial (bell shape), Normal (smooth curve), Poisson (counts). We implement Binomial and Normal from scratch to see the math; Poisson uses scipy for convenience.
+**Plotting all four distributions.** The code below builds a \( 2 \times 2 \) grid: Bernoulli (two bars), Binomial (bell shape), Normal (smooth curve), Poisson (counts). We implement Binomial and Normal from scratch to see the math; Poisson uses scipy for convenience.
 
 Each distribution appears in ML: Bernoulli for single predictions (spam or not), Binomial for accuracy over N samples, Normal for errors and activations, Poisson for count data (clicks, events).
 

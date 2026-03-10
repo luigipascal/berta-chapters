@@ -84,7 +84,7 @@ print(f"  Reject H₀ (no difference)? {p_value < 0.05}")
 
 ## 2. Confidence Intervals
 
-**A range of plausible values.** When a poll says "Candidate X has 52% support ± 3%," that's a confidence interval. We're 95% confident the true proportion lies between 49% and 55%. It's not "95% chance the true value is in this interval"—the interval is fixed once computed; the randomness was in drawing the sample.
+**A range of plausible values.** When a poll says "Candidate X has 52% support \( \pm 3\% \)," that's a confidence interval. We're 95% confident the true proportion lies between 49% and 55%. It's not "95% chance the true value is in this interval"—the interval is fixed once computed; the randomness was in drawing the sample.
 
 95% CI for mean: \( \bar{x} \pm 1.96 \frac{\sigma}{\sqrt{n}} \) (z) or use t-distribution when \( \sigma \) unknown.
 
@@ -166,7 +166,7 @@ print(f"  Significant at α=0.05? {p < 0.05}")
 
 ## 4. Correlation vs Causation
 
-**Correlation ≠ Causation.** Ice cream sales and drownings both go up in summer—not because ice cream causes drowning, but because both are driven by warm weather and more swimming. In ML: feature X correlated with label Y doesn't mean X causes Y. There could be a confounder Z that causes both, or reverse causation, or selection bias.
+**Correlation \( \neq \) Causation.** Ice cream sales and drownings both go up in summer—not because ice cream causes drowning, but because both are driven by warm weather and more swimming. In ML: feature X correlated with label Y doesn't mean X causes Y. There could be a confounder Z that causes both, or reverse causation, or selection bias.
 
 More examples: (1) Shoe size and math skills in children—both increase with age. (2) Chocolate consumption and Nobel prizes by country—both correlate with wealth. (3) Firefighters at a scene and damage—more firefighters means bigger fires, not that firefighters cause damage.
 
@@ -263,7 +263,7 @@ print(f"Bootstrap 95% CI for difference (A - B): [{low:.4f}, {high:.4f}]")
 - **Hypothesis testing**: z-test (known \( \sigma \)), t-test (unknown \( \sigma \)). Interpret p-values correctly—they're not \( P(H_0 \text{ true}) \)!
 - **Confidence intervals**: A range of plausible values; 95% means the procedure captures the true value 95% of the time
 - **A/B testing**: Two-proportion z-test for conversion/accuracy comparison; like a clinical trial
-- **Correlation ≠ causation**: Beware spurious correlations and confounders
+- **Correlation \( \neq \) causation**: Beware spurious correlations and confounders
 - **Capstone**: Full A/B analysis—load, aggregate, test, bootstrap CI, conclude
 
 ---

@@ -29,7 +29,7 @@ Matrices are how we represent batches of data, linear transformations, and neura
 
 ## 1. Why Matrices Matter for AI
 
-**A matrix is a grid of numbers.** Like a spreadsheet: rows and columns. A grayscale image is a matrix—each cell is a pixel intensity (0=black, 255=white). A batch of 32 house feature vectors, each with 5 features, is a 32×5 matrix: 32 rows (samples), 5 columns (features). Matrices let you process many things at once: one matrix multiply does 32 dot products. That's the essence of batch processing in neural networks.
+**A matrix is a grid of numbers.** Like a spreadsheet: rows and columns. A grayscale image is a matrix—each cell is a pixel intensity (0=black, 255=white). A batch of 32 house feature vectors, each with 5 features, is a \( 32 \times 5 \) matrix: 32 rows (samples), 5 columns (features). Matrices let you process many things at once: one matrix multiply does 32 dot products. That's the essence of batch processing in neural networks.
 
 | Structure | AI Use |
 |-----------|--------|
@@ -57,7 +57,7 @@ for i, row in enumerate(X):
 
 **Transpose**: swap rows and columns. Row 1 becomes column 1, row 2 becomes column 2. \( (A^\top)_{ij} = A_{ji} \)
 
-**Matrix multiply (step-by-step in words):** To get the \( (i,j) \) entry of \( AB \), take row \( i \) of \( A \) and column \( j \) of \( B \), multiply corresponding elements, and sum. So each output cell is a dot product. For \( A \) (2×2) and \( B \) (2×2), you compute 4 dot products. The inner dimensions must match: \( A \) \( (m \times k) \) \( \times \) \( B \) \( (k \times n) \) \( \rightarrow \) \( (m \times n) \). Matrix multiply is the core of every linear layer: each output neuron = dot product of one weight row with the input.
+**Matrix multiply (step-by-step in words):** To get the \( (i,j) \) entry of \( AB \), take row \( i \) of \( A \) and column \( j \) of \( B \), multiply corresponding elements, and sum. So each output cell is a dot product. For \( A \) (\( 2 \times 2 \)) and \( B \) (\( 2 \times 2 \)), you compute 4 dot products. The inner dimensions must match: \( A \) \( (m \times k) \) \( \times \) \( B \) \( (k \times n) \) \( \rightarrow \) \( (m \times n) \). Matrix multiply is the core of every linear layer: each output neuron = dot product of one weight row with the input.
 
 ```python
 def matrix_transpose(A):
@@ -197,13 +197,13 @@ print(f"A.T =\n{A.T}")
 print(f"I =\n{np.eye(3)}")
 ```
 
-**How computers see images.** A grayscale image is a 2D matrix: each cell is one pixel (0=black, 255=white). Rows = height, columns = width. Convolutions and pooling operate on this grid. Color images add a third dimension: 3 channels (R, G, B), so a 100×100 RGB image is 100×100×3.
+**How computers see images.** A grayscale image is a 2D matrix: each cell is one pixel (0=black, 255=white). Rows = height, columns = width. Convolutions and pooling operate on this grid. Color images add a third dimension: 3 channels (R, G, B), so a \( 100 \times 100 \) RGB image is \( 100 \times 100 \times 3 \).
 
 ## 7. Practical: Image as Matrix
 
-A grayscale image is a 2D matrix: rows × columns of pixel intensities (0-255).
+A grayscale image is a 2D matrix: rows \( \times \) columns of pixel intensities (0-255).
 
-Color image: 3D tensor (height × width × channels) or (channels × height × width) in PyTorch.
+Color image: 3D tensor (height \( \times \) width \( \times \) channels) or (channels \( \times \) height \( \times \) width) in PyTorch.
 
 ```python
 # Create a tiny 5×5 "image" (matrix)
@@ -223,7 +223,7 @@ print(f"Flattened (as vector): {image.flatten()}")
 
 ### What just happened
 
-We created a 5×5 "image"—really just a matrix of 0s and 1s forming a simple diamond pattern. `image.shape` gives (5, 5). Flattening turns it into a 25-dimensional vector (one row of pixels). A real image (e.g., 224×224) would be 50,176 numbers as a vector—that's what goes into the first layer of a CNN.
+We created a \( 5 \times 5 \) "image"—really just a matrix of 0s and 1s forming a simple diamond pattern. `image.shape` gives (5, 5). Flattening turns it into a 25-dimensional vector (one row of pixels). A real image (e.g., \( 224 \times 224 \)) would be 50,176 numbers as a vector—that's what goes into the first layer of a CNN.
 
 ```python
 # Visualize with matplotlib
@@ -237,7 +237,7 @@ plt.show()
 
 ## 8. Practical: Data Matrix and Batch Processing
 
-In ML, we process **batches**: (batch_size × features). One matrix multiply does all samples at once.
+In ML, we process **batches**: (batch_size \( \times \) features). One matrix multiply does all samples at once.
 
 ```python
 # Batch: 4 samples, 3 features each
@@ -263,7 +263,7 @@ print(Y)
 
 ### What just happened
 
-We processed 4 samples in one matrix multiply: X_batch (4×3) @ W.T (3×2) = Y (4×2). Each row of Y is the linear layer output for that sample. This is batch processing—one operation instead of 4 separate dot products. Real training uses batches of 32, 64, or 256.
+We processed 4 samples in one matrix multiply: \( X_{\text{batch}} \) (\( 4 \times 3 \)) @ \( W^T \) (\( 3 \times 2 \)) = \( Y \) (\( 4 \times 2 \)). Each row of \( Y \) is the linear layer output for that sample. This is batch processing—one operation instead of 4 separate dot products. Real training uses batches of 32, 64, or 256.
 
 ## 9. Tensor Basics
 
@@ -271,8 +271,8 @@ We processed 4 samples in one matrix multiply: X_batch (4×3) @ W.T (3×2) = Y (
 - 0D: scalar
 - 1D: vector
 - 2D: matrix
-- 3D: e.g., batch of images (B × H × W)
-- 4D: e.g., batch of color images (B × C × H × W)
+- 3D: e.g., batch of images (\( B \times H \times W \))
+- 4D: e.g., batch of color images (\( B \times C \times H \times W \))
 
 ```python
 # Batch of 2 grayscale images, 5×5 each
