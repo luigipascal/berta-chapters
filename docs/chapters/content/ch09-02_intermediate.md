@@ -133,7 +133,7 @@ In Notebook 01 we derived every gradient by hand. PyTorch's **autograd** engine 
 
 Let's verify that autograd matches a manual calculation for a simple function:
 
-$$L = (w \cdot x - y)^{2}, \qquad \frac{\partial L}{\partial w} = 2(wx - y)\,x$$
+\[ L = (w \cdot x - y)^{2}, \qquad \frac{\partial L}{\partial w} = 2(wx - y)\,x \]
 
 ```python
 torch.manual_seed(42)
@@ -396,7 +396,7 @@ plt.show()
 
 ## 7. Regularization: Dropout
 
-**Dropout** (Srivastava et al., 2014) is one of the most widely used regularization techniques. During **training**, each activation is independently set to zero with probability $p$. During **evaluation**, all activations are kept but scaled by $(1 - p)$ (PyTorch handles this automatically with *inverted dropout*).
+**Dropout** (Srivastava et al., 2014) is one of the most widely used regularization techniques. During **training**, each activation is independently set to zero with probability \( p \). During **evaluation**, all activations are kept but scaled by \( (1 - p) \) (PyTorch handles this automatically with *inverted dropout*).
 
 Why does it help?
 
@@ -487,7 +487,7 @@ print(f"Dropout 0.4 — Train: {hist_with_drop['train_acc'][-1]:.4f}, Test: {his
 
 **L2 regularization** adds a penalty proportional to the squared magnitude of the weights to the loss:
 
-$$\tilde{L} = L + \frac{\lambda}{2} \|\mathbf{w}\|^{2}$$
+\[ \tilde{L} = L + \frac{\lambda}{2} \|\mathbf{w}\|^{2} \]
 
 In PyTorch, you don't add the penalty to the loss function yourself. Instead, you pass `weight_decay=λ` to the optimizer, which subtracts `λ·w` from the gradient at each step (equivalent for SGD; Adam uses a slightly different but analogous formulation called *decoupled weight decay*).
 
@@ -644,7 +644,7 @@ print(f"Test accuracy: {accuracy(model_es, X_test, y_test):.4f}")
 
 ## 10. Batch Normalization
 
-**Batch Normalization** (Ioffe & Szegedy, 2015) normalizes the inputs to each layer so that they have zero mean and unit variance *within each mini-batch*. It then applies a learnable affine transform ($\gamma$ and $\beta$) so the network can still represent arbitrary distributions.
+**Batch Normalization** (Ioffe & Szegedy, 2015) normalizes the inputs to each layer so that they have zero mean and unit variance *within each mini-batch*. It then applies a learnable affine transform (\( \gamma \) and \( \beta \)) so the network can still represent arbitrary distributions.
 
 Benefits:
 

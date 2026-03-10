@@ -58,13 +58,13 @@ A biological neuron receives electrical signals through its **dendrites**, integ
 
 An *artificial* neuron mimics this in three steps:
 
-1. **Weighted sum** — each input $x_i$ is multiplied by a learnable weight $w_i$ and the results are summed together with a bias $b$:
-   $$z = \sum_{i=1}^{n} w_i x_i + b = \mathbf{w}^\top \mathbf{x} + b$$
+1. **Weighted sum** — each input \( x_i \) is multiplied by a learnable weight \( w_i \) and the results are summed together with a bias \( b \):
+   \[ z = \sum_{i=1}^{n} w_i x_i + b = \mathbf{w}^\top \mathbf{x} + b \]
 
-2. **Activation function** — a non-linear function $\sigma$ is applied to $z$ to produce the output:
-   $$a = \sigma(z)$$
+2. **Activation function** — a non-linear function \( \sigma \) is applied to \( z \) to produce the output:
+   \[ a = \sigma(z) \]
 
-3. **Output** — the value $a$ is passed downstream to other neurons or used directly as the network's prediction.
+3. **Output** — the value \( a \) is passed downstream to other neurons or used directly as the network's prediction.
 
 A single neuron with a sigmoid activation is historically called a **perceptron** (though the original perceptron used a step function). Let's build one and teach it the AND gate.
 
@@ -119,7 +119,7 @@ plt.title("Perceptron learning the AND gate")
 plt.show()
 ```
 
-The loss decreases smoothly and the perceptron quickly learns to output values close to 0 for all inputs except $(1, 1)$. A single neuron can solve any *linearly separable* problem — but not XOR. We'll revisit that soon.
+The loss decreases smoothly and the perceptron quickly learns to output values close to 0 for all inputs except \( (1, 1) \). A single neuron can solve any *linearly separable* problem — but not XOR. We'll revisit that soon.
 
 ---
 
@@ -129,24 +129,24 @@ Without a non-linear activation, stacking layers of neurons would collapse into 
 
 ### Sigmoid
 
-$$\sigma(z) = \frac{1}{1 + e^{-z}}, \qquad \sigma'(z) = \sigma(z)(1 - \sigma(z))$$
+\[ \sigma(z) = \frac{1}{1 + e^{-z}}, \qquad \sigma'(z) = \sigma(z)(1 - \sigma(z)) \]
 
-* Outputs in $(0, 1)$ — useful for probabilities.
-* Saturates for large $|z|$ → vanishing gradients.
+* Outputs in \( (0, 1) \) — useful for probabilities.
+* Saturates for large \( |z| \) → vanishing gradients.
 
 ### Tanh
 
-$$\tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}, \qquad \tanh'(z) = 1 - \tanh^2(z)$$
+\[ \tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}, \qquad \tanh'(z) = 1 - \tanh^2(z) \]
 
-* Outputs in $(-1, 1)$ — zero-centered, which helps gradient flow.
+* Outputs in \( (-1, 1) \) — zero-centered, which helps gradient flow.
 * Still saturates at extremes.
 
 ### ReLU (Rectified Linear Unit)
 
-$$\text{ReLU}(z) = \max(0, z), \qquad \text{ReLU}'(z) = \begin{cases} 1 & z > 0 \\ 0 & z \leq 0 \end{cases}$$
+\[ \text{ReLU}(z) = \max(0, z), \qquad \text{ReLU}'(z) = \begin{cases} 1 & z > 0 \\ 0 & z \leq 0 \end{cases} \]
 
-* Cheap to compute, no saturation for $z > 0$.
-* "Dead ReLU" problem: neurons with $z \leq 0$ stop learning.
+* Cheap to compute, no saturation for \( z > 0 \).
+* "Dead ReLU" problem: neurons with \( z \leq 0 \) stop learning.
 * Most popular default for hidden layers in modern networks.
 
 ```python
@@ -203,24 +203,24 @@ A neural network organises neurons into **layers**:
 | Layer | Role |
 |---|---|
 | **Input layer** (layer 0) | Passes raw features into the network. No parameters. |
-| **Hidden layers** (layers 1 … $L-1$) | Transform representations using weights and activations. |
-| **Output layer** (layer $L$) | Produces the final prediction. |
+| **Hidden layers** (layers 1 … \( L-1 \)) | Transform representations using weights and activations. |
+| **Output layer** (layer \( L \)) | Produces the final prediction. |
 
 ### Notation
 
-For layer $l$:
+For layer \( l \):
 
-* $n^{[l]}$ — number of neurons.
-* $\mathbf{W}^{[l]} \in \mathbb{R}^{n^{[l]} \times n^{[l-1]}}$ — weight matrix.
-* $\mathbf{b}^{[l]} \in \mathbb{R}^{n^{[l]} \times 1}$ — bias vector.
-* $\mathbf{z}^{[l]} = \mathbf{W}^{[l]}\mathbf{a}^{[l-1]} + \mathbf{b}^{[l]}$ — pre-activation.
-* $\mathbf{a}^{[l]} = g^{[l]}(\mathbf{z}^{[l]})$ — activation (output of layer $l$).
-* $\mathbf{a}^{[0]} = \mathbf{X}$ — the input data.
+* \( n^{[l]} \) — number of neurons.
+* \( \mathbf{W}^{[l]} \in \mathbb{R}^{n^{[l]} \times n^{[l-1]}} \) — weight matrix.
+* \( \mathbf{b}^{[l]} \in \mathbb{R}^{n^{[l]} \times 1} \) — bias vector.
+* \( \mathbf{z}^{[l]} = \mathbf{W}^{[l]}\mathbf{a}^{[l-1]} + \mathbf{b}^{[l]} \) — pre-activation.
+* \( \mathbf{a}^{[l]} = g^{[l]}(\mathbf{z}^{[l]}) \) — activation (output of layer \( l \)).
+* \( \mathbf{a}^{[0]} = \mathbf{X} \) — the input data.
 
-The **forward pass** is the process of computing the output of the network given an input. Starting from $\mathbf{a}^{[0]} = \mathbf{X}$, we iterate:
+The **forward pass** is the process of computing the output of the network given an input. Starting from \( \mathbf{a}^{[0]} = \mathbf{X} \), we iterate:
 
-$$\mathbf{z}^{[l]} = \mathbf{W}^{[l]}\,\mathbf{a}^{[l-1]} + \mathbf{b}^{[l]}$$
-$$\mathbf{a}^{[l]} = g(\mathbf{z}^{[l]})$$
+\[ \mathbf{z}^{[l]} = \mathbf{W}^{[l]}\,\mathbf{a}^{[l-1]} + \mathbf{b}^{[l]} \]
+\[ \mathbf{a}^{[l]} = g(\mathbf{z}^{[l]}) \]
 
 until we reach the output layer. Let's implement this for a 2-layer network and apply it to the XOR problem.
 
@@ -311,13 +311,13 @@ A loss function measures how far the network's predictions are from the true lab
 
 ### Mean Squared Error (MSE)
 
-$$\mathcal{L}_{\text{MSE}} = \frac{1}{m}\sum_{i=1}^{m}(\hat{y}_i - y_i)^2$$
+\[ \mathcal{L}_{\text{MSE}} = \frac{1}{m}\sum_{i=1}^{m}(\hat{y}_i - y_i)^2 \]
 
 Simple and intuitive; commonly used for regression.
 
 ### Binary Cross-Entropy (BCE)
 
-$$\mathcal{L}_{\text{BCE}} = -\frac{1}{m}\sum_{i=1}^{m}\bigl[y_i \log(\hat{y}_i) + (1 - y_i)\log(1 - \hat{y}_i)\bigr]$$
+\[ \mathcal{L}_{\text{BCE}} = -\frac{1}{m}\sum_{i=1}^{m}\bigl[y_i \log(\hat{y}_i) + (1 - y_i)\log(1 - \hat{y}_i)\bigr] \]
 
 The standard loss for binary classification. It penalises confident wrong predictions much more heavily than MSE does.
 
@@ -355,7 +355,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-Notice the difference: MSE flattens out for very negative $w$ (where $\hat{y} \approx 0$), making gradients small. BCE grows unboundedly, providing a strong gradient signal even when the prediction is far off. This is why **BCE is preferred for classification**.
+Notice the difference: MSE flattens out for very negative \( w \) (where \( \hat{y} \approx 0 \)), making gradients small. BCE grows unboundedly, providing a strong gradient signal even when the prediction is far off. This is why **BCE is preferred for classification**.
 
 ---
 
@@ -365,21 +365,23 @@ Backpropagation is just the **chain rule** applied systematically across the com
 
 ### The chain rule refresher
 
-If $\mathcal{L}$ depends on $\mathbf{a}^{[L]}$ which depends on $\mathbf{z}^{[L]}$ which depends on $\mathbf{W}^{[L]}$, then:
+If \( \mathcal{L} \) depends on \( \mathbf{a}^{[L]} \) which depends on \( \mathbf{z}^{[L]} \) which depends on \( \mathbf{W}^{[L]} \), then:
 
-$$\frac{\partial \mathcal{L}}{\partial \mathbf{W}^{[L]}} = 
+\[
+\frac{\partial \mathcal{L}}{\partial \mathbf{W}^{[L]}} = 
 \frac{\partial \mathcal{L}}{\partial \mathbf{a}^{[L]}}
 \cdot \frac{\partial \mathbf{a}^{[L]}}{\partial \mathbf{z}^{[L]}}
-\cdot \frac{\partial \mathbf{z}^{[L]}}{\partial \mathbf{W}^{[L]}}$$
+\cdot \frac{\partial \mathbf{z}^{[L]}}{\partial \mathbf{W}^{[L]}}
+\]
 
 ### Gradient flow (backward pass)
 
 Starting from the loss, we compute:
 
-1. $\delta^{[L]} = \frac{\partial \mathcal{L}}{\partial \mathbf{z}^{[L]}}$ (output error signal).
-2. $\frac{\partial \mathcal{L}}{\partial \mathbf{W}^{[l]}} = (\mathbf{a}^{[l-1]})^\top \, \delta^{[l]}$.
-3. $\frac{\partial \mathcal{L}}{\partial \mathbf{b}^{[l]}} = \sum_{\text{samples}} \delta^{[l]}$.
-4. Propagate: $\delta^{[l-1]} = \delta^{[l]}\,(\mathbf{W}^{[l]})^\top \odot g'(\mathbf{z}^{[l-1]})$.
+1. \( \delta^{[L]} = \frac{\partial \mathcal{L}}{\partial \mathbf{z}^{[L]}} \) (output error signal).
+2. \( \frac{\partial \mathcal{L}}{\partial \mathbf{W}^{[l]}} = (\mathbf{a}^{[l-1]})^\top \, \delta^{[l]} \).
+3. \( \frac{\partial \mathcal{L}}{\partial \mathbf{b}^{[l]}} = \sum_{\text{samples}} \delta^{[l]} \).
+4. Propagate: \( \delta^{[l-1]} = \delta^{[l]}\,(\mathbf{W}^{[l]})^\top \odot g'(\mathbf{z}^{[l-1]}) \).
 
 We repeat steps 2–4 backwards through all layers.
 
@@ -580,9 +582,9 @@ So far we have used **batch gradient descent** — we compute the gradient over 
 
 | Variant | Batch size | Pro | Con |
 |---|---|---|---|
-| **Batch GD** | $m$ (all data) | Stable gradient estimate | Slow for large datasets |
+| **Batch GD** | \( m \) (all data) | Stable gradient estimate | Slow for large datasets |
 | **Stochastic GD (SGD)** | 1 | Fast updates, can escape local minima | Very noisy gradient |
-| **Mini-batch SGD** | $B$ (e.g. 32) | Good trade-off: speed + stability | Requires batch-size tuning |
+| **Mini-batch SGD** | \( B \) (e.g. 32) | Good trade-off: speed + stability | Requires batch-size tuning |
 
 Mini-batch SGD is the de-facto standard in deep learning. Let's implement it.
 
@@ -657,8 +659,8 @@ In this notebook we built a neural network **completely from scratch** and explo
 |---|---|
 | **Perceptron** | A single neuron computes a weighted sum + activation. Solves linearly separable problems (AND) but not XOR. |
 | **Activation functions** | Sigmoid, tanh, ReLU introduce non-linearity. ReLU is the modern default for hidden layers. |
-| **Multi-layer architecture** | Hidden layers create new representations that are linearly separable. Notation: $W^{[l]}, b^{[l]}, a^{[l]}$. |
-| **Forward pass** | Layer-by-layer computation: $z \to a$ through the network. |
+| **Multi-layer architecture** | Hidden layers create new representations that are linearly separable. Notation: \( W^{[l]}, b^{[l]}, a^{[l]} \). |
+| **Forward pass** | Layer-by-layer computation: \( z \to a \) through the network. |
 | **Loss functions** | MSE for regression, BCE for classification. BCE provides stronger gradients for wrong predictions. |
 | **Backpropagation** | The chain rule applied backwards through the network to compute gradients of every parameter. |
 | **Gradient descent** | Batch, SGD, and mini-batch. Mini-batch SGD is the standard in practice. |

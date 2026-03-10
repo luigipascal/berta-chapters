@@ -292,28 +292,28 @@ Many real-world signals unfold over time or in ordered sequences: stock prices, 
 
 ### RNN Update Rule
 
-At each timestep $t$:
+At each timestep \( t \):
 
-$$h_t = \tanh(W_{xh}\, x_t + W_{hh}\, h_{t-1} + b_h)$$
-$$y_t = W_{hy}\, h_t + b_y$$
+\[ h_t = \tanh(W_{xh}\, x_t + W_{hh}\, h_{t-1} + b_h) \]
+\[ y_t = W_{hy}\, h_t + b_y \]
 
-- $x_t$ – input at time $t$
-- $h_t$ – hidden state at time $t$ (carries context from previous steps)
-- $y_t$ – output at time $t$
+- \( x_t \) – input at time \( t \)
+- \( h_t \) – hidden state at time \( t \) (carries context from previous steps)
+- \( y_t \) – output at time \( t \)
 
 ### The Vanishing Gradient Problem
 
-During back-propagation through time (BPTT), gradients are multiplied by $W_{hh}$ at every step. When $\|W_{hh}\| < 1$, gradients **shrink exponentially**, making it nearly impossible for the network to learn dependencies spanning many timesteps.
+During back-propagation through time (BPTT), gradients are multiplied by \( W_{hh} \) at every step. When \( \|W_{hh}\| < 1 \), gradients **shrink exponentially**, making it nearly impossible for the network to learn dependencies spanning many timesteps.
 
 ### LSTM to the Rescue
 
-The **Long Short-Term Memory (LSTM)** cell introduces a **cell state** $C_t$ and three **gates** that control information flow:
+The **Long Short-Term Memory (LSTM)** cell introduces a **cell state** \( C_t \) and three **gates** that control information flow:
 
 | Gate | Purpose |
 |---|---|
-| **Forget gate** $f_t$ | Decides what to discard from the cell state |
-| **Input gate** $i_t$ | Decides what new information to store |
-| **Output gate** $o_t$ | Decides what part of the cell state to expose as the hidden state |
+| **Forget gate** \( f_t \) | Decides what to discard from the cell state |
+| **Input gate** \( i_t \) | Decides what new information to store |
+| **Output gate** \( o_t \) | Decides what part of the cell state to expose as the hidden state |
 
 Because the cell state flows through the network with mostly **additive** updates (rather than multiplicative), gradients can propagate over hundreds of timesteps without vanishing.
 
