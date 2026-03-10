@@ -489,7 +489,7 @@ print(f"Dropout 0.4 — Train: {hist_with_drop['train_acc'][-1]:.4f}, Test: {his
 
 \[ \tilde{L} = L + \frac{\lambda}{2} \|\mathbf{w}\|^{2} \]
 
-In PyTorch, you don't add the penalty to the loss function yourself. Instead, you pass `weight_decay=λ` to the optimizer, which subtracts `λ·w` from the gradient at each step (equivalent for SGD; Adam uses a slightly different but analogous formulation called *decoupled weight decay*).
+In PyTorch, you don't add the penalty to the loss function yourself. Instead, you pass `weight_decay=λ` to the optimizer, which subtracts \( \lambda \mathbf{w} \) from the gradient at each step (equivalent for SGD; Adam uses a slightly different but analogous formulation called *decoupled weight decay*).
 
 We'll train the same wide network with and without weight decay.
 
