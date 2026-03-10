@@ -94,7 +94,7 @@ print("Expected: 0.5")
 
 **Bayesian spam filtering in plain English:** Email filters ask: "Given that this email contains the word 'viagra,' what's the probability it's spam?" They use counts from training data: how often "viagra" appears in spam vs. ham. The formula \( P(\text{spam} \mid \text{word}) = \frac{P(\text{word} \mid \text{spam}) \, P(\text{spam})}{P(\text{word})} \) is Bayes' theorem—and it powers most spam filters.
 
-## 3. Conditional Probability: \( P(A \mid B) \)
+## 3. Conditional Probability: P(A|B)
 
 \[ P(A \mid B) = \frac{P(A \cap B)}{P(B)} \]
 
