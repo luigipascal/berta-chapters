@@ -1,6 +1,6 @@
 {
-  "chapter_number": 8,
-  "notify_version": "8.2",
-  "chapter_title": "Unsupervised Learning",
-  "chapter_description": "K-Means clustering, hierarchical clustering, DBSCAN, PCA, t-SNE, anomaly detection, and a customer segmentation capstone project."
+  "chapter_number": 9,
+  "notify_version": "9.0",
+  "chapter_title": "Deep Learning Fundamentals",
+  "chapter_description": "Neural networks from scratch, PyTorch training loops, CNNs for image classification, RNNs and LSTMs for sequences, regularization, and a complete image classification capstone."
 }
