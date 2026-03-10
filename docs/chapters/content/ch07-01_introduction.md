@@ -30,9 +30,11 @@ Regression predicts continuous values. We start with the classic **linear regres
 
 **Linear regression is finding the line of best fit.** Given points (x, y), we want the line that minimizes the sum of squared errors. Real example: bigger house = higher price. The line captures how much price increases per extra sqft.
 
-**Goal:** Predict y from X using y = X*beta + epsilon
+**Goal:** Predict \( y \) from \( X \) using \( y = X\beta + \epsilon \)
 
-**Closed-form (normal equation):** beta = (X^T X)^{-1} X^T y
+**Closed-form (normal equation):**
+
+\[ \hat{\beta} = (X^TX)^{-1}X^Ty \]
 
 **Gradient descent:** Minimize MSE
 
@@ -96,7 +98,7 @@ plt.show()
 
 **Now the price depends on size AND location AND age...** Multiple regression adds more features. Each has a coefficient. The model learns these from data. Real-world: Predict house price from sqft, bedrooms, bathrooms, age, location_score.
 
-**What just happened:** We fit multiple regression and got R² and coefficients. Each coefficient is the predicted price change per unit of that feature (holding others constant).
+**What just happened:** We fit multiple regression and got \( R^2 \) and coefficients. Each coefficient is the predicted price change per unit of that feature (holding others constant).
 
 ```python
 import pandas as pd
@@ -143,7 +145,7 @@ print(f'Predicted price for {sqft} sqft, {bedrooms} bed, {bathrooms} bath, age {
 
 ## 4. Polynomial Regression and Overfitting
 
-**Sometimes the relationship is not a straight line.** Polynomial features (x, x^2, x^3) let us capture curves. But overfitting is like a curve that passes through every point but wobbles wildly - it cannot predict new points. Degree 12 = wiggly curve that memorizes noise.
+**Sometimes the relationship is not a straight line.** Polynomial features \( (x, x^2, x^3) \) let us capture curves. But overfitting is like a curve that passes through every point but wobbles wildly - it cannot predict new points. Degree 12 = wiggly curve that memorizes noise.
 
 **What just happened:** Ridge shrinks all coefficients; Lasso drives some to zero. The plots show how coefficients change with regularization strength (alpha).
 
@@ -235,7 +237,7 @@ plt.show()
 
 ## 6. Scikit-learn Interface
 
-**Scikit-learn is the most popular ML library in Python.** Every estimator follows: model.fit(X, y) to train, model.predict(X) to predict, model.score(X, y) for R2 or accuracy. Once you learn this pattern, you can use hundreds of models.
+**Scikit-learn is the most popular ML library in Python.** Every estimator follows: model.fit(X, y) to train, model.predict(X) to predict, model.score(X, y) for \( R^2 \) or accuracy. Once you learn this pattern, you can use hundreds of models.
 
 ```python
 # Compare OLS, Ridge, Lasso on housing

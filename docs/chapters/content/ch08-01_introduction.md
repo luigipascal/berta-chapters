@@ -244,7 +244,7 @@ How do we know if K-Means did a good job? Two common metrics:
 
 **Inertia (Within-Cluster Sum of Squares):** The sum of squared distances from each point to its centroid. Lower is better, but inertia *always* decreases as K increases — so it alone doesn't tell us the right K.
 
-**Silhouette Score:** For each point, we compare the mean distance to others in the same cluster (*a*) vs. the mean distance to the nearest other cluster (*b*). The score is *(b - a) / max(a, b)*, ranging from −1 to +1. Higher is better; values near 0 indicate overlapping clusters.
+**Silhouette Score:** For each point, we compare the mean distance to others in the same cluster (*a*) vs. the mean distance to the nearest other cluster (*b*). The score is \( \frac{b - a}{\max(a, b)} \), ranging from −1 to +1. Higher is better; values near 0 indicate overlapping clusters.
 
 ```python
 from sklearn.metrics import silhouette_score, silhouette_samples
@@ -295,7 +295,7 @@ plt.show()
 Since we must specify *K* before running K-Means, how do we pick a good value?
 
 **The Elbow Method:**
-1. Run K-Means for K = 1, 2, …, K_max.
+1. Run K-Means for \( K = 1, 2, \ldots, K_{\max} \).
 2. Plot inertia vs K.
 3. Look for the **"elbow"** — the point where inertia stops decreasing sharply and begins to level off.
 

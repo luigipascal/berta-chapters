@@ -36,13 +36,13 @@ In this notebook we move from regression to classification: predicting discrete 
 
 ## 1. Logistic Regression From Scratch
 
-**Despite the name, logistic regression is for classification, not regression.** It outputs a probability using the sigmoid function. The sigmoid squashes any number into (0, 1). We get P(y=1|X) and threshold at 0.5 for class decisions.
+**Despite the name, logistic regression is for classification, not regression.** It outputs a probability using the sigmoid function. The sigmoid squashes any number into (0, 1). We get \( P(y=1 \mid X) \) and threshold at 0.5 for class decisions.
 
-**Sigmoid:** σ(z) = 1/(1+e^{-z}) — outputs probability in (0, 1)
+**Sigmoid:** \( \sigma(z) = \frac{1}{1+e^{-z}} \) — outputs probability in (0, 1)
 
 **Update rule:** Gradient descent on cross-entropy loss
 
-Despite the name, logistic regression is for classification, not regression. It uses the sigmoid function to squash predictions between 0 and 1, like a probability. The sigmoid maps any real number to the interval (0, 1), so we can interpret the output as P(y=1|X)—the chance the example belongs to the positive class. We then threshold at 0.5 to make a class decision: above 0.5 predict class 1, below predict class 0. Internally, it learns weights via gradient descent on cross-entropy loss, which penalizes confident wrong predictions.
+Despite the name, logistic regression is for classification, not regression. It uses the sigmoid function to squash predictions between 0 and 1, like a probability. The sigmoid maps any real number to the interval (0, 1), so we can interpret the output as \( P(y=1 \mid X) \)—the chance the example belongs to the positive class. We then threshold at 0.5 to make a class decision: above 0.5 predict class 1, below predict class 0. Internally, it learns weights via gradient descent on cross-entropy loss, which penalizes confident wrong predictions.
 
 **Implementing logistic regression from scratch:** We define the sigmoid, fit with gradient descent on cross-entropy loss, and evaluate on synthetic data.
 
@@ -99,17 +99,17 @@ print(f'Accuracy (from scratch): {acc:.4f}')
 
 **What just happened:** We trained our from-scratch logistic regression and got the accuracy. The model learned a linear decision boundary.
 
-**Plotting the decision boundary:** We create a mesh grid, predict P(y=1) everywhere, and draw the 0.5 contour. Colors show confidence.
+**Plotting the decision boundary:** We create a mesh grid, predict \( P(y=1) \) everywhere, and draw the 0.5 contour. Colors show confidence.
 
-The decision boundary is the surface that separates the predicted classes in feature space. In 2D it is a line or curve; in higher dimensions it is a hyperplane or manifold. Visualizing it helps us understand how the model divides the data and where it is most confident vs. uncertain. For logistic regression, the boundary is where P(y=1) = 0.5—the model is equally unsure on that line.
+The decision boundary is the surface that separates the predicted classes in feature space. In 2D it is a line or curve; in higher dimensions it is a hyperplane or manifold. Visualizing it helps us understand how the model divides the data and where it is most confident vs. uncertain. For logistic regression, the boundary is where \( P(y=1) = 0.5 \)—the model is equally unsure on that line.
 
-Plotting the boundary in 2D makes the model's behavior tangible. We create a dense grid of points, predict P(y=1) at each, and draw contours. The 0.5 contour is the decision boundary; the color gradient shows confidence. This visualization will reappear for each classifier—compare how logistic regression, trees, and SVM draw different boundaries on the same data.
+Plotting the boundary in 2D makes the model's behavior tangible. We create a dense grid of points, predict \( P(y=1) \) at each, and draw contours. The 0.5 contour is the decision boundary; the color gradient shows confidence. This visualization will reappear for each classifier—compare how logistic regression, trees, and SVM draw different boundaries on the same data.
 
 ## 2. Decision Boundary Visualization
 
-**The decision boundary is the line (or curve) that separates classes.** Imagine two neighborhoods divided by a road—one side blue, the other red. The boundary is where P(y=1|X) = 0.5. For logistic regression in 2D, it is a straight line.
+**The decision boundary is the line (or curve) that separates classes.** Imagine two neighborhoods divided by a road—one side blue, the other red. The boundary is where \( P(y=1 \mid X) = 0.5 \). For logistic regression in 2D, it is a straight line.
 
-**Run the cell below, then observe:** The plot shows the decision boundary (black line) and a color gradient for P(y=1). Blue regions are confident class 0; red regions are confident class 1. The boundary is linear for logistic regression. Points near the boundary are where the model is most uncertain.
+**Run the cell below, then observe:** The plot shows the decision boundary (black line) and a color gradient for \( P(y=1) \). Blue regions are confident class 0; red regions are confident class 1. The boundary is linear for logistic regression. Points near the boundary are where the model is most uncertain.
 
 ```python
 def plot_decision_boundary(model, X, y, title='Decision Boundary'):
