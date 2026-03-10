@@ -47,7 +47,7 @@ A full journey from basics to advanced AI:
 - **Practitioner (Ch 6–15)** — ML intro, supervised learning, deep learning, NLP, RAG, MLOps  
 - **Advanced (Ch 16–25+)** — Multi-agent systems, reinforcement learning, production AI, ethics  
 
-**8 chapters available now** (64 hours of content). More unlock as the community grows.
+**9 chapters available now** (76 hours of content). More unlock as the community grows.
 
 ### 2. Community-Requested Chapters — Learn What You Need
 
@@ -121,7 +121,7 @@ Same format everywhere. Learn once, then move fast.
 | **Advanced** | 16–25+ | 📋 Planned |
 | **Community** | Your requests | 🚀 Unlimited |
 
-**24 notebooks**, **42 exercises with solutions**, **7 datasets**, **24 diagrams**. All open and ready to run.
+**27 notebooks**, **47 exercises with solutions**, **8 datasets**, **27 diagrams**. All open and ready to run.
 
 ---
 

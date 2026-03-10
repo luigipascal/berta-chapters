@@ -8,11 +8,11 @@ Our vision for the future of AI education. This is a living document—prioritie
 
 **Master Repository**: ✅ Live  
 **Foundation Track**: ✅ Complete (5 chapters available)  
-**Practitioner Track**: 🔄 In progress (3 of 10 chapters available)  
+**Practitioner Track**: 🔄 In progress (4 of 10 chapters available)  
 **Advanced Track**: 📋 Planned (10 chapters)  
 **Community Requests**: 🚀 Starting (unlimited)  
 **Total Planned**: 25+ chapters, 500+ hours of content  
-**Currently Available**: 8 chapters, 64 hours of content, 24 SVG diagrams
+**Currently Available**: 9 chapters, 76 hours of content, 27 SVG diagrams
 
 ---
 
@@ -21,7 +21,7 @@ Our vision for the future of AI education. This is a living document—prioritie
 ### Objectives
 - ✅ Establish master repository (DONE)
 - ✅ Complete Foundation Track (DONE)
-- ✅ Begin Practitioner Track (Ch 6-8 available)
+- ✅ Begin Practitioner Track (Ch 6-9 available)
 - 🔄 Establish community request process
 - 🔄 Build first 100 community chapters
 - ✅ Create core infrastructure and documentation (DONE)
@@ -37,11 +37,11 @@ Our vision for the future of AI education. This is a living document—prioritie
 - One new chapter released per week
 - New chapters unlock after reaching **10 newsletter subscribers**
 - ✅ Foundation Track complete (Chapters 1-5)
-- ✅ Practitioner Track started (Chapters 6-8)
+- ✅ Practitioner Track started (Chapters 6-9)
 
 ### Metrics to Track
 - Newsletter subscribers (target: 10 to unlock weekly releases)
-- Chapters completed: 8 / 25
+- Chapters completed: 9 / 25
 - Community requests received
 - Stars on master repo
 
@@ -60,7 +60,7 @@ Our vision for the future of AI education. This is a living document—prioritie
 - [x] Chapter 6: Introduction to Machine Learning
 - [x] Chapter 7: Supervised Learning (Regression & Classification)
 - [x] Chapter 8: Unsupervised Learning
-- [ ] Chapter 9: Deep Learning Fundamentals
+- [x] Chapter 9: Deep Learning Fundamentals
 - [ ] Chapter 10: Natural Language Processing Basics
 - [ ] Chapter 11: Large Language Models & Transformers
 - [ ] Chapter 12: Prompt Engineering
