@@ -71,7 +71,7 @@ plt.show()
 
 ## 2. Residual Plot
 
-**Residuals = $y - \hat{y}$** — the vertical distance from each point to the line. Good fits have residuals centered around 0 with no pattern. If you see a curve in the residual plot, the relationship may be nonlinear; if variance grows with predicted value, you may need different modeling.
+**Residuals = \( y - \hat{y} \)** — the vertical distance from each point to the line. Good fits have residuals centered around 0 with no pattern. If you see a curve in the residual plot, the relationship may be nonlinear; if variance grows with predicted value, you may need different modeling.
 
 ```python
 residuals = y - y_pred

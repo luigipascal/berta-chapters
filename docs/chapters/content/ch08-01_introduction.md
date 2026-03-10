@@ -244,7 +244,7 @@ How do we know if K-Means did a good job? Two common metrics:
 
 **Inertia (Within-Cluster Sum of Squares):** The sum of squared distances from each point to its centroid. Lower is better, but inertia *always* decreases as K increases — so it alone doesn't tell us the right K.
 
-**Silhouette Score:** For each point, we compare the mean distance to others in the same cluster (*a*) vs. the mean distance to the nearest other cluster (*b*). The score is \( \frac{b - a}{\max(a, b)} \), ranging from −1 to +1. Higher is better; values near 0 indicate overlapping clusters.
+**Silhouette Score:** For each point, we compare the mean distance to others in the same cluster (\( a \)) vs. the mean distance to the nearest other cluster (\( b \)). The score is \( \frac{b - a}{\max(a, b)} \), ranging from \( -1 \) to \( +1 \). Higher is better; values near 0 indicate overlapping clusters.
 
 ```python
 from sklearn.metrics import silhouette_score, silhouette_samples

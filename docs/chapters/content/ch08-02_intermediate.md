@@ -164,13 +164,13 @@ print(f"Cluster sizes: {np.bincount(agg_labels)}")
 
 | Parameter | Meaning |
 |-----------|--------|
-| `eps` (ε) | Maximum distance between two points for them to be considered neighbours |
-| `min_samples` | Minimum number of points within ε-distance to form a dense region |
+| `eps` (\( \varepsilon \)) | Maximum distance between two points for them to be considered neighbours |
+| `min_samples` | Minimum number of points within \( \varepsilon \)-distance to form a dense region |
 
 ### Point types
 
-- **Core point** — has at least `min_samples` neighbours within ε.
-- **Border point** — within ε of a core point but doesn't have enough neighbours itself.
+- **Core point** — has at least `min_samples` neighbours within \( \varepsilon \).
+- **Border point** — within \( \varepsilon \) of a core point but doesn't have enough neighbours itself.
 - **Noise point** — neither core nor border; isolated outliers.
 
 DBSCAN can discover clusters of **arbitrary shape** and naturally identifies outliers — something centroid-based methods like K-Means cannot do.
@@ -218,7 +218,7 @@ plt.show()
 
 Picking `eps` and `min_samples` can be tricky. A practical heuristic:
 
-1. Set `min_samples` ≈ 2 × number of features (a reasonable default).
+1. Set `min_samples` \( \approx 2 \times \) number of features (a reasonable default).
 2. For each point compute the distance to its **k-th nearest neighbour** (k = `min_samples`).
 3. Sort these distances and plot them — the **k-distance graph**.
 4. Look for the "elbow" — the point where the curve bends sharply upward. The distance at that elbow is a good candidate for `eps`.
@@ -503,7 +503,7 @@ plt.show()
 | Algorithm | Best for | Weaknesses | Must specify k? |
 |-----------|----------|------------|-----------------|
 | **K-Means** | Large datasets with spherical clusters | Cannot handle non-convex shapes; sensitive to outliers | Yes |
-| **Agglomerative Clustering** | Small-to-medium datasets; exploring hierarchy | O(n³) time complexity; hard to scale | Yes (or cut dendrogram) |
+| **Agglomerative Clustering** | Small-to-medium datasets; exploring hierarchy | \( O(n^3) \) time complexity; hard to scale | Yes (or cut dendrogram) |
 | **DBSCAN** | Arbitrary shapes; datasets with noise/outliers | Sensitive to `eps`; struggles with varying densities | No |
 | **Gaussian Mixture Model** | Elliptical clusters; need soft assignments | Assumes Gaussian components; sensitive to initialisation | Yes |
 
