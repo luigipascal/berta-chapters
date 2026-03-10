@@ -92,7 +92,7 @@ Errors are explained in plain English.
 
 [Open the Playground](playground.md){ .md-button .md-button--primary }
 
-14 pre-built exercises covering Chapters 1–6. Load one and start coding.
+23 pre-built exercises covering Chapters 1–9. Load one and start coding.
 
 ---
 
