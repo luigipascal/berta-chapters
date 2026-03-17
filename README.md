@@ -55,7 +55,7 @@ Apply what you've learned to real-world machine learning and AI problems.
 | 7 | [Supervised Learning: Regression & Classification](./chapters/chapter-07-supervised-learning/) | 10h | ✅ Available |
 | 8 | [Unsupervised Learning: Clustering & Dimensionality Reduction](./chapters/chapter-08-unsupervised-learning/) | 8h | ✅ Available |
 | 9 | [Deep Learning Fundamentals](./chapters/chapter-09-deep-learning-fundamentals/) | 12h | ✅ Available |
-| 10 | Natural Language Processing Basics | 10h | 🔄 Coming Soon |
+| 10 | [Natural Language Processing Basics](./chapters/chapter-10-natural-language-processing-basics/) | 8–10h | ✅ Available |
 | 11 | Large Language Models & Transformers | 10h | 🔄 Coming Soon |
 | 12 | Prompt Engineering & In-Context Learning | 6h | 🔄 Coming Soon |
 | 13 | Retrieval-Augmented Generation (RAG) | 8h | 🔄 Coming Soon |

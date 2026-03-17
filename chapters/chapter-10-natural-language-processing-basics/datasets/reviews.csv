@@ -1,0 +1,16 @@
+text,sentiment,rating
+"This movie was absolutely fantastic! The acting was superb and the plot kept me on the edge of my seat. I'd recommend it to everyone.",1,5
+"Terrible film. Boring and predictable. Waste of time and money. Don't bother watching.",0,1
+"I've never been so disappointed in a product. It broke after two days and customer service was unhelpful.",0,2
+"Amazing quality for the price. Fast shipping and exactly what I expected. Will buy again!",1,5
+"The food was okay but nothing special. Service was slow and the place was crowded.",0,3
+"Best restaurant in town! The pasta was incredible and the staff made us feel welcome. Can't wait to go back.",1,5
+"Great camera, easy to use. Battery life could be better but overall I'm very happy with my purchase.",1,4
+"Poor construction. Fell apart within a week. Would not recommend to anyone.",0,1
+"Such a heartwarming story. Laughed and cried. The cast did an excellent job. Five stars!",1,5
+"Mediocre at best. I've seen better. The ending was confusing and left too many questions.",0,2
+"Love this app! It's made my life so much easier. The interface is clean and intuitive.",1,5
+"Frustrating experience. Constant bugs and the support team never got back to me. Very disappointed.",0,2
+"Wonderful hotel. Clean rooms, friendly staff, and a great breakfast. We'll definitely return.",1,5
+"The book started strong but dragged in the middle. Ending was satisfying though. Three stars.",0,3
+"Incredible concert! The energy was electric and the band sounded better than ever. Worth every penny.",1,5

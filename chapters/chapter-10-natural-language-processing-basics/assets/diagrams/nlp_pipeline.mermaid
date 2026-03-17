@@ -1,0 +1,9 @@
+graph LR
+    A["Raw Text"] --> B["Tokenization"]
+    B --> C["Lowercasing"]
+    C --> D["Stopword Removal"]
+    D --> E["Lemmatization"]
+    E --> F["Vectorization"]
+    F --> G["Feature Matrix"]
+    G --> H["ML Model"]
+    H --> I["Prediction"]

@@ -1,0 +1,14 @@
+# Named Entity Recognition Examples (Chapter 10)
+# Format: sentence with entities that typical NER models (e.g. spaCy) would tag.
+# Common labels: PERSON, ORG, GPE (geo-political), DATE, etc.
+
+John Smith lives in New York City.
+Apple Inc. was founded by Steve Jobs in Cupertino.
+The presentation is scheduled for March 15 at Microsoft headquarters in Seattle.
+President Johnson signed the Civil Rights Act in 1964.
+Amazon announced a new facility in Arlington, Virginia.
+Dr. Jane Wilson from Harvard University published the study last Tuesday.
+The concert at Madison Square Garden featured Taylor Swift.
+Google and Meta are competing in the artificial intelligence space.
+Paris is the capital of France; the Eiffel Tower attracts millions of visitors.
+Elon Musk leads Tesla and SpaceX; both companies are based in Texas.

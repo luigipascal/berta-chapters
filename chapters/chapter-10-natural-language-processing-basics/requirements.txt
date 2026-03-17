@@ -1,0 +1,27 @@
+# Chapter 10: Natural Language Processing Basics
+# Install: pip install -r requirements.txt
+# Python 3.9+ recommended
+
+# --- Core NLP ---
+nltk>=3.8              # Tokenization, stemming, stopwords, corpora
+spacy>=3.5             # NER, pipelines, lemmatization
+gensim>=4.3            # Word2Vec, document similarity, topic models
+
+# --- ML & data ---
+scikit-learn>=1.3      # TF-IDF, classifiers, metrics, clustering
+pandas>=1.5            # DataFrames, CSV I/O
+numpy>=1.24            # Arrays, linear algebra
+
+# --- Deep learning (use one) ---
+tensorflow>=2.13       # Keras, LSTM, embeddings, production
+# torch>=2.0            # Alternative: PyTorch for NLP
+
+# --- Visualization & notebooks ---
+matplotlib>=3.7        # Plots, word clouds (with wordcloud if added)
+jupyter>=1.0            # JupyterLab/Notebook
+ipywidgets>=8.0        # Interactive widgets in notebooks
+
+# --- Optional: transfer learning & modern NLP ---
+# transformers>=4.30    # BERT, DistilBERT, tokenizers
+# datasets>=2.10        # Hugging Face datasets
+# huggingface-hub>=0.16 # Model hub

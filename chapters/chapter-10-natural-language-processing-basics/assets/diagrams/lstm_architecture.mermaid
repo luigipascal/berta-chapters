@@ -1,0 +1,8 @@
+graph LR
+    A["Input Sequence"] --> B["Embedding Layer"]
+    B --> C["LSTM Layer 1"]
+    C --> D["LSTM Layer 2"]
+    D --> E["Output Layer"]
+    E --> F["Prediction"]
+
+    C -.->|Hidden State| D
