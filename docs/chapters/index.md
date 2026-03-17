@@ -56,6 +56,10 @@ Apply your knowledge to real-world ML and AI problems.
     *12h · 3 notebooks, 5 exercises, 3 SVGs*  
     Neural networks from scratch, PyTorch, CNNs, RNNs/LSTMs, image classification
 
+- **Ch 10: [Natural Language Processing Basics](chapter-10.md)**  
+    *8–10h · 3 notebooks, 2 problem sets, 3 Mermaid diagrams*  
+    Tokenization, TF-IDF, embeddings, sentiment, NER, text classification, attention intro
+
 </div>
 
 ---
@@ -73,15 +77,16 @@ Apply your knowledge to real-world ML and AI problems.
 | [7: Supervised Learning](chapter-07.md) | Practitioner | 10h | 3 | 5 | 3 |
 | [8: Unsupervised Learning](chapter-08.md) | Practitioner | 8h | 3 | 5 | 3 |
 | [9: Deep Learning Fundamentals](chapter-09.md) | Practitioner | 12h | 3 | 5 | 3 |
+| [10: Natural Language Processing Basics](chapter-10.md) | Practitioner | 8–10h | 3 | 2 | 3 |
 
 ---
 
 ## Coming Soon
 
-!!! info "Chapters 10–25"
+!!! info "Chapters 11–25"
     Additional chapters are planned for the Practitioner and Advanced tracks:
     
-    - **Practitioner** (10–15): NLP, LLMs, Prompt Engineering, RAG, Fine-tuning, MLOps
+    - **Practitioner** (11–15): LLMs & Transformers, Prompt Engineering, RAG, Fine-tuning, MLOps
     - **Advanced** (16–25): Multi-Agent Systems, Advanced RAG, Reinforcement Learning, Model Optimization, Production AI, Finance, Safety, AI Products, Research, Governance & Ethics
     
     [Request a custom chapter](../guides/chapter-requests.md) on any AI topic while you wait!

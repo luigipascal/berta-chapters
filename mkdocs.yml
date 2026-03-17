@@ -145,6 +145,10 @@ nav:
       - "9.1 Introduction": chapters/content/ch09-01_introduction.md
       - "9.2 Intermediate": chapters/content/ch09-02_intermediate.md
       - "9.3 Advanced": chapters/content/ch09-03_advanced.md
+      - "Ch 10: Natural Language Processing": chapters/chapter-10.md
+      - "10.1 Introduction": chapters/content/ch10-01_introduction.md
+      - "10.2 Intermediate": chapters/content/ch10-02_intermediate.md
+      - "10.3 Advanced": chapters/content/ch10-03_advanced.md
   - Playground: playground.md
   - Community:
     - Contributing: guides/contributing.md

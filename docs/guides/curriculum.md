@@ -32,14 +32,14 @@ Apply knowledge to real-world ML and AI problems.
 | 7 | Supervised Learning | 10h | Available | [chapter-07.md](../chapters/chapter-07.md) |
 | 8 | Unsupervised Learning | 8h | Available | [chapter-08.md](../chapters/chapter-08.md) |
 | 9 | Deep Learning Fundamentals | 12h | Available | [chapter-09.md](../chapters/chapter-09.md) |
-| 10 | Natural Language Processing Basics | 10h | Coming soon | — |
+| 10 | Natural Language Processing Basics | 8–10h | Available | [chapter-10.md](../chapters/chapter-10.md) |
 | 11 | Large Language Models & Transformers | 10h | Coming soon | — |
 | 12 | Prompt Engineering | 6h | Coming soon | — |
 | 13 | Retrieval-Augmented Generation (RAG) | 8h | Coming soon | — |
 | 14 | Fine-tuning & Adaptation | 8h | Coming soon | — |
 | 15 | MLOps & Deployment | 8h | Coming soon | — |
 
-**Total: 88 hours (38h available)**
+**Total: 88 hours (46h available)**
 
 ---
 
@@ -69,9 +69,9 @@ Master complex topics and specialized domains.
 | Track | Chapters | Total Hours | Available |
 |-------|----------|-------------|-----------|
 | Foundation | 1–5 | 38h | 5/5 |
-| Practitioner | 6–15 | 88h | 4/10 |
+| Practitioner | 6–15 | 88h | 5/10 |
 | Advanced | 16–25 | 84h | 0/10 |
-| **Total** | **25** | **210h+** | **9** |
+| **Total** | **25** | **210h+** | **10** |
 
 ---
 
