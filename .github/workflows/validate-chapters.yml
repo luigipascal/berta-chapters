@@ -86,6 +86,8 @@ jobs:
           done
 
       - name: Validate interactive tools
+        env:
+          RICH_FORCE_TERMINAL: "false"
         run: |
           python interactive/berta.py paths
           python interactive/berta.py status

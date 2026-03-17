@@ -193,10 +193,7 @@ QUIZ_QUESTIONS = [
 
 
 def load_progress():
-    if PROGRESS_FILE.exists():
-        with open(PROGRESS_FILE) as f:
-            return json.load(f)
-    return {
+    default = {
         "learner_name": None,
         "selected_path": None,
         "chapters_completed": [],
@@ -205,6 +202,13 @@ def load_progress():
         "started_at": None,
         "last_active": None,
     }
+    if PROGRESS_FILE.exists():
+        try:
+            with open(PROGRESS_FILE) as f:
+                return json.load(f)
+        except (json.JSONDecodeError, OSError):
+            return default
+    return default
 
 
 def save_progress(progress):
@@ -762,20 +766,28 @@ def main():
     if len(sys.argv) > 1:
         cmd = sys.argv[1].lower()
         if cmd == "paths":
-            if HAS_RICH:
-                hub = BertaHub()
-                hub.show_learning_paths(interactive=False)
-            else:
-                for key, path in LEARNING_PATHS.items():
-                    print(f"\nPath {key}: {path['name']} ({path['hours']}h)")
-                    print(f"  {path['description']}")
-                    print(f"  Chapters: {' -> '.join(str(c) for c in path['chapters'])}")
-            return
+            try:
+                if HAS_RICH:
+                    hub = BertaHub()
+                    hub.show_learning_paths(interactive=False)
+                else:
+                    for key, path in LEARNING_PATHS.items():
+                        print(f"\nPath {key}: {path['name']} ({path['hours']}h)")
+                        print(f"  {path['description']}")
+                        print(f"  Chapters: {' -> '.join(str(c) for c in path['chapters'])}")
+            except Exception as e:
+                print(f"paths: {e}", file=sys.stderr)
+                sys.exit(1)
+            sys.exit(0)
         elif cmd == "status":
-            progress = load_progress()
-            completed = progress.get("chapters_completed", [])
-            print(f"Completed: {len(completed)}/{len(CHAPTERS)} chapters")
-            return
+            try:
+                progress = load_progress()
+                completed = progress.get("chapters_completed", [])
+                print(f"Completed: {len(completed)}/{len(CHAPTERS)} chapters")
+            except Exception as e:
+                print(f"status: {e}", file=sys.stderr)
+                sys.exit(1)
+            sys.exit(0)
         elif cmd == "quiz":
             if HAS_RICH:
                 hub = BertaHub()
