@@ -767,7 +767,9 @@ def main():
         cmd = sys.argv[1].lower()
         if cmd == "paths":
             try:
-                if HAS_RICH:
+                # In CI (e.g. GitHub Actions), use plain output to avoid Rich/non-TTY issues
+                in_ci = os.environ.get("GITHUB_ACTIONS") == "true" or os.environ.get("CI") == "true"
+                if HAS_RICH and not in_ci:
                     hub = BertaHub()
                     hub.show_learning_paths(interactive=False)
                 else:

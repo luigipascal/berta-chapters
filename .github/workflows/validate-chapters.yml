@@ -7,12 +7,14 @@ on:
       - 'chapters/**'
       - 'interactive/**'
       - 'templates/**'
+      - '.github/workflows/validate-chapters.yml'
   pull_request:
     branches: [main]
     paths:
       - 'chapters/**'
       - 'interactive/**'
       - 'templates/**'
+      - '.github/workflows/validate-chapters.yml'
 
 jobs:
   validate:
@@ -78,10 +80,13 @@ jobs:
 
       - name: Run exercise solutions
         run: |
-          for solutions in chapters/*/exercises/solutions/solutions.py; do
-            if [ -f "$solutions" ]; then
-              echo "Running $solutions..."
-              python "$solutions"
+          for dir in chapters/chapter-*/; do
+            if [ -f "${dir}exercises/solutions/solutions.py" ]; then
+              echo "Running solutions for $dir..."
+              if [ -f "${dir}requirements.txt" ]; then
+                pip install -q -r "${dir}requirements.txt" || true
+              fi
+              python "${dir}exercises/solutions/solutions.py"
             fi
           done
 
