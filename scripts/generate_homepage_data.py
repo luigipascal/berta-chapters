@@ -4,6 +4,9 @@ Generate homepage stats and chapter tables from chapters/chapter-*/.
 Run from repo root. Updates docs/index.md in place by replacing the
 content between <!-- AUTO_HOMEPAGE_DATA --> and <!-- /AUTO_HOMEPAGE_DATA -->.
 This keeps all links relative to index.md so MkDocs resolves them correctly.
+
+When adding a new chapter: also add 2–3 playground exercises to docs/playground.md
+(optgroup, EXERCISES entries, and Exercise Guide table). See docs/guides/contributing.md.
 """
 
 import re

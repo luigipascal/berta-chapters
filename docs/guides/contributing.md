@@ -112,6 +112,21 @@ Want to enhance a chapter?
 
 ---
 
+## When Adding a New Chapter (Maintainers)
+
+When you add a **new chapter** to the curriculum, remember to:
+
+1. **Homepage & stats** — Run `python scripts/generate_homepage_data.py` and commit the updated `docs/index.md` so the homepage shows the new chapter and updated counts (or rely on CI to run it on deploy).
+2. **Docs & nav** — Add the chapter page and content links under `docs/chapters/`, and add the chapter to `mkdocs.yml` nav and to `docs/chapters/index.md` and `docs/guides/curriculum.md` / `docs/guides/syllabus.md`.
+3. **Playground** — Add **2–3 exercises** for the new chapter in `docs/playground.md`:
+   - Add an `<optgroup label="Chapter N: Title">` with `<option value="chN_slug">Display Name</option>` entries in the dropdown.
+   - Add the corresponding `EXERCISES["chN_slug"] = "..."` code strings in the script section (use **built-in Python only**: `math`, `random`, `re`, `collections` — no NumPy/nltk in the browser).
+   - Add rows to the **Exercise Guide** table at the bottom of the playground section.
+
+This keeps the site and playground in sync with every new chapter.
+
+---
+
 ## Community Standards
 
 - Be respectful and inclusive
