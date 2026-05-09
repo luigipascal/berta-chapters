@@ -1,0 +1,12 @@
+graph LR
+    C["Client"] --> LB["Load Balancer"]
+    LB --> R1["Service Replica 1"]
+    LB --> R2["Service Replica 2"]
+    LB --> R3["Service Replica N"]
+    R1 --> M["Model (joblib)"]
+    R2 --> M
+    R3 --> M
+    R1 --> P["Metrics / Logs"]
+    R2 --> P
+    R3 --> P
+    P --> D["Dashboards & Alerts"]

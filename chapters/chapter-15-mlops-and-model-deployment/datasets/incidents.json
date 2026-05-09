@@ -1,0 +1,32 @@
+[
+  {
+    "timestamp": "2026-04-12T03:14:22Z",
+    "severity": "critical",
+    "description": "P99 latency spiked to 1.8s; service /predict returned 503 for 12% of requests over a 7-minute window after a model artifact was promoted to Production.",
+    "resolution": "Rolled back to previous Production version via registry. Root cause: new artifact bundled an unpinned numpy version with slower BLAS routing. Added a pre-promotion latency benchmark gate to CI."
+  },
+  {
+    "timestamp": "2026-04-18T11:02:07Z",
+    "severity": "high",
+    "description": "Drift detector flagged feature_a with PSI=0.31 over a 24-hour window; downstream business metric (conversion) dropped 4%.",
+    "resolution": "Confirmed upstream data pipeline began emitting normalized values. Re-trained on the new distribution, registered v2.3.1, ran a 10% canary for 6 hours, then full promotion."
+  },
+  {
+    "timestamp": "2026-04-21T22:48:55Z",
+    "severity": "medium",
+    "description": "Memory usage on replica pods grew steadily; 3 replicas OOM-killed over 8 hours.",
+    "resolution": "Identified an unbounded in-process prediction cache. Replaced with an LRU cache capped at 10k entries. Added a memory-usage panel to the service dashboard."
+  },
+  {
+    "timestamp": "2026-04-29T08:30:11Z",
+    "severity": "low",
+    "description": "Health check returned 200 but /predict returned 500 for any request with feature_b=null. Synthetic monitor missed it for 30 minutes.",
+    "resolution": "Tightened Pydantic schema to require non-null feature_b. Added a synthetic probe that exercises a full /predict round-trip, not just /health."
+  },
+  {
+    "timestamp": "2026-05-03T16:55:40Z",
+    "severity": "high",
+    "description": "Canary deploy of v3.0.0 caused a 9% regression in F1 on the live shadow eval set; error rate stable but predictions degraded.",
+    "resolution": "Auto-rollback policy fired after 30 minutes once F1 dropped below 0.78 (gate). Re-trained with corrected feature scaling; re-canary succeeded."
+  }
+]

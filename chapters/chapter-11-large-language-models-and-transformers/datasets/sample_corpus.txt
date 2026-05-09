@@ -1,0 +1,31 @@
+The Transformer architecture was introduced in the 2017 paper "Attention Is All You Need". It replaced recurrence with self-attention and quickly became the dominant architecture for natural language processing.
+
+Self-attention computes a weighted sum over all positions in a sequence at once. Each position produces a query, a key and a value, and the attention weights tell the model where to look.
+
+Multi-head attention runs several attention computations in parallel on different projections of the input. Each head can specialise on a different relationship — syntax, coreference, or position — and the results are concatenated.
+
+Positional encoding injects sequence order into otherwise permutation-equivariant attention. The original sinusoidal scheme uses sine and cosine functions at geometrically spaced wavelengths.
+
+BERT is an encoder-only transformer trained with masked-language-modelling. It produces strong contextual embeddings and is widely used for classification, named-entity recognition and sentence-pair tasks.
+
+GPT-style models are decoder-only transformers. They generate text autoregressively, predicting the next token from all previous tokens, and form the basis of modern chat assistants.
+
+T5 and BART are encoder-decoder transformers. The encoder reads the source sequence bidirectionally and the decoder generates the target with cross-attention, making them strong at translation and summarisation.
+
+Subword tokenizers such as BPE, WordPiece and SentencePiece keep vocabularies small while avoiding out-of-vocabulary errors. They split rare words into common pieces and represent any string as a sequence of tokens.
+
+Pretraining is the first stage of training a large language model. The model learns general linguistic and world knowledge from a massive corpus before any task-specific data is seen.
+
+Fine-tuning adapts a pretrained model to a specific task by continuing training with a small labelled dataset. Modern alternatives include LoRA and parameter-efficient fine-tuning that train far fewer weights.
+
+Embeddings turn text into dense vectors so similar inputs land near each other. Sentence-level embeddings are usually obtained by mean-pooling token vectors and then normalising.
+
+Decoding strategies control how the model picks the next token. Greedy is deterministic, temperature flattens or sharpens the distribution, and top-k or top-p sampling restrict the choice to the most likely tokens.
+
+The KV cache stores keys and values from previous tokens so each new step costs O(t) instead of O(t^2). It is the dominant memory cost during long-context generation.
+
+Scaling laws show that loss decreases as a power law in compute, data and parameters. The Chinchilla paper demonstrated that earlier models were under-trained relative to their parameter count.
+
+Retrieval-augmented generation injects relevant passages from a corpus into the prompt so the model can answer questions grounded in fresh or proprietary data. It is the bread-and-butter pattern for production LLM apps.
+
+Evaluating language models is hard because there are many valid outputs. Perplexity measures fit, BLEU and ROUGE measure surface overlap, and human or LLM-judged win-rates capture quality more directly.

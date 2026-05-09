@@ -1,0 +1,8 @@
+graph LR
+    X["Input x"] --> W["Frozen W<br/>(out x in)"]
+    X --> A["Trainable A<br/>(r x in)"]
+    A --> B["Trainable B<br/>(out x r)"]
+    B --> S["Scale by alpha/r"]
+    W --> SUM(("+"))
+    S --> SUM
+    SUM --> Y["Output y = xW^T + xA^T B^T (alpha/r)"]

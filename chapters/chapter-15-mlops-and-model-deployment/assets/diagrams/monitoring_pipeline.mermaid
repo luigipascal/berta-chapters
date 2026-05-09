@@ -1,0 +1,9 @@
+graph LR
+    P["Predictions Stream"] --> M["Metrics Aggregator"]
+    P --> D["Drift Detector (PSI / KS)"]
+    M --> L["Latency / Errors"]
+    L --> A["Alerts"]
+    D --> A
+    A --> O["On-Call / Rollback"]
+    M --> DB["Time-Series Store"]
+    DB --> V["Dashboards"]

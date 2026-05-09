@@ -1,0 +1,20 @@
+{"instruction": "Translate to French", "input": "good morning", "output": "bonjour"}
+{"instruction": "Translate to Spanish", "input": "thank you very much", "output": "muchas gracias"}
+{"instruction": "Translate to German", "input": "see you tomorrow", "output": "bis morgen"}
+{"instruction": "Sum the integers", "input": "12 and 7", "output": "19"}
+{"instruction": "Multiply the integers", "input": "6 and 9", "output": "54"}
+{"instruction": "Compute the product", "input": "8 times 11", "output": "88"}
+{"instruction": "Summarize the paragraph in one sentence", "input": "The quarterly report shows revenue grew 12 percent year over year, driven by international sales. Operating margins improved by 2 points.", "output": "Quarterly revenue grew 12% YoY on international sales with margins up 2 points."}
+{"instruction": "Summarize in one short sentence", "input": "Our team shipped a new dashboard with faster load times, dark mode, and improved accessibility scores.", "output": "We shipped a faster, dark-mode dashboard with better accessibility."}
+{"instruction": "Write a Python function that returns the square of a number", "input": "", "output": "def square(x):\n    return x * x"}
+{"instruction": "Write a Python function to check if a number is even", "input": "", "output": "def is_even(n):\n    return n % 2 == 0"}
+{"instruction": "Write a Python one-liner that reverses a string", "input": "", "output": "def reverse(s):\n    return s[::-1]"}
+{"instruction": "Answer the question concisely", "input": "What is the capital of France?", "output": "Paris"}
+{"instruction": "Answer the question concisely", "input": "What is the largest planet in our solar system?", "output": "Jupiter"}
+{"instruction": "Answer the question concisely", "input": "Who wrote the play Hamlet?", "output": "William Shakespeare"}
+{"instruction": "Classify the sentiment as positive or negative", "input": "I absolutely love this product, it works perfectly!", "output": "positive"}
+{"instruction": "Classify the sentiment as positive or negative", "input": "This was the worst experience I have ever had.", "output": "negative"}
+{"instruction": "Classify the sentiment as positive or negative", "input": "Battery life is amazing and the screen is gorgeous.", "output": "positive"}
+{"instruction": "Convert the temperature from Celsius to Fahrenheit", "input": "100", "output": "212"}
+{"instruction": "Convert the temperature from Celsius to Fahrenheit", "input": "0", "output": "32"}
+{"instruction": "List three primary colors", "input": "", "output": "red, blue, yellow"}

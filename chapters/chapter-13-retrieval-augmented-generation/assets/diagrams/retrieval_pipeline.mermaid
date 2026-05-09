@@ -1,0 +1,14 @@
+graph LR
+    Q["Query"] --> QE["Embed Query"]
+    Q --> QT["Tokenize Query"]
+
+    QE --> DENSE[("Dense Index<br/>cosine over embeddings")]
+    QT --> SPARSE[("Sparse Index<br/>BM25")]
+
+    DENSE --> DCAND["Dense top-k candidates"]
+    SPARSE --> SCAND["Sparse top-k candidates"]
+
+    DCAND --> RRF["Reciprocal<br/>Rank Fusion"]
+    SCAND --> RRF
+    RRF --> RR["Cross-encoder<br/>Reranker (optional)"]
+    RR --> TOPK["Final Top-k Chunks"]

@@ -1,0 +1,69 @@
+[doc-001] Retrieval-augmented generation, often abbreviated RAG, combines a large language model with an external retriever. At query time the system fetches relevant documents from a corpus and prepends them to the prompt. This grounds the model in evidence and reduces hallucination, especially for facts the base model never saw or has forgotten.
+
+[doc-002] Vector embeddings are dense numerical representations of text that place semantically similar passages near each other in a high-dimensional space. Modern embedding models like sentence-transformers produce 384- to 1024-dimensional vectors. Cosine similarity between two embeddings is the default measure of relatedness.
+
+[doc-003] BM25 is a classic sparse retrieval algorithm based on term-frequency and inverse-document-frequency. Unlike dense vectors, BM25 represents documents as bags of weighted tokens. It is fast, interpretable, and surprisingly competitive on keyword-heavy queries where exact matches matter.
+
+[doc-004] Hybrid search combines dense vector retrieval with sparse BM25 retrieval. A common fusion technique is Reciprocal Rank Fusion, which sums one over the rank of each candidate across both retrievers. Hybrid search robustly outperforms either retriever alone on most public benchmarks.
+
+[doc-005] Chunking is the process of splitting long documents into smaller passages for indexing. Fixed-size character chunks are simple but can break sentences. Sliding-window chunks add overlap to preserve context across boundaries. Sentence and semantic chunkers respect natural language structure.
+
+[doc-006] FAISS is a library from Meta AI that provides exact and approximate nearest-neighbor search over dense vectors at very high scale. It supports IVF, HNSW, and product-quantization indexes. FAISS runs on CPU and GPU and can index hundreds of millions of vectors on a single machine.
+
+[doc-007] Chroma and Pinecone are managed vector databases that wrap a vector index with metadata filtering, persistence, and an HTTP API. They simplify production deployment compared to building atop FAISS. Trade-offs include cost, latency, and feature parity with native libraries.
+
+[doc-008] Reranking improves retrieval quality by re-scoring an initial candidate list with a more expensive model, typically a cross-encoder. Cross-encoders take a query and a candidate together and output a single relevance score. They are slower than bi-encoders but much more accurate.
+
+[doc-009] Hallucination in large language models refers to fluent but factually wrong output. RAG mitigates hallucination by injecting verifiable context into the prompt. However, RAG cannot prevent hallucination if the retrieved context is irrelevant or if the model ignores it.
+
+[doc-010] Prompt engineering for RAG focuses on instructing the model to use the retrieved context, cite sources, and refuse when evidence is missing. A standard pattern is: system instructions, retrieved chunks with bracketed identifiers, the user question, then a final answer slot.
+
+[doc-011] HyDE stands for Hypothetical Document Embeddings. The retriever first asks the LLM to draft a hypothetical answer to the user query, then embeds that draft and uses it as the search vector. HyDE often beats raw query embeddings, especially for short or vague questions.
+
+[doc-012] Multi-query retrieval generates several paraphrases of the user question and retrieves with each. The unioned candidate list is then reranked. This boosts recall for queries that hinge on a single keyword the user did not type.
+
+[doc-013] Faithfulness measures whether a generated answer is supported by the retrieved context. A simple proxy is the fraction of answer claims that appear, paraphrased or verbatim, in the cited chunks. LLM-as-judge evaluators like Ragas use a similar idea at scale.
+
+[doc-014] Answer relevance measures whether the generated answer actually addresses the user question. It is usually scored by an LLM-as-judge or a regression model trained on human ratings. A faithful answer can still be irrelevant if it answers the wrong question.
+
+[doc-015] Context precision evaluates whether the retrieved chunks are actually useful for the answer. Context recall evaluates whether all the information needed for a complete answer was retrieved. Together they describe the quality of the retrieval stage independent of generation.
+
+[doc-016] Hit at k is the simplest retrieval metric: it equals one if any of the top-k results is relevant, else zero. Mean Reciprocal Rank averages one over the rank of the first relevant hit. Both are easy to compute and require only binary relevance labels.
+
+[doc-017] Token windows in modern LLMs range from a few thousand tokens for older models to over a million for the latest releases. Larger context windows reduce the need for tight retrieval, but they also raise cost and latency and do not eliminate the need for relevance ranking.
+
+[doc-018] Caching is a leading lever for RAG cost and latency. You can cache embeddings, retrieved candidate lists, and even full prompt-to-answer pairs. Cache invalidation must respect document updates so users never see stale answers after the underlying corpus changes.
+
+[doc-019] Freshness in RAG comes from re-indexing. A common architecture pulls new documents on a schedule, embeds them, and upserts into the vector store with a version tag. Time-decayed scoring or filtered retrieval can prefer recent material when freshness matters.
+
+[doc-020] Multi-hop retrieval handles questions whose answer requires combining information from multiple documents. The system retrieves once, drafts an intermediate query from the partial answer, and retrieves again. The cycle repeats until the model has enough evidence.
+
+[doc-021] Agentic RAG generalizes multi-hop retrieval. The LLM decides at each step whether to search, call a tool, or finalize an answer. Frameworks like LangChain and LlamaIndex orchestrate these loops, but well-tuned single-shot RAG remains a strong baseline.
+
+[doc-022] Citations make RAG outputs auditable. The model is prompted to attach the chunk identifier to each claim it makes. Downstream UIs can then surface the source passage on click, letting users verify the answer themselves.
+
+[doc-023] Sharding partitions a large vector index across multiple machines. Queries fan out to all shards in parallel, and results are merged. Sharding scales throughput and capacity but adds tail-latency and consistency considerations.
+
+[doc-024] Embedding model choice affects everything downstream. Smaller models like all-MiniLM-L6-v2 produce 384-dimensional vectors and run on CPU. Larger models like text-embedding-3-large produce richer embeddings but cost more per call and per byte stored.
+
+[doc-025] Tokenization for retrieval differs from tokenization for generation. Retrieval tokenizers favor simple, language-aware splits with stemming or lemmatization. Generation tokenizers use byte-pair encoding optimized for compression of natural language.
+
+[doc-026] Cosine similarity between two vectors equals their dot product divided by the product of their L2 norms. When both vectors are L2-normalized, cosine similarity reduces to a single dot product, which is why most production stores normalize at index time.
+
+[doc-027] Approximate nearest-neighbor algorithms trade a small recall loss for a large speedup. HNSW builds a navigable small-world graph; IVF clusters vectors and probes only the nearest clusters. Product quantization compresses vectors so they fit in memory at billion-scale.
+
+[doc-028] Document loaders parse raw inputs into text. Common sources include PDFs, HTML, Markdown, transcripts, and database rows. The loader stage controls metadata extraction such as title, author, URL, and timestamp, all of which are useful for filtering and citation.
+
+[doc-029] Metadata filters narrow retrieval to documents matching predicate conditions, for example date ranges, owners, or document types. Filters are usually applied before similarity scoring for efficiency, though some stores integrate filtering directly into the index.
+
+[doc-030] Evaluation harnesses for RAG run a fixed set of queries through the pipeline and report retrieval and generation metrics side by side. Tracking metrics over time exposes regressions when you change chunk size, embedding model, or prompt template.
+
+[doc-031] Latency budgets shape RAG architecture. A typical target is under one second end-to-end. Embedding the query, searching the index, optionally reranking, and calling the LLM all contribute. Streaming the answer hides generation latency from the user.
+
+[doc-032] Cost in RAG comes from embedding calls, vector storage, retrieval compute, reranker calls, and LLM completions. Self-hosting open models reduces marginal cost but increases operational burden. The right balance depends on traffic and latency requirements.
+
+[doc-033] Security for RAG requires per-user access control. The retriever must filter by the requester's permissions before passing chunks to the LLM, otherwise the model can leak private content. Audit logging of retrievals and generations is essential.
+
+[doc-034] Synthetic evaluation data can bootstrap a RAG benchmark when human-labeled queries are scarce. An LLM generates questions for each chunk and then labels its own chunk as relevant. Be cautious of bias when the same model generates and evaluates.
+
+[doc-035] Continuous learning from user feedback closes the RAG loop. Logging which retrieved chunks the user marked helpful or unhelpful lets you fine-tune the retriever, the reranker, or the prompt template. Always sample feedback for offline review.

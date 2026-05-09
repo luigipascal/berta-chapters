@@ -1,0 +1,21 @@
+task_id,input,reference_output,task_type
+qa_01,What is the capital of France?,Paris,qa
+qa_02,Who wrote the play Hamlet?,William Shakespeare,qa
+qa_03,What gas do plants absorb for photosynthesis?,Carbon dioxide,qa
+qa_04,How many continents are there?,Seven,qa
+qa_05,What is the boiling point of water in Celsius?,100,qa
+cls_01,I absolutely loved this movie it was wonderful,positive,classification
+cls_02,Terrible product broken on arrival,negative,classification
+cls_03,The package arrived on time,neutral,classification
+cls_04,Best meal I have had in years amazing flavors,positive,classification
+cls_05,Service was awful and the room was dirty,negative,classification
+ext_01,Contact me at jane.doe@example.com for details,jane.doe@example.com,extraction
+ext_02,The meeting is on 2026-03-15 in Berlin,2026-03-15,extraction
+ext_03,Send invoices to billing@acme.co please,billing@acme.co,extraction
+ext_04,Order number is 47291 ship by Friday,47291,extraction
+ext_05,Reach support at help@berta.ai for assistance,help@berta.ai,extraction
+sum_01,The new library opened downtown today after a two year renovation. It features a children's wing and a community workspace.,A new library opened downtown after a two-year renovation.,summarization
+sum_02,Heavy rain caused flooding in the eastern districts overnight forcing several road closures and prompting emergency response teams to evacuate residents.,Overnight flooding in the eastern districts forced road closures and evacuations.,summarization
+sum_03,Researchers announced a new battery design that promises faster charging times and longer life spans for electric vehicles.,Researchers announced a new battery design with faster charging and longer life.,summarization
+sum_04,The local team won the championship in overtime after a remarkable comeback led by their star quarterback.,The local team won the championship in overtime after a comeback.,summarization
+sum_05,A small startup secured Series A funding to develop affordable solar panels for residential use across rural communities.,A startup raised Series A funding to build affordable rural solar panels.,summarization

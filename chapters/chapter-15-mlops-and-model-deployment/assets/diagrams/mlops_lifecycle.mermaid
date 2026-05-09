@@ -1,0 +1,9 @@
+graph LR
+    A["Train"] --> B["Package"]
+    B --> C["Deploy"]
+    C --> D["Monitor"]
+    D --> E["Improve"]
+    E --> A
+    D -->|"Drift / Errors"| E
+    C -->|"Health & Version"| D
+    B -->|"Registry"| C

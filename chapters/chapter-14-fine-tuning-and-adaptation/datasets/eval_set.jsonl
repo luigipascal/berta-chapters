@@ -1,0 +1,10 @@
+{"prompt": "Translate to French: hello", "reference": "bonjour"}
+{"prompt": "Translate to Spanish: please", "reference": "por favor"}
+{"prompt": "Sum 15 and 23", "reference": "38"}
+{"prompt": "Multiply 7 and 8", "reference": "56"}
+{"prompt": "Capital of Japan?", "reference": "Tokyo"}
+{"prompt": "Largest ocean on Earth?", "reference": "Pacific Ocean"}
+{"prompt": "Sentiment of: I really enjoyed the meal.", "reference": "positive"}
+{"prompt": "Sentiment of: The service was awful and slow.", "reference": "negative"}
+{"prompt": "Convert 25 Celsius to Fahrenheit", "reference": "77"}
+{"prompt": "Reverse the string 'hello'", "reference": "olleh"}

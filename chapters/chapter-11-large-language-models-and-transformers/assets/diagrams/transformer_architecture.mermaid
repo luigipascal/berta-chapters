@@ -1,0 +1,26 @@
+graph TB
+    A["Input Tokens"] --> B["Token Embedding"]
+    B --> C["+ Positional Encoding"]
+    C --> D["Encoder Block x N"]
+    D --> E["Encoder Output"]
+
+    F["Target Tokens (shifted)"] --> G["Token Embedding"]
+    G --> H["+ Positional Encoding"]
+    H --> I["Decoder Block x N"]
+    E -.->|Cross-Attention| I
+    I --> J["Linear + Softmax"]
+    J --> K["Output Probabilities"]
+
+    subgraph Encoder Block
+        D1["Multi-Head Self-Attention"] --> D2["Add & LayerNorm"]
+        D2 --> D3["Feed-Forward"]
+        D3 --> D4["Add & LayerNorm"]
+    end
+
+    subgraph Decoder Block
+        I1["Masked Multi-Head Self-Attention"] --> I2["Add & LayerNorm"]
+        I2 --> I3["Cross-Attention"]
+        I3 --> I4["Add & LayerNorm"]
+        I4 --> I5["Feed-Forward"]
+        I5 --> I6["Add & LayerNorm"]
+    end

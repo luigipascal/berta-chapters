@@ -1,0 +1,14 @@
+graph LR
+    Q["User Query"] --> E["Embed Query"]
+    E --> R["Retrieve Top-k"]
+    R --> P["Assemble Prompt<br/>(query + chunks)"]
+    P --> G["LLM Generate"]
+    G --> A["Answer + Citations"]
+
+    subgraph Index_Built_Offline
+        D["Documents"] --> C["Chunk"]
+        C --> EM["Embed Chunks"]
+        EM --> VS[("Vector Store")]
+    end
+
+    VS --> R

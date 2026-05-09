@@ -1,0 +1,16 @@
+query_id,query,relevant_doc_ids
+q01,What is retrieval-augmented generation?,doc-001
+q02,How do vector embeddings represent text?,doc-002
+q03,What is BM25 and why is it useful?,doc-003
+q04,How does hybrid search combine dense and sparse retrieval?,doc-004|doc-026
+q05,What chunking strategies are common in RAG?,doc-005
+q06,What is FAISS used for?,doc-006|doc-027
+q07,How does reranking improve retrieval?,doc-008
+q08,Why does RAG reduce hallucination?,doc-001|doc-009
+q09,What is HyDE in retrieval?,doc-011
+q10,How is faithfulness measured for RAG outputs?,doc-013
+q11,What is hit@k in retrieval evaluation?,doc-016
+q12,How can we cache RAG results?,doc-018
+q13,What is multi-hop retrieval?,doc-020
+q14,How do citations make RAG auditable?,doc-022
+q15,What does cosine similarity compute?,doc-026

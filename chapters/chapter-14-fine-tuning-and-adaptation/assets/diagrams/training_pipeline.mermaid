@@ -1,0 +1,7 @@
+graph LR
+    D["Raw data<br/>(instruction, input, output)"] --> F["Format + split<br/>(train / val / test)"]
+    F --> T["Tokenize + mask prompt"]
+    T --> S["SFT loop<br/>(LoRA, warmup + cosine)"]
+    S --> E["Evaluate<br/>(EM, F1, win-rate)"]
+    E --> R["Register<br/>(version, hyperparams, scores)"]
+    R --> M["Hand-off to MLOps<br/>(Chapter 15)"]

@@ -18,12 +18,12 @@ graph TD
     CH7["Ch 7: Supervised Learning<br/>10h | Available"]
     CH8["Ch 8: Unsupervised Learning<br/>8h | Available"]
     CH9["Ch 9: Deep Learning<br/>12h | Available"]
-    CH10["Ch 10: NLP Basics<br/>10h | Coming Soon"]
-    CH11["Ch 11: LLMs & Transformers<br/>10h | Coming Soon"]
-    CH12["Ch 12: Prompt Engineering<br/>6h | Coming Soon"]
-    CH13["Ch 13: RAG<br/>8h | Coming Soon"]
-    CH14["Ch 14: Fine-tuning<br/>8h | Coming Soon"]
-    CH15["Ch 15: MLOps<br/>8h | Coming Soon"]
+    CH10["Ch 10: NLP Basics<br/>10h | Available"]
+    CH11["Ch 11: LLMs & Transformers<br/>10h | Available"]
+    CH12["Ch 12: Prompt Engineering<br/>6h | Available"]
+    CH13["Ch 13: RAG<br/>8h | Available"]
+    CH14["Ch 14: Fine-tuning<br/>8h | Available"]
+    CH15["Ch 15: MLOps<br/>8h | Available"]
 
     CH1 --> CH2
     CH1 --> CH3
@@ -58,15 +58,15 @@ graph TD
     style CH7 fill:#4caf50,color:#fff
     style CH8 fill:#4caf50,color:#fff
     style CH9 fill:#4caf50,color:#fff
-    style CH10 fill:#f3e5f5
-    style CH11 fill:#f3e5f5
-    style CH12 fill:#f3e5f5
-    style CH13 fill:#f3e5f5
-    style CH14 fill:#f3e5f5
-    style CH15 fill:#f3e5f5
+    style CH10 fill:#4caf50,color:#fff
+    style CH11 fill:#4caf50,color:#fff
+    style CH12 fill:#4caf50,color:#fff
+    style CH13 fill:#4caf50,color:#fff
+    style CH14 fill:#4caf50,color:#fff
+    style CH15 fill:#4caf50,color:#fff
 ```
 
-**Legend**: Green = Available | Purple = Practitioner (Coming Soon) | Chapters 1-9 fully available with SVG diagrams
+**Legend**: Green = Available | Practitioner Track (Chapters 6–15) is now complete; Advanced Track (Chapters 16+) is planned
 
 ---
 
@@ -83,12 +83,12 @@ graph TD
 | 7 | [Supervised Learning](./chapters/chapter-07-supervised-learning/) | Practitioner | 10h | Available | 3 notebooks, scripts, 5 exercises, 3 SVGs |
 | 8 | [Unsupervised Learning](./chapters/chapter-08-unsupervised-learning/) | Practitioner | 8h | Available | 3 notebooks, scripts, 5 exercises, 3 SVGs |
 | 9 | [Deep Learning Fundamentals](./chapters/chapter-09-deep-learning-fundamentals/) | Practitioner | 12h | Available | 3 notebooks, scripts, 5 exercises, 3 SVGs |
-| 10 | Natural Language Processing | Practitioner | 10h | Planned | - |
-| 11 | LLMs & Transformers | Practitioner | 10h | Planned | - |
-| 12 | Prompt Engineering | Practitioner | 6h | Planned | - |
-| 13 | RAG | Practitioner | 8h | Planned | - |
-| 14 | Fine-tuning & Adaptation | Practitioner | 8h | Planned | - |
-| 15 | MLOps & Deployment | Practitioner | 8h | Planned | - |
+| 10 | [Natural Language Processing](./chapters/chapter-10-natural-language-processing-basics/) | Practitioner | 10h | Available | 3 notebooks, scripts, 4 exercises, 3 diagrams |
+| 11 | [LLMs & Transformers](./chapters/chapter-11-large-language-models-and-transformers/) | Practitioner | 10h | Available | 3 notebooks, scripts, 4 exercises, 3 diagrams |
+| 12 | [Prompt Engineering](./chapters/chapter-12-prompt-engineering-and-in-context-learning/) | Practitioner | 6h | Available | 3 notebooks, scripts, 4 exercises, 3 diagrams |
+| 13 | [RAG](./chapters/chapter-13-retrieval-augmented-generation/) | Practitioner | 8h | Available | 3 notebooks, scripts, 4 exercises, 3 diagrams |
+| 14 | [Fine-tuning & Adaptation](./chapters/chapter-14-fine-tuning-and-adaptation/) | Practitioner | 8h | Available | 3 notebooks, scripts, 4 exercises, 3 diagrams |
+| 15 | [MLOps & Deployment](./chapters/chapter-15-mlops-and-model-deployment/) | Practitioner | 8h | Available | 3 notebooks, scripts, 4 exercises, 3 diagrams |
 | 16 | Multi-Agent Systems | Advanced | 10h | Planned | - |
 | 17 | Advanced RAG | Advanced | 10h | Planned | - |
 | 18 | Reinforcement Learning | Advanced | 12h | Planned | - |

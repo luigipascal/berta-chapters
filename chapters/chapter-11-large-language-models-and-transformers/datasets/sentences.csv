@@ -1,0 +1,31 @@
+id,text,topic
+1,"Cats and dogs are the most popular household pets.",pets
+2,"My puppy loves chasing tennis balls in the park.",pets
+3,"Hamsters are small rodents that make good first pets.",pets
+4,"The vet recommended a new diet for the cat.",pets
+5,"Rabbits need plenty of hay and fresh water daily.",pets
+6,"Stocks rose sharply after the company beat earnings.",finance
+7,"The central bank announced a quarter-point rate cut.",finance
+8,"Bond yields climbed on stronger inflation data.",finance
+9,"The startup raised a Series B led by a tier-one fund.",finance
+10,"Investors are watching for the next consumer-spending report.",finance
+11,"The team scored in overtime to clinch the championship.",sports
+12,"He hit a home run in the bottom of the ninth inning.",sports
+13,"The marathon winner set a new course record this year.",sports
+14,"Their goalkeeper made several outstanding saves.",sports
+15,"The tennis player advanced to the quarterfinals.",sports
+16,"Pizza and pasta are classic Italian dishes.",food
+17,"This sushi restaurant uses fresh tuna every morning.",food
+18,"I baked a chocolate cake for my friend's birthday.",food
+19,"Sourdough bread has become very popular in home kitchens.",food
+20,"The chef recommended the seasonal mushroom risotto.",food
+21,"The probe sent back stunning images of Saturn's rings.",space
+22,"NASA announced a new mission to study Jupiter's moons.",space
+23,"Astronomers discovered an exoplanet in the habitable zone.",space
+24,"The James Webb telescope captured a distant nebula in detail.",space
+25,"A meteor shower will be visible across the northern sky tonight.",space
+26,"A storm system is moving across the eastern coast tonight.",weather
+27,"Tomorrow will be sunny with a high near 24 degrees Celsius.",weather
+28,"Heavy snowfall is expected in mountain regions this week.",weather
+29,"A heatwave warning was issued for the southern provinces.",weather
+30,"Forecasters say the hurricane is likely to make landfall by morning.",weather

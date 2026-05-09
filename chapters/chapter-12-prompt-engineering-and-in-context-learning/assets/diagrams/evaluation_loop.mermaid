@@ -1,0 +1,8 @@
+graph LR
+    A["Prompt Template"] --> B["Render"]
+    B --> C["LLM Call"]
+    C --> D["Parser"]
+    D --> E["Grader"]
+    E --> F["Metrics"]
+    F --> G["Iterate / Version"]
+    G --> A

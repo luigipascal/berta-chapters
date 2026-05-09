@@ -1,0 +1,62 @@
+[
+  {
+    "question": "What does RAG stand for and what does it do?",
+    "answer": "RAG stands for retrieval-augmented generation. It combines a large language model with an external retriever so relevant documents are fetched and prepended to the prompt at query time, grounding the model in evidence and reducing hallucination.",
+    "context_id": "doc-001"
+  },
+  {
+    "question": "What is a vector embedding?",
+    "answer": "A vector embedding is a dense numerical representation of text that places semantically similar passages near each other in a high-dimensional space, typically with 384 to 1024 dimensions for modern models.",
+    "context_id": "doc-002"
+  },
+  {
+    "question": "Why is BM25 still used despite dense retrievers?",
+    "answer": "BM25 is fast, interpretable, and surprisingly competitive on keyword-heavy queries where exact matches matter, complementing dense retrievers.",
+    "context_id": "doc-003"
+  },
+  {
+    "question": "What is Reciprocal Rank Fusion?",
+    "answer": "Reciprocal Rank Fusion is a hybrid-search fusion technique that sums one over the rank of each candidate across multiple retrievers, robustly improving over either retriever alone.",
+    "context_id": "doc-004"
+  },
+  {
+    "question": "What is the trade-off between fixed-size and semantic chunking?",
+    "answer": "Fixed-size character chunks are simple but break sentences; semantic and sentence chunkers respect natural language structure and preserve meaning across passages.",
+    "context_id": "doc-005"
+  },
+  {
+    "question": "What problem does FAISS solve?",
+    "answer": "FAISS provides exact and approximate nearest-neighbor search over dense vectors at very high scale, supporting IVF, HNSW, and product-quantization indexes on CPU and GPU.",
+    "context_id": "doc-006"
+  },
+  {
+    "question": "What is a cross-encoder reranker?",
+    "answer": "A cross-encoder reranker re-scores an initial candidate list by taking query and candidate together and outputting a single relevance score; it is slower than a bi-encoder but more accurate.",
+    "context_id": "doc-008"
+  },
+  {
+    "question": "What is HyDE?",
+    "answer": "HyDE, Hypothetical Document Embeddings, has the LLM draft a hypothetical answer to the query and embeds that draft as the search vector, often beating raw query embeddings on short or vague questions.",
+    "context_id": "doc-011"
+  },
+  {
+    "question": "How is faithfulness usually scored?",
+    "answer": "Faithfulness is scored by checking what fraction of answer claims appear, paraphrased or verbatim, in the cited chunks; LLM-as-judge tools like Ragas use the same idea at scale.",
+    "context_id": "doc-013"
+  },
+  {
+    "question": "What does Mean Reciprocal Rank measure?",
+    "answer": "Mean Reciprocal Rank averages one over the rank of the first relevant hit across queries, summarizing how high relevant documents appear in the ranking.",
+    "context_id": "doc-016"
+  },
+  {
+    "question": "How does multi-hop retrieval work?",
+    "answer": "Multi-hop retrieval handles questions whose answer spans multiple documents by retrieving, drafting an intermediate query from partial answers, and retrieving again until enough evidence is gathered.",
+    "context_id": "doc-020"
+  },
+  {
+    "question": "Why do RAG systems normalize embeddings at index time?",
+    "answer": "When both vectors are L2-normalized, cosine similarity reduces to a single dot product, which is why most production stores normalize at index time for speed.",
+    "context_id": "doc-026"
+  }
+]

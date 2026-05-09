@@ -1,0 +1,12 @@
+graph LR
+    X["Input X (batch, seq, d_model)"] --> SP["Split into h heads"]
+    SP --> H1["Head 1: Attention(Q1, K1, V1)"]
+    SP --> H2["Head 2: Attention(Q2, K2, V2)"]
+    SP --> H3["..."]
+    SP --> Hh["Head h: Attention(Qh, Kh, Vh)"]
+    H1 --> C["Concat (batch, seq, d_model)"]
+    H2 --> C
+    H3 --> C
+    Hh --> C
+    C --> P["Projection Wo"]
+    P --> O["Output (batch, seq, d_model)"]

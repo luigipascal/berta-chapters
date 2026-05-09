@@ -1,0 +1,6 @@
+graph LR
+    A["Prompting<br/>(zero/few-shot)"] --> B["RAG<br/>(retrieve + condition)"]
+    B --> C["PEFT<br/>(LoRA, adapters, IA3)"]
+    C --> D["Full Fine-tuning<br/>(update all weights)"]
+    A -. "lowest cost / lowest binding" .-> D
+    D -. "highest cost / highest binding" .-> A

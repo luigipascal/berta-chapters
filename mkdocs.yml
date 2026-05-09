@@ -149,6 +149,26 @@ nav:
       - "10.1 Introduction": chapters/content/ch10-01_introduction.md
       - "10.2 Intermediate": chapters/content/ch10-02_intermediate.md
       - "10.3 Advanced": chapters/content/ch10-03_advanced.md
+      - "Ch 11: LLMs & Transformers": chapters/chapter-11.md
+      - "11.1 Introduction": chapters/content/ch11-01_introduction.md
+      - "11.2 Intermediate": chapters/content/ch11-02_intermediate.md
+      - "11.3 Advanced": chapters/content/ch11-03_advanced.md
+      - "Ch 12: Prompt Engineering": chapters/chapter-12.md
+      - "12.1 Introduction": chapters/content/ch12-01_introduction.md
+      - "12.2 Intermediate": chapters/content/ch12-02_intermediate.md
+      - "12.3 Advanced": chapters/content/ch12-03_advanced.md
+      - "Ch 13: Retrieval-Augmented Generation": chapters/chapter-13.md
+      - "13.1 Introduction": chapters/content/ch13-01_introduction.md
+      - "13.2 Intermediate": chapters/content/ch13-02_intermediate.md
+      - "13.3 Advanced": chapters/content/ch13-03_advanced.md
+      - "Ch 14: Fine-tuning & Adaptation": chapters/chapter-14.md
+      - "14.1 Introduction": chapters/content/ch14-01_introduction.md
+      - "14.2 Intermediate": chapters/content/ch14-02_intermediate.md
+      - "14.3 Advanced": chapters/content/ch14-03_advanced.md
+      - "Ch 15: MLOps & Model Deployment": chapters/chapter-15.md
+      - "15.1 Introduction": chapters/content/ch15-01_introduction.md
+      - "15.2 Intermediate": chapters/content/ch15-02_intermediate.md
+      - "15.3 Advanced": chapters/content/ch15-03_advanced.md
   - Playground: playground.md
   - Community:
     - Contributing: guides/contributing.md

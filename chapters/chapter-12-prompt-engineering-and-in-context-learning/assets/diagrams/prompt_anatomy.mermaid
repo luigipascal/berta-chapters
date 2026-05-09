@@ -1,0 +1,8 @@
+graph LR
+    A["System / Role"] --> E["Final Prompt"]
+    B["Instruction"] --> E
+    C["Context / Examples"] --> E
+    D["User Input"] --> E
+    E --> F["Output Spec / Schema"]
+    F --> G["LLM"]
+    G --> H["Parsed Response"]

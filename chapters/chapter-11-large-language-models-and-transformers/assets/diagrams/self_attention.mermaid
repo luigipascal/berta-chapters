@@ -1,0 +1,11 @@
+graph LR
+    X["Input X"] --> Q["Q = X * Wq"]
+    X --> K["K = X * Wk"]
+    X --> V["V = X * Wv"]
+    Q --> S["Scores = Q * K^T / sqrt(d_k)"]
+    K --> S
+    S --> M["Optional Mask"]
+    M --> SM["Softmax"]
+    SM --> A["Attention Weights"]
+    A --> O["Output = A * V"]
+    V --> O

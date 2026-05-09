@@ -1,0 +1,21 @@
+id,prompt,category
+1,"What is the capital of France?",factual
+2,"Who wrote the novel Pride and Prejudice?",factual
+3,"In what year did the Apollo 11 mission land on the Moon?",factual
+4,"What is the chemical symbol for gold?",factual
+5,"Write a short poem about a robot learning to paint.",creative
+6,"Invent a new flavour of ice cream and describe it.",creative
+7,"Tell a 3-sentence story about a lost umbrella.",creative
+8,"Imagine a city built on the back of a giant tortoise. Describe a normal morning there.",creative
+9,"Write a Python function that returns the nth Fibonacci number.",code
+10,"Show a SQL query that returns the top 5 customers by total spend.",code
+11,"Refactor this function to remove the nested loop: def f(xs): out = []; ...",code
+12,"Write a Bash one-liner that lists the 10 largest files in /var/log.",code
+13,"If a train leaves at 2pm travelling 60 mph and another at 3pm travelling 75 mph, when does the second catch up?",reasoning
+14,"All bloops are razzies and all razzies are lazzies. Are all bloops lazzies?",reasoning
+15,"You have 12 balls; 1 is heavier. With a balance scale and 3 weighings, find it. Outline the strategy.",reasoning
+16,"A bat and a ball cost $1.10 in total. The bat costs $1 more than the ball. How much does the ball cost?",reasoning
+17,"Summarise the following paragraph in one sentence: <paragraph>",summarization
+18,"Provide a 3-bullet TL;DR of a meeting transcript.",summarization
+19,"Reduce a 500-word product description to 50 words while keeping the key features.",summarization
+20,"Write a one-line headline for a research abstract about transformer scaling laws.",summarization
